@@ -1,0 +1,47 @@
+@use 'src/global';
+
+.pencas-list-header {
+  margin-top: 16px;
+  margin-bottom: 16px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  h2 {
+    color: global.$grey_colour;
+    font-weight: 500;
+    margin-right: 8px;
+  }
+
+  .flame-icon {
+    color: global.$red_colour;
+    font-size: 2rem;
+  }
+}
+
+.pencas-list {
+  flex-grow: 1;
+  overflow: hidden;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  padding-right: 24px;
+  padding-lefT: 24px;
+
+  > div {
+    background-color: global.$golden_colour;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  .penca-name {
+    color: global.$dark_red_color;
+    font-size: 18px;
+  }
+  .penca-betting-pool {
+    color: global.$grey_colour;
+    font-size: 14px;
+  }
+}

@@ -1,7 +1,7 @@
 @use 'src/global';
 
 .navbar {
-  background-color: global.$golden_colour !important;
+  background-color: global.$dark_gold_color !important;
 
   .navbar-icon {
     margin-right: 16px;
@@ -10,13 +10,14 @@
 
   .navbar-options {
     flex-grow: 1;
+    color: white;
 
     button {
       color: white;
     }
 
     button:hover {
-      background-color: global.$dark_gold_color;
+      background-color: global.$golden_colour;
     }
   }
 

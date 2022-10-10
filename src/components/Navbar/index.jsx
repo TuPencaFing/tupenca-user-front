@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Link } from "react-router-dom";
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -11,6 +12,7 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
+
 import logo from '../../assets/logo.png';
 import './styles.scss';
 
@@ -91,6 +93,8 @@ const Navbar = () => {
                                     key={page.name}
                                     onClick={handleCloseNavMenu}
                                     sx={{ display: 'block' }}
+                                    href={page.route}
+                                    className="no-style"
                                 >
                                     {page.name}
                                 </Button>
@@ -99,12 +103,14 @@ const Navbar = () => {
                     </Box>
 
                     <Box className="navbar-icon" sx={{ flexGrow: { xs: 1, md: 0 } }}>
-                        <img
-                            src={logo}
-                            alt="Tu Penca"
-                            width="64px"
-                            height="59px"
-                        />
+                        <Link to="/" className="no-style">
+                            <img
+                                src={logo}
+                                alt="Tu Penca"
+                                width="64px"
+                                height="59px"
+                            />
+                        </Link>
                     </Box>
                     <Box className="navbar-options" sx={{ display: { xs: 'none', md: 'flex' } }}>
                         {pages.filter(page => page.auth === false).map((page) => (
@@ -112,6 +118,8 @@ const Navbar = () => {
                                 key={page.name}
                                 onClick={handleCloseNavMenu}
                                 sx={{ display: 'block' }}
+                                href={page.route}
+                                className="no-style"
                             >
                                 {page.name}
                             </Button>
@@ -148,7 +156,7 @@ const Navbar = () => {
                             </Menu>
                         </Box>
                     ) : (
-                        <Button className="login-button" variant="contained">
+                        <Button className="login-button" variant="contained" href="/login">
                             Iniciar sesión
                         </Button>
                     )}
@@ -157,4 +165,5 @@ const Navbar = () => {
         </AppBar>
     );
 };
+
 export default Navbar;
