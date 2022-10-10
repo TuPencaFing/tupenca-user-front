@@ -1,0 +1,26 @@
+@use 'src/global';
+
+.navbar {
+  background-color: global.$golden_colour !important;
+
+  .navbar-icon {
+    margin-right: 16px;
+    display: flex;
+  }
+
+  .navbar-options {
+    flex-grow: 1;
+
+    button {
+      color: white;
+    }
+
+    button:hover {
+      background-color: global.$dark_gold_color;
+    }
+  }
+
+  .login-button {
+    background-color: black;
+  }
+}
