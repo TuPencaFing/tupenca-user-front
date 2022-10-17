@@ -1,26 +1,47 @@
-import * as React from 'react';
-import { Link } from "react-router-dom";
-import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import Grid from '@mui/material/Grid';
+import React, { useState } from 'react';
+import { Link, useNavigate } from "react-router-dom";
+import Alert from "@mui/material/Alert";
 import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
+import CssBaseline from '@mui/material/CssBaseline';
+import Grid from '@mui/material/Grid';
+import TextField from '@mui/material/TextField';
+import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-import logo from "../../assets/logo.png";
+import { createUser } from "../../services/users";
 import { Copyright } from '../../utils/copyright';
+import logo from "../../assets/logo.png";
 
 const theme = createTheme();
 
 const SignupForm = () => {
+    const navigate = useNavigate();
+    const [feedbackMessage, setFeedbackMessage] = useState(null);
+
     const handleSubmit = (event) => {
         event.preventDefault();
-        const data = new FormData(event.currentTarget);
-        console.log({
-            email: data.get('email'),
-            password: data.get('password'),
+        const formData = new FormData(event.currentTarget);
+        const data = {
+            email: formData.get('email'),
+            username: formData.get('username'),
+            password: formData.get('password'),
+        };
+        console.log(data);
+        createUser(data).then((response) => {
+            console.log('Response register: ', response);
+            navigate('/login', {
+                state: {
+                    register: true,
+                },
+            });
+        }).catch((error) => {
+            console.log('Error register: ', error);
+            setFeedbackMessage({
+                type: 'error',
+                message: 'Ocurrió un error al intentar crear su cuenta, inténtelo nuevamente.',
+            });
         });
     };
 
@@ -47,27 +68,6 @@ const SignupForm = () => {
                     </Typography>
                     <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
                         <Grid container spacing={2}>
-                            <Grid item xs={12} sm={6}>
-                                <TextField
-                                    autoComplete="given-name"
-                                    name="name"
-                                    required
-                                    fullWidth
-                                    id="name"
-                                    label="Nombre"
-                                    autoFocus
-                                />
-                            </Grid>
-                            <Grid item xs={12} sm={6}>
-                                <TextField
-                                    required
-                                    fullWidth
-                                    id="lastName"
-                                    label="Apellido"
-                                    name="lastName"
-                                    autoComplete="family-name"
-                                />
-                            </Grid>
                             <Grid item xs={12}>
                                 <TextField
                                     required
@@ -76,6 +76,17 @@ const SignupForm = () => {
                                     label="Email"
                                     name="email"
                                     autoComplete="email"
+                                    autoFocus
+                                />
+                            </Grid>
+                            <Grid item xs={12}>
+                                <TextField
+                                    autoComplete="username"
+                                    name="username"
+                                    required
+                                    fullWidth
+                                    id="username"
+                                    label="Username"
                                 />
                             </Grid>
                             <Grid item xs={12}>
@@ -90,6 +101,14 @@ const SignupForm = () => {
                                 />
                             </Grid>
                         </Grid>
+                        {feedbackMessage && (
+                            <>
+                                <br />
+                                <Alert severity={feedbackMessage.type}>
+                                    {feedbackMessage.message}
+                                </Alert>
+                            </>
+                        )}
                         <Button
                             type="submit"
                             fullWidth
@@ -98,7 +117,7 @@ const SignupForm = () => {
                         >
                             Registrarme
                         </Button>
-                        <Grid container justifyContent="flex-end">
+                        <Grid container justifyContent="center">
                             <Grid item>
                                 <Link to="/login" className="no-style">
                                     ¿Ya tenés una cuenta? Iniciar sesión

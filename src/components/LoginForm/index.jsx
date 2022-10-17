@@ -1,5 +1,5 @@
-import * as React from 'react';
-import { Link } from "react-router-dom";
+import React, { useState } from 'react';
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
@@ -9,18 +9,35 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-import logo from "../../assets/logo.png";
 import { Copyright } from '../../utils/copyright';
+import logo from "../../assets/logo.png";
+import Alert from "@mui/material/Alert";
+import { logIn } from "../../services/users";
 
 const theme = createTheme();
 
 const LoginForm = () => {
+    let location = useLocation();
+    const navigate = useNavigate();
+    const [feedbackMessage, setFeedbackMessage] = useState(null);
+
     const handleSubmit = (event) => {
         event.preventDefault();
-        const data = new FormData(event.currentTarget);
-        console.log({
-            email: data.get('email'),
-            password: data.get('password'),
+        const formData = new FormData(event.currentTarget);
+        const data = {
+            email: formData.get('email'),
+            password: formData.get('password'),
+        };
+        console.log(data);
+        logIn(data).then((response) => {
+            console.log('Response login: ', response);
+            navigate('/');
+        }).catch((error) => {
+            console.log('Error login: ', error);
+            setFeedbackMessage({
+                type: 'error',
+                message: 'Ocurrió un error al intentar ingresar con su cuenta, inténtelo nuevamente.',
+            });
         });
     };
 
@@ -45,6 +62,14 @@ const LoginForm = () => {
                     <Typography component="h1" variant="h5">
                         Iniciar sesión en Tu Penca
                     </Typography>
+                    {location?.state?.register && (
+                        <>
+                            <br />
+                            <Alert severity="success">
+                                Su cuenta fue creada correctamente. Ya puede iniciar sesión.
+                            </Alert>
+                        </>
+                    )}
                     <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
                         <TextField
                             margin="normal"
@@ -66,6 +91,14 @@ const LoginForm = () => {
                             id="password"
                             autoComplete="current-password"
                         />
+                        {feedbackMessage && (
+                            <>
+                                <br />
+                                <Alert severity={feedbackMessage.type}>
+                                    {feedbackMessage.message}
+                                </Alert>
+                            </>
+                        )}
                         <Button
                             type="submit"
                             fullWidth
