@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from "react-router-dom";
-import Alert from "@mui/material/Alert";
+import { Link, useNavigate } from 'react-router-dom';
+import Alert from '@mui/material/Alert';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
@@ -10,9 +10,9 @@ import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-import { createUser } from "../../services/users";
+import logo from '../../assets/logo.png';
+import { createUser } from '../../services/users';
 import { Copyright } from '../../utils/copyright';
-import logo from "../../assets/logo.png";
 
 const theme = createTheme();
 

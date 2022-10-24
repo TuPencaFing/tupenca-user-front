@@ -1,8 +1,8 @@
-import { axiosInstance } from "./config";
+import { axiosInstance } from './config';
 
 export const createUser = (data) => {
     const { email, username, password } = data;
-    return axiosInstance.post('/User/register', {
+    return axiosInstance.post('/Usuario/register', {
         email,
         username,
         password
@@ -11,7 +11,7 @@ export const createUser = (data) => {
 
 export const logIn = (data) => {
     const { email, password } = data;
-    return axiosInstance.post('/User/login', {
+    return axiosInstance.post('/Usuario/login', {
         email,
         password
     });

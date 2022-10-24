@@ -1,17 +1,18 @@
-import * as React from 'react';
-import { Link } from "react-router-dom";
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
 import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import Menu from '@mui/material/Menu';
-import MenuIcon from '@mui/icons-material/Menu';
-import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar';
+import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
+import Container from '@mui/material/Container';
+import IconButton from '@mui/material/IconButton';
+import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+import Toolbar from '@mui/material/Toolbar';
+import Tooltip from '@mui/material/Tooltip';
+import Typography from '@mui/material/Typography';
+import MenuIcon from '@mui/icons-material/Menu';
 
 import logo from '../../assets/logo.png';
 import './styles.scss';
@@ -22,22 +23,28 @@ const pages = [{
     auth: false,
 }, {
     name: 'Mis pencas',
-    route: '/',
+    route: '/mis-pencas',
     auth: true,
 }, {
     name: 'Próximos eventos',
-    route: '/',
+    route: '/proximos-eventos',
     auth: true,
 }];
-const settings = ['Mi perfil', 'Cerrar sesión'];
+const settings = [{
+    id: 1,
+    name: 'Mi perfil',
+    route: '/profile',
+}, {
+    id: 2,
+    name: 'Cerrar sesión',
+    route: '/logout',
+}];
 
 const Navbar = () => {
-    const [anchorElNav, setAnchorElNav] = React.useState(null);
-    const [anchorElUser, setAnchorElUser] = React.useState(null);
-    const user = null;
-    // const user = {
-    //     name: "Remy Sharp",
-    // };
+    const navigate = useNavigate();
+    const {isLogged, user} = useSelector((state) => state.session);
+    const [anchorElNav, setAnchorElNav] = useState(null);
+    const [anchorElUser, setAnchorElUser] = useState(null);
 
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
@@ -52,6 +59,11 @@ const Navbar = () => {
 
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
+    };
+
+    const handleClickPage = (route) => {
+        handleCloseNavMenu();
+        navigate(route);
     };
 
     return (
@@ -88,13 +100,11 @@ const Navbar = () => {
                                 display: { xs: 'block', md: 'none' },
                             }}
                         >
-                            {pages.filter(page => page.auth === false).map((page) => (
+                            {pages.filter(page => page.auth === isLogged).map((page) => (
                                 <Button
                                     key={page.name}
-                                    onClick={handleCloseNavMenu}
+                                    onClick={() => handleClickPage(page.route)}
                                     sx={{ display: 'block' }}
-                                    href={page.route}
-                                    className="no-style"
                                 >
                                     {page.name}
                                 </Button>
@@ -113,13 +123,11 @@ const Navbar = () => {
                         </Link>
                     </Box>
                     <Box className="navbar-options" sx={{ display: { xs: 'none', md: 'flex' } }}>
-                        {pages.filter(page => page.auth === false).map((page) => (
+                        {pages.filter(page => page.auth === isLogged).map((page) => (
                             <Button
                                 key={page.name}
-                                onClick={handleCloseNavMenu}
+                                onClick={() => handleClickPage(page.route)}
                                 sx={{ display: 'block' }}
-                                href={page.route}
-                                className="no-style"
                             >
                                 {page.name}
                             </Button>
@@ -129,7 +137,7 @@ const Navbar = () => {
                         <Box sx={{ flexGrow: 0 }}>
                             <Tooltip title={user.name}>
                                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                    <Avatar alt={user.name} src="/static/images/avatar/2.jpg" />
+                                    <Avatar alt={user.name.toUpperCase()} src="/static/images/avatar/2.jpg" />
                                 </IconButton>
                             </Tooltip>
                             <Menu
@@ -149,14 +157,16 @@ const Navbar = () => {
                                 onClose={handleCloseUserMenu}
                             >
                                 {settings.map((setting) => (
-                                    <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                                        <Typography textAlign="center">{setting}</Typography>
+                                    <MenuItem key={setting.id} onClick={handleCloseUserMenu}>
+                                        <Typography textAlign="center">
+                                            {setting.name}
+                                        </Typography>
                                     </MenuItem>
                                 ))}
                             </Menu>
                         </Box>
                     ) : (
-                        <Button className="login-button" variant="contained" href="/login">
+                        <Button className="login-button" variant="contained" onClick={() => navigate('/login')}>
                             Iniciar sesión
                         </Button>
                     )}

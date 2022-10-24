@@ -1,22 +1,25 @@
 import React, { useState } from 'react';
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-
-import { Copyright } from '../../utils/copyright';
-import logo from "../../assets/logo.png";
+import { useDispatch } from 'react-redux';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Alert from "@mui/material/Alert";
-import { logIn } from "../../services/users";
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Container from '@mui/material/Container';
+import CssBaseline from '@mui/material/CssBaseline';
+import Grid from '@mui/material/Grid';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import TextField from '@mui/material/TextField';
+import Typography from '@mui/material/Typography';
+
+import logo from '../../assets/logo.png';
+import { setToken } from '../../features/session/sessionSlice';
+import { logIn } from '../../services/users';
+import { Copyright } from '../../utils/copyright';
 
 const theme = createTheme();
 
 const LoginForm = () => {
+    const dispatch = useDispatch();
     let location = useLocation();
     const navigate = useNavigate();
     const [feedbackMessage, setFeedbackMessage] = useState(null);
@@ -28,9 +31,11 @@ const LoginForm = () => {
             email: formData.get('email'),
             password: formData.get('password'),
         };
-        console.log(data);
+        console.log('Request to login: ', data);
         logIn(data).then((response) => {
             console.log('Response login: ', response);
+            const { token } = response.data;
+            dispatch(setToken(token));
             navigate('/');
         }).catch((error) => {
             console.log('Error login: ', error);
@@ -114,7 +119,7 @@ const LoginForm = () => {
                                 </Link>
                             </Grid>
                             <Grid item>
-                                <Link to="/signup" className="no-style">
+                                <Link to="/registro" className="no-style">
                                     Crear mi cuenta
                                 </Link>
                             </Grid>

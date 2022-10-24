@@ -1,9 +1,9 @@
-import * as React from 'react';
-import { styled } from '@mui/material/styles';
-import Paper from '@mui/material/Paper';
-import Grid from '@mui/material/Grid';
-import Typography from '@mui/material/Typography';
+import React from 'react';
 import LocalFireDepartmentIcon from '@mui/icons-material/LocalFireDepartment';
+import Grid from '@mui/material/Grid';
+import Paper from '@mui/material/Paper';
+import { styled } from '@mui/material/styles';
+import Typography from '@mui/material/Typography';
 import './styles.scss';
 
 const StyledPaper = styled(Paper)(({ theme }) => ({
