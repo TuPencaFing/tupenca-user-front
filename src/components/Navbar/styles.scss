@@ -1,7 +1,5 @@
-@use 'src/global';
-
 .navbar {
-  background-color: global.$dark_gold_color !important;
+  background-color: #E76F51 !important;
 
   .navbar-icon {
     margin-right: 16px;
@@ -17,11 +15,15 @@
     }
 
     button:hover {
-      background-color: global.$golden_colour;
+      background-color: #C43C1B;
     }
   }
 
   .login-button {
     background-color: black;
+  }
+
+  .login-button:hover {
+    background-color: #494949;
   }
 }

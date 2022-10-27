@@ -1,0 +1,56 @@
+.events-list {
+  margin-top: 16px;
+  margin-bottom: 8px;
+  padding-right: 24px;
+  padding-lefT: 24px;
+
+  .event-item {
+    margin-top: 8px;
+    margin-bottom: 8px;
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+
+    .local-team, .visiting-team, .tie {
+      height: 72px;
+      margin: 0 8px;
+      padding: 0 16px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    .local-team, .visiting-team {
+      width: 45%;
+      justify-content: space-between;
+
+      input {
+        width: 48px;
+        height: 16px;
+        font-size: 20px;
+        text-align: center;
+      }
+    }
+
+    .tie {
+      width: 10%;
+      justify-content: center;
+    }
+
+    > div {
+      background-color: #FBDEC7;
+    }
+  }
+
+  .event-item-actions {
+    margin-right: 24px;
+    margin-bottom: 16px;
+    display: flex;
+    justify-content: flex-end;
+
+    button {
+      background-color: black;
+    }
+  }
+}

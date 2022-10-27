@@ -4,7 +4,7 @@ import './styles.scss';
 
 const Spinner = () => (
     <div className="loader">
-        <Roller />;
+        <Roller />
     </div>
 );
 

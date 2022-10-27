@@ -1,5 +1,3 @@
-@use 'src/global';
-
 .pencas-list-header {
   margin-top: 16px;
   margin-bottom: 16px;
@@ -9,13 +7,13 @@
   align-items: center;
 
   h2 {
-    color: global.$grey_colour;
+    color: #030506;
     font-weight: 500;
     margin-right: 8px;
   }
 
   .flame-icon {
-    color: global.$red_colour;
+    color: #da1610;
     font-size: 2rem;
   }
 }
@@ -29,7 +27,7 @@
   padding-lefT: 24px;
 
   > div {
-    background-color: global.$golden_colour;
+    background-color: #FBDEC7;
     height: 48px;
     display: flex;
     align-items: center;
@@ -37,11 +35,11 @@
   }
 
   .penca-name {
-    color: global.$dark_red_color;
+    color: #030506;
     font-size: 18px;
   }
   .penca-betting-pool {
-    color: global.$grey_colour;
+    color: #B03618;
     font-size: 14px;
   }
 }

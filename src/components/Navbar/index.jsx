@@ -104,7 +104,7 @@ const Navbar = () => {
                                 <Button
                                     key={page.name}
                                     onClick={() => handleClickPage(page.route)}
-                                    sx={{ display: 'block' }}
+                                    sx={{ display: 'block', color: '#E76F51' }}
                                 >
                                     {page.name}
                                 </Button>
