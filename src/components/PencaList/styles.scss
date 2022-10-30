@@ -38,8 +38,23 @@
     color: #030506;
     font-size: 18px;
   }
-  .penca-betting-pool {
-    color: #B03618;
-    font-size: 14px;
+
+  .penca-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .penca-betting-pool {
+      color: #B03618;
+      font-size: 14px;
+    }
+
+    .join-button {
+      background-color: black;
+    }
+
+    .join-button:hover {
+      background-color: #494949;
+    }
   }
 }

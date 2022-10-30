@@ -13,6 +13,7 @@ import Typography from '@mui/material/Typography';
 import logo from '../../assets/logo.png';
 import { Copyright } from '../../utils/copyright';
 import ROUTES  from '../../utils/routes';
+import './styles.scss';
 
 const theme = createTheme();
 
@@ -83,9 +84,10 @@ const LoginForm = ({ feedbackMessage, handleSubmit, isCompany }) => {
                         )}
                         <Button
                             type="submit"
+                            className="login-button"
                             fullWidth
                             variant="contained"
-                            sx={{ mt: 3, mb: 2, backgroundColor: 'black' }}
+                            sx={{ mt: 3, mb: 2 }}
                         >
                             Iniciar sesión
                         </Button>

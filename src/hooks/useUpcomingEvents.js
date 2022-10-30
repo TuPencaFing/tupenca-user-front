@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-import { getUpcomingEvents } from "../services/events";
+
+import { getUpcomingEvents } from '../services/events';
 
 const useUpcomingEvents = () => {
     const [loading, setLoading] = useState(false);

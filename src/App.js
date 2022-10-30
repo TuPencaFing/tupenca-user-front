@@ -7,6 +7,8 @@ import CompanyRegister from './pages/CompanyRegister';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Logout from './pages/Logout';
+import MisPencas from './pages/MisPencas';
+import Pencas from './pages/Pencas';
 import Register from './pages/Register';
 import UpcomingEvents from './pages/UpcomingEvents';
 import CompanyLayout from './router/CompanyLayout';
@@ -27,8 +29,8 @@ const App = () => (
                 <Route path={ROUTES.companyRegister} element={<CompanyRegister />} />
             </Route>
             <Route element={<PrivateLayout />}>
-                <Route path={ROUTES.pencas} element={<Home />} />
-                <Route path={ROUTES.misPencas} element={<Home />} />
+                <Route path={ROUTES.pencas} element={<Pencas />} />
+                <Route path={ROUTES.misPencas} element={<MisPencas />} />
                 <Route path={ROUTES.upcomingEvents} element={<UpcomingEvents />} />
                 <Route path={ROUTES.logout} element={<Logout />} />
             </Route>
