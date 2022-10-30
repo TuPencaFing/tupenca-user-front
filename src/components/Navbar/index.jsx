@@ -17,32 +17,9 @@ import MenuIcon from '@mui/icons-material/Menu';
 import logo from '../../assets/logo.png';
 import './styles.scss';
 
-const pages = [{
-    name: 'Pencas',
-    route: '/',
-    auth: false,
-}, {
-    name: 'Mis pencas',
-    route: '/mis-pencas',
-    auth: true,
-}, {
-    name: 'Próximos eventos',
-    route: '/proximos-eventos',
-    auth: true,
-}];
-const settings = [{
-    id: 1,
-    name: 'Mi perfil',
-    route: '/profile',
-}, {
-    id: 2,
-    name: 'Cerrar sesión',
-    route: '/logout',
-}];
-
-const Navbar = () => {
+const Navbar = ({ pages, settings }) => {
     const navigate = useNavigate();
-    const {isLogged, user} = useSelector((state) => state.session);
+    const { user } = useSelector((state) => state.session);
     const [anchorElNav, setAnchorElNav] = useState(null);
     const [anchorElUser, setAnchorElUser] = useState(null);
 
@@ -59,6 +36,11 @@ const Navbar = () => {
 
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
+    };
+
+    const handleClickSetting = (route) => {
+        handleCloseUserMenu();
+        navigate(route);
     };
 
     const handleClickPage = (route) => {
@@ -100,7 +82,7 @@ const Navbar = () => {
                                 display: { xs: 'block', md: 'none' },
                             }}
                         >
-                            {pages.filter(page => page.auth === isLogged).map((page) => (
+                            {pages.map((page) => (
                                 <Button
                                     key={page.name}
                                     onClick={() => handleClickPage(page.route)}
@@ -123,7 +105,7 @@ const Navbar = () => {
                         </Link>
                     </Box>
                     <Box className="navbar-options" sx={{ display: { xs: 'none', md: 'flex' } }}>
-                        {pages.filter(page => page.auth === isLogged).map((page) => (
+                        {pages.map((page) => (
                             <Button
                                 key={page.name}
                                 onClick={() => handleClickPage(page.route)}
@@ -157,7 +139,7 @@ const Navbar = () => {
                                 onClose={handleCloseUserMenu}
                             >
                                 {settings.map((setting) => (
-                                    <MenuItem key={setting.id} onClick={handleCloseUserMenu}>
+                                    <MenuItem key={setting.id} onClick={() => handleClickSetting(setting.route)}>
                                         <Typography textAlign="center">
                                             {setting.name}
                                         </Typography>

@@ -2,15 +2,18 @@ import React from 'react';
 
 import Navbar from '../../components/Navbar';
 import SignupForm from '../../components/SignupForm';
+import { USER_PAGES } from '../../utils/navbarItems';
 
-const Signup = () => {
+const Register = () => {
 
     return (
         <>
-            <Navbar />
+            <Navbar
+                pages={USER_PAGES}
+            />
             <SignupForm />
         </>
     );
 };
 
-export default Signup;
+export default Register;

@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import Navbar from '../../components/Navbar';
 import LoginForm from '../../components/LoginForm';
-import { setSession } from '../../features/session/sessionSlice';
-import { logIn } from '../../services/users';
-import { USER_PAGES } from '../../utils/navbarItems';
+import { setCompanySession } from '../../features/session/sessionSlice';
+import { logIn } from '../../services/employees';
+import { EMPLOYEE_PAGES } from '../../utils/navbarItems';
 
-const Login = () => {
+const CompanyLogin = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    let params = useParams();
     const [feedbackMessage, setFeedbackMessage] = useState(null);
 
     const handleSubmit = (event) => {
@@ -24,7 +25,10 @@ const Login = () => {
         logIn(data).then((response) => {
             console.log('Response login: ', response);
             const { token } = response.data;
-            dispatch(setSession({ token }));
+            dispatch(setCompanySession({
+                token,
+                companyCode: params.companyCode,
+            }));
             navigate('/');
         }).catch((error) => {
             console.log('Error login: ', error);
@@ -38,15 +42,15 @@ const Login = () => {
     return (
         <>
             <Navbar
-                pages={USER_PAGES}
+                pages={EMPLOYEE_PAGES}
             />
             <LoginForm
                 feedbackMessage={feedbackMessage}
                 handleSubmit={handleSubmit}
-                isCompany={false}
+                isCompany={true}
             />
         </>
     );
 };
 
-export default Login;
+export default CompanyLogin;

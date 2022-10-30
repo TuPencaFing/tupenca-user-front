@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import React from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import Alert from "@mui/material/Alert";
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -12,39 +11,17 @@ import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 
 import logo from '../../assets/logo.png';
-import { setToken } from '../../features/session/sessionSlice';
-import { logIn } from '../../services/users';
 import { Copyright } from '../../utils/copyright';
+import ROUTES  from '../../utils/routes';
 
 const theme = createTheme();
 
-const LoginForm = () => {
-    const dispatch = useDispatch();
+const LoginForm = ({ feedbackMessage, handleSubmit, isCompany }) => {
     let location = useLocation();
-    const navigate = useNavigate();
-    const [feedbackMessage, setFeedbackMessage] = useState(null);
-
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        const formData = new FormData(event.currentTarget);
-        const data = {
-            email: formData.get('email'),
-            password: formData.get('password'),
-        };
-        console.log('Request to login: ', data);
-        logIn(data).then((response) => {
-            console.log('Response login: ', response);
-            const { token } = response.data;
-            dispatch(setToken(token));
-            navigate('/');
-        }).catch((error) => {
-            console.log('Error login: ', error);
-            setFeedbackMessage({
-                type: 'error',
-                message: 'Ocurrió un error al intentar ingresar con su cuenta, inténtelo nuevamente.',
-            });
-        });
-    };
+    const title = isCompany ? 'Iniciar sesión con tu empresa' : 'Iniciar sesión en Tu Penca';
+    const successfulRegistration = isCompany
+        ? 'Su empresa fue creada correctamente. Ya puede iniciar sesión con el administrador.'
+        : 'Su cuenta fue creada correctamente. Ya puede iniciar sesión.';
 
     return (
         <ThemeProvider theme={theme}>
@@ -65,13 +42,13 @@ const LoginForm = () => {
                         height="59px"
                     />
                     <Typography component="h1" variant="h5">
-                        Iniciar sesión en Tu Penca
+                        {title}
                     </Typography>
                     {location?.state?.register && (
                         <>
                             <br />
                             <Alert severity="success">
-                                Su cuenta fue creada correctamente. Ya puede iniciar sesión.
+                                {successfulRegistration}
                             </Alert>
                         </>
                     )}
@@ -118,14 +95,23 @@ const LoginForm = () => {
                                     ¿Olvidaste tu contraseña?
                                 </Link>
                             </Grid>
-                            <Grid item>
-                                <Link to="/registro" className="no-style">
-                                    Crear mi cuenta
-                                </Link>
-                            </Grid>
+                            {!isCompany && (
+                                <Grid item>
+                                    <Link to={ROUTES.register} className="no-style">
+                                        Crear mi cuenta
+                                    </Link>
+                                </Grid>
+                            )}
                         </Grid>
                     </Box>
                 </Box>
+                <br />
+                {!isCompany && (
+                    <div style={{ textAlign: 'center' }}>
+                        Sos una empresa y estás interesado en la plataforma?
+                        Ingresá <Link to={ROUTES.companyRegister}>aquí</Link> para conocer más
+                    </div>
+                )}
                 <Copyright sx={{ mt: 8, mb: 4 }} />
             </Container>
         </ThemeProvider>
