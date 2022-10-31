@@ -15,6 +15,7 @@ import Typography from '@mui/material/Typography';
 import MenuIcon from '@mui/icons-material/Menu';
 
 import logo from '../../assets/logo.png';
+import { getCompanyRoutes } from '../../utils/routes';
 import './styles.scss';
 
 const Navbar = ({ pages, settings }) => {
@@ -148,9 +149,14 @@ const Navbar = ({ pages, settings }) => {
                             </Menu>
                         </Box>
                     ) : (
-                        <Button className="login-button" variant="contained" onClick={() => navigate('/login')}>
-                            Iniciar sesión
-                        </Button>
+                        <>
+                            <Link to={getCompanyRoutes(11).login} className="no-style" style={{ marginRight: "16px" }}>
+                                Login empresas
+                            </Link>
+                            <Button className="login-button" variant="contained" onClick={() => navigate('/login')}>
+                                Iniciar sesión
+                            </Button>
+                        </>
                     )}
                 </Toolbar>
             </Container>
