@@ -19,3 +19,11 @@ export const logIn = (data) => {
         password
     });
 };
+
+export const inviteUser = (data) => {
+    const { email, pencaId } = data;
+    return axiosInstance.post('/api/funcionarios/invitar', {
+        email,
+        pencaId,
+    });
+};

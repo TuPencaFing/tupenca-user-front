@@ -16,3 +16,21 @@ export const logIn = (data) => {
         password
     });
 };
+
+export const acceptInvitation = (data) => {
+    const { accessToken } = data;
+    return axiosInstance.post('/api/usuarios/aceptarInvitacion', {}, {
+        params: {
+            access_token: accessToken,
+        }
+    });
+};
+
+export const rejectInvitation = (data) => {
+    const { accessToken } = data;
+    return axiosInstance.post('/api/usuarios/rechazarInvitacion', {}, {
+        params: {
+            access_token: accessToken,
+        }
+    });
+};

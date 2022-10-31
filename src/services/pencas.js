@@ -16,6 +16,10 @@ export const getMyPencas = () => {
     });
 };
 
+export const getCompanyPencas = () => {
+    return axiosInstance.get('/api/pencas-empresas/miempresa');
+};
+
 export const joinPenca = (pencaId) => {
     return axiosInstance.post(`/api/pencas-compartidas/${pencaId}/add`);
 };

@@ -1,0 +1,10 @@
+.user-invitation-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 480px;
+
+  .user-invitation-accept, .user-invitation-reject {
+    width: 50%;
+  }
+}
