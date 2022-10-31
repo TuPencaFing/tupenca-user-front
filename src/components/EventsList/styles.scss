@@ -38,6 +38,10 @@
       justify-content: center;
     }
 
+    .selected {
+      border: 2px solid black;
+    }
+
     > div {
       background-color: #FBDEC7;
     }

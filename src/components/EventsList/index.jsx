@@ -5,7 +5,7 @@ import SendIcon from '@mui/icons-material/Send';
 
 import './styles.scss';
 
-const EventsList = ({ events }) => {
+const EventsList = ({ events, updateResult, updateLocalScore, updateVisitorScore, handleSavePrediction }) => {
 
     const formatDate = (dateStr) => {
         const date = new Date(dateStr);
@@ -14,6 +14,14 @@ const EventsList = ({ events }) => {
             month: 'long',
             day: 'numeric',
         });
+    };
+
+    const handleChangeLocalScore = (eventId, score) => {
+        updateLocalScore(eventId, score);
+    };
+
+    const handleChangeVisitorScore = (eventId, score) => {
+        updateVisitorScore(eventId, score);
     };
 
     return (
@@ -27,20 +35,32 @@ const EventsList = ({ events }) => {
                             </div>
                         )}
                         <div className="event-item">
-                            <div className="local-team">
+                            <div
+                                className={event.prediccion?.prediccion === 1 ? "local-team selected" : "local-team"}
+                                onClick={() => updateResult(event.id, 1)}
+                            >
                                 <TextField
                                     name="local_team_result"
                                     type="number"
                                     variant="standard"
                                     InputProps={{ inputProps: { min: 0, max: 999 } }}
                                     placeholder="0"
+                                    value={event.prediccion?.puntajeEquipoLocal || 0}
+                                    onClick={(e) => e.stopPropagation()}
+                                    onChange={(e) => handleChangeLocalScore(event.id, e.target.value)}
                                 />
                                 {event.equipoLocal.nombre}
                             </div>
-                            <div className="tie">
+                            <div
+                                className={event.prediccion?.prediccion === 0 ? "tie selected" : "tie"}
+                                onClick={() => updateResult(event.id, 0)}
+                            >
                                 Empate
                             </div>
-                            <div className="visiting-team">
+                            <div
+                                className={event.prediccion?.prediccion === 2 ? "visiting-team selected" : "visiting-team"}
+                                onClick={() => updateResult(event.id, 2)}
+                            >
                                 {event.equipoVisitante.nombre}
                                 <TextField
                                     name="visiting_team_result"
@@ -48,11 +68,18 @@ const EventsList = ({ events }) => {
                                     variant="standard"
                                     InputProps={{ inputProps: { min: 0, max: 999 } }}
                                     placeholder="0"
+                                    value={event.prediccion?.puntajeEquipoVisitante || 0}
+                                    onClick={(e) => e.stopPropagation()}
+                                    onChange={(e) => handleChangeVisitorScore(event.id, e.target.value)}
                                 />
                             </div>
                         </div>
                         <div className="event-item-actions">
-                            <Button variant="contained" endIcon={<SendIcon />}>
+                            <Button
+                                variant="contained"
+                                endIcon={<SendIcon />}
+                                onClick={() => handleSavePrediction(event.id)}
+                            >
                                 Guardar
                             </Button>
                         </div>

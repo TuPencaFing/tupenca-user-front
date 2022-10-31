@@ -1,10 +1,76 @@
 import { useEffect, useState } from 'react';
 
-import { getUpcomingEvents } from '../services/events';
+import { getUpcomingEvents, savePrediction } from '../services/events';
 
 const useUpcomingEvents = () => {
     const [loading, setLoading] = useState(false);
     const [events, setEvents] = useState([]);
+
+    const updateResult = (eventId, result) => {
+        console.log('update result: ', eventId, result);
+        const newList = events.map((event) => {
+            if (event.id === eventId) {
+                return {
+                    ...event,
+                    prediccion: {
+                        ...event.prediccion,
+                        prediccion: result,
+                    },
+                };
+            }
+            return event;
+        });
+        setEvents(newList);
+    };
+
+    const updateLocalScore = (eventId, score) => {
+        console.log('update local score: ', eventId, score);
+        const newList = events.map((event) => {
+            if (event.id === eventId) {
+                return {
+                    ...event,
+                    prediccion: {
+                        ...event.prediccion,
+                        puntajeEquipoLocal: score,
+                    },
+                };
+            }
+            return event;
+        });
+        setEvents(newList);
+    };
+
+    const updateVisitorScore = (eventId, score) => {
+        console.log('update visitor score: ', eventId, score);
+        const newList = events.map((event) => {
+            if (event.id === eventId) {
+                return {
+                    ...event,
+                    prediccion: {
+                        ...event.prediccion,
+                        puntajeEquipoVisitante: score,
+                    },
+                };
+            }
+            return event;
+        });
+        setEvents(newList);
+    };
+
+    const handleSavePrediction = (eventId) => {
+        const event = events.find(event => event.id === eventId);
+        const { prediccion, puntajeEquipoLocal, puntajeEquipoVisitante } = event.prediccion;
+        const data = {
+            resultado: prediccion,
+            puntajeEquipoLocal,
+            puntajeEquipoVisitante,
+        };
+        savePrediction(eventId, data).then((response) => {
+            console.log('Response of save prediction: ', response);
+        }).catch((error) => {
+            console.log('Error saving prediction: ', error);
+        });
+    };
 
     useEffect(() => {
         setLoading(true);
@@ -34,7 +100,7 @@ const useUpcomingEvents = () => {
         });
     }, []);
 
-    return {loading, events};
+    return {loading, events, updateResult, updateLocalScore, updateVisitorScore, handleSavePrediction};
 };
 
 export default useUpcomingEvents;

@@ -7,7 +7,7 @@ import useUpcomingEvents from '../../hooks/useUpcomingEvents';
 import { USER_LOGGED_PAGES, USERS_SETTINGS } from '../../utils/navbarItems';
 
 const UpcomingEvents = () => {
-    const {loading, events} = useUpcomingEvents();
+    const {loading, events, updateResult, updateLocalScore, updateVisitorScore, handleSavePrediction} = useUpcomingEvents();
 
     if (loading) return <Spinner />;
 
@@ -18,7 +18,13 @@ const UpcomingEvents = () => {
                 settings={USERS_SETTINGS}
             />
             {events && events.length > 0 ? (
-                <EventsList events={events} />
+                <EventsList
+                    events={events}
+                    updateResult={updateResult}
+                    updateLocalScore={updateLocalScore}
+                    updateVisitorScore={updateVisitorScore}
+                    handleSavePrediction={handleSavePrediction}
+                />
             ) : (
                 <>
                     No hay eventos
