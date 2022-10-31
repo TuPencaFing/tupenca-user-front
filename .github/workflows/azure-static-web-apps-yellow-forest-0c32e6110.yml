@@ -10,6 +10,7 @@ on:
       - main
 
 env:
+  NODE_VERSION: '16.x'
   CI: 'false'
 
 jobs:
@@ -25,6 +26,7 @@ jobs:
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
         with:
+          node-version: ${{ env.NODE_VERSION }}
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_YELLOW_FOREST_0C32E6110 }}
           repo_token: ${{ secrets.GITHUB_TOKEN }} # Used for Github integrations (i.e. PR comments)
           action: "upload"
