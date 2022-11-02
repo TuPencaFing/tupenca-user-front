@@ -3,11 +3,11 @@ name: Azure Static Web Apps CI/CD
 on:
   push:
     branches:
-      - main
+      - main2
   pull_request:
     types: [opened, synchronize, reopened, closed]
     branches:
-      - main
+      - main2
 
 env:
   NODE_VERSION: '16.x'
