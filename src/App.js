@@ -12,6 +12,7 @@ import Login from './pages/Login';
 import Logout from './pages/Logout';
 import MisPencas from './pages/MisPencas';
 import Pencas from './pages/Pencas';
+import Payment from './pages/Payment';
 import Register from './pages/Register';
 import UpcomingEvents from './pages/UpcomingEvents';
 import UserInvitation from './pages/UserInvitation';
@@ -34,6 +35,7 @@ const App = () => (
             </Route>
             <Route element={<PrivateLayout />}>
                 <Route path={ROUTES.pencas} element={<Pencas />} />
+                <Route path={`${ROUTES.pencas}/:pencaId/payment`} element={<Payment />} />
                 <Route path={ROUTES.misPencas} element={<MisPencas />} />
                 <Route path={ROUTES.upcomingEvents} element={<UpcomingEvents />} />
                 <Route path={ROUTES.logout} element={<Logout />} />

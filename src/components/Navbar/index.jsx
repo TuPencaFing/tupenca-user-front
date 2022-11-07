@@ -149,14 +149,9 @@ const Navbar = ({ pages, settings }) => {
                             </Menu>
                         </Box>
                     ) : (
-                        <>
-                            <Link to={getCompanyRoutes(11).login} className="no-style" style={{ marginRight: "16px" }}>
-                                Login empresas
-                            </Link>
-                            <Button className="login-button" variant="contained" onClick={() => navigate('/login')}>
-                                Iniciar sesión
-                            </Button>
-                        </>
+                        <Button className="login-button" variant="contained" onClick={() => navigate('/login')}>
+                            Iniciar sesión
+                        </Button>
                     )}
                 </Toolbar>
             </Container>

@@ -1,19 +1,16 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-import { getPencas, joinPenca } from '../services/pencas';
+import { getPencas } from '../services/pencas';
+import ROUTES from '../utils/routes';
 
 const usePencas = () => {
+    const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
     const [pencas, setPencas] = useState([]);
 
     const handleJoinPenca = (pencaId) => {
-        joinPenca(pencaId).then((response) => {
-            console.log('Response of join penca: ', response);
-            const newPencas = pencas.filter((penca) => penca.id !== pencaId);
-            setPencas(newPencas);
-        }).catch((error) => {
-            console.error('Error joining penca: ', error);
-        });
+        navigate(`${ROUTES.pencas}/${pencaId}/payment`);
     };
 
     useEffect(() => {
@@ -25,6 +22,7 @@ const usePencas = () => {
                 pencaResp.push({
                     id: penca.id,
                     title: penca.title,
+                    price: penca.CostEntry,
                     bettingPool: penca.pozo,
                 });
             })

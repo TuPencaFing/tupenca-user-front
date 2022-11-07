@@ -1,0 +1,8 @@
+.card-payment-brick-container {
+  width: 40%;
+  margin: 16px auto;
+
+  [class^="button-container"] {
+    max-width: 100% !important;
+  }
+}
