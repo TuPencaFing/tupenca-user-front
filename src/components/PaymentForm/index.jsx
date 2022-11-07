@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import { joinPenca } from '../../services/pencas';
+import { getPencaById, joinPenca } from '../../services/pencas';
 import ROUTES from '../../utils/routes';
 import './styles.scss';
 
@@ -9,10 +9,10 @@ const PaymentForm = () => {
     const navigate = useNavigate();
     let params = useParams();
 
-    const renderCardPaymentBrick = async (bricksBuilder) => {
+    const renderCardPaymentBrick = async (bricksBuilder, penca) => {
         const settings = {
             initialization: {
-                amount: 100, // monto a ser pago
+                amount: penca.costEntry, // monto a ser pago
             },
             callbacks: {
                 onReady: () => {
@@ -63,8 +63,13 @@ const PaymentForm = () => {
     useEffect(() => {
         const mercadopago = new window.MercadoPago('TEST-45a07852-3593-44df-b47e-a3a2c4e618f1');
         const bricksBuilder = mercadopago.bricks();
-        renderCardPaymentBrick(bricksBuilder);
-    }, [renderCardPaymentBrick]);
+        getPencaById(params.pencaId).then((response) => {
+            console.log('Response of get penca by ID: ', response);
+            renderCardPaymentBrick(bricksBuilder, response.data);
+        }).catch((error) => {
+            console.error('Error getting penca by ID: ', error);
+        });
+    }, [params.pencaId, renderCardPaymentBrick]);
 
     return (
         <>

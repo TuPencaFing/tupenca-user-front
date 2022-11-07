@@ -23,3 +23,7 @@ export const getCompanyPencas = () => {
 export const joinPenca = (pencaId) => {
     return axiosInstance.post(`/api/pencas-compartidas/${pencaId}/add`);
 };
+
+export const getPencaById = (pencaId) => {
+    return axiosInstance.get(`/api/pencas-compartidas/${pencaId}`);
+};

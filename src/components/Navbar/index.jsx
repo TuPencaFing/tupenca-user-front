@@ -15,7 +15,6 @@ import Typography from '@mui/material/Typography';
 import MenuIcon from '@mui/icons-material/Menu';
 
 import logo from '../../assets/logo.png';
-import { getCompanyRoutes } from '../../utils/routes';
 import './styles.scss';
 
 const Navbar = ({ pages, settings }) => {
