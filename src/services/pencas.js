@@ -20,8 +20,11 @@ export const getCompanyPencas = () => {
     return axiosInstance.get('/api/pencas-empresas/miempresa');
 };
 
-export const joinPenca = (pencaId) => {
-    return axiosInstance.post(`/api/pencas-compartidas/${pencaId}/add`);
+export const joinPenca = (pencaId, cardFormData) => {
+    const { token } = cardFormData;
+    return axiosInstance.post(`/api/pencas-compartidas/${pencaId}/add`, {
+        token,
+    });
 };
 
 export const getPencaById = (pencaId) => {

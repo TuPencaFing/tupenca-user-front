@@ -24,7 +24,7 @@ const PaymentForm = () => {
 
                     // ejemplo de envío de los datos recolectados por el Brick a su servidor
                     return new Promise((resolve, reject) => {
-                        joinPenca(params.pencaId).then((response) => {
+                        joinPenca(params.pencaId, cardFormData).then((response) => {
                             // recibir el resultado del pago
                             console.log('Response of join penca: ', response);
                             navigate(ROUTES.misPencas);
