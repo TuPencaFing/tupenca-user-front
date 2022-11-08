@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { Form, Field } from 'react-final-form';
 import Alert from "@mui/material/Alert";
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -7,17 +8,18 @@ import Container from '@mui/material/Container';
 import CssBaseline from '@mui/material/CssBaseline';
 import Grid from '@mui/material/Grid';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 
 import logo from '../../assets/logo.png';
 import { Copyright } from '../../utils/copyright';
-import ROUTES  from '../../utils/routes';
+import ROUTES from '../../utils/routes';
+import TextFieldAdapter from '../TextFieldAdapter';
+import validate from './validate';
 import './styles.scss';
 
 const theme = createTheme();
 
-const LoginForm = ({ feedbackMessage, handleSubmit, isCompany }) => {
+const LoginForm = ({ feedbackMessage, onSubmit, isCompany }) => {
     let location = useLocation();
     const title = isCompany ? 'Iniciar sesión con tu empresa' : 'Iniciar sesión en Tu Penca';
     const successfulRegistration = isCompany
@@ -53,59 +55,70 @@ const LoginForm = ({ feedbackMessage, handleSubmit, isCompany }) => {
                             </Alert>
                         </>
                     )}
-                    <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-                        <TextField
-                            margin="normal"
-                            required
-                            fullWidth
-                            id="email"
-                            label="Email"
-                            name="email"
-                            autoComplete="email"
-                            autoFocus
-                        />
-                        <TextField
-                            margin="normal"
-                            required
-                            fullWidth
-                            name="password"
-                            label="Contraseña"
-                            type="password"
-                            id="password"
-                            autoComplete="current-password"
-                        />
-                        {feedbackMessage && (
-                            <>
-                                <br />
-                                <Alert severity={feedbackMessage.type}>
-                                    {feedbackMessage.message}
-                                </Alert>
-                            </>
-                        )}
-                        <Button
-                            type="submit"
-                            className="login-button"
-                            fullWidth
-                            variant="contained"
-                            sx={{ mt: 3, mb: 2 }}
-                        >
-                            Iniciar sesión
-                        </Button>
-                        <Grid container>
-                            <Grid item xs>
-                                <Link to="#" className="no-style">
-                                    ¿Olvidaste tu contraseña?
-                                </Link>
-                            </Grid>
-                            {!isCompany && (
-                                <Grid item>
-                                    <Link to={ROUTES.register} className="no-style">
-                                        Crear mi cuenta
-                                    </Link>
+                    <Form
+                        onSubmit={onSubmit}
+                        validate={validate}
+                        render={({ handleSubmit, submitting }) => (
+                            <form onSubmit={handleSubmit} className="signup-form">
+                                <Grid container spacing={2}>
+                                    <Grid item xs={12}>
+                                        <Field
+                                            name="email"
+                                            label="Email"
+                                            autoComplete="email"
+                                            component={TextFieldAdapter}
+                                            fullWidth
+                                            autoFocus
+                                            required
+                                        />
+                                    </Grid>
+                                    <Grid item xs={12}>
+                                        <Field
+                                            type="password"
+                                            name="password"
+                                            label="Contraseña"
+                                            autoComplete="current-password"
+                                            component={TextFieldAdapter}
+                                            fullWidth
+                                            required
+                                        />
+                                    </Grid>
                                 </Grid>
-                            )}
-                        </Grid>
-                    </Box>
+                                {feedbackMessage && (
+                                    <>
+                                        <br />
+                                        <Alert severity={feedbackMessage.type}>
+                                            {feedbackMessage.message}
+                                        </Alert>
+                                    </>
+                                )}
+                                <Button
+                                    type="submit"
+                                    className="login-button"
+                                    variant="contained"
+                                    disabled={submitting}
+                                    sx={{ mt: 3, mb: 2 }}
+                                    fullWidth
+                                >
+                                    Iniciar sesión
+                                </Button>
+                                <Grid container>
+                                    <Grid item xs>
+                                        <Link to="#" className="no-style">
+                                            ¿Olvidaste tu contraseña?
+                                        </Link>
+                                    </Grid>
+                                    {!isCompany && (
+                                        <Grid item>
+                                            <Link to={ROUTES.register} className="no-style">
+                                                Crear mi cuenta
+                                            </Link>
+                                        </Grid>
+                                    )}
+                                </Grid>
+                            </form>
+                        )}
+                    />
                 </Box>
                 <br />
                 {!isCompany && (

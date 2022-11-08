@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import Navbar from '../../components/Navbar';
-import LoginForm from '../../components/LoginForm';
-import { setCompanySession } from '../../features/session/sessionSlice';
-import { logIn } from '../../services/employees';
-import { EMPLOYEE_PAGES } from '../../utils/navbarItems';
+import Navbar from '../../../components/Navbar';
+import LoginForm from '../../../components/LoginForm';
+import { setCompanySession } from '../../../features/session/sessionSlice';
+import { logIn } from '../../../services/employees';
+import { EMPLOYEE_PAGES } from '../../../utils/navbarItems';
 
 const CompanyLogin = () => {
     const dispatch = useDispatch();
@@ -14,15 +14,9 @@ const CompanyLogin = () => {
     let params = useParams();
     const [feedbackMessage, setFeedbackMessage] = useState(null);
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        const formData = new FormData(event.currentTarget);
-        const data = {
-            email: formData.get('email'),
-            password: formData.get('password'),
-        };
-        console.log('Request to login: ', data);
-        logIn(data).then((response) => {
+    const handleSubmit = async (values) => {
+        console.log('Request to login: ', values);
+        logIn(values).then((response) => {
             console.log('Response login: ', response);
             const { token } = response.data;
             dispatch(setCompanySession({
@@ -46,7 +40,7 @@ const CompanyLogin = () => {
             />
             <LoginForm
                 feedbackMessage={feedbackMessage}
-                handleSubmit={handleSubmit}
+                onSubmit={handleSubmit}
                 isCompany={true}
             />
         </>

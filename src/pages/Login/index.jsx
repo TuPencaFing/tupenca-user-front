@@ -13,15 +13,9 @@ const Login = () => {
     const navigate = useNavigate();
     const [feedbackMessage, setFeedbackMessage] = useState(null);
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        const formData = new FormData(event.currentTarget);
-        const data = {
-            email: formData.get('email'),
-            password: formData.get('password'),
-        };
-        console.log('Request to login: ', data);
-        logIn(data).then((response) => {
+    const handleSubmit = async (values) => {
+        console.log('Request to login: ', values);
+        logIn(values).then((response) => {
             console.log('Response login: ', response);
             const { token } = response.data;
             dispatch(setSession({ token }));
@@ -42,7 +36,7 @@ const Login = () => {
             />
             <LoginForm
                 feedbackMessage={feedbackMessage}
-                handleSubmit={handleSubmit}
+                onSubmit={handleSubmit}
                 isCompany={false}
             />
         </>

@@ -1,9 +1,9 @@
 import React from 'react';
 import { useParams } from "react-router-dom";
 
-import CompanyPencaInviteUserForm from '../../components/CompanyPencaInviteUserForm';
-import Navbar from '../../components/Navbar';
-import { EMPLOYEE_LOGGED_PAGES, EMPLOYEE_SETTINGS } from '../../utils/navbarItems';
+import CompanyPencaInviteUserForm from '../../../components/Company/CompanyPencaInviteUserForm';
+import Navbar from '../../../components/Navbar';
+import { EMPLOYEE_LOGGED_PAGES, EMPLOYEE_SETTINGS } from '../../../utils/navbarItems';
 
 const CompanyPencaInviteUser = () => {
     let params = useParams();

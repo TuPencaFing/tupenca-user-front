@@ -1,12 +1,12 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-import CompanyHome from './pages/CompanyHome';
-import CompanyLogin from './pages/CompanyLogin';
-import CompanyLogout from './pages/CompanyLogout';
-import CompanyPencaDetail from './pages/CompanyPencaDetail';
-import CompanyPencaInviteUser from './pages/CompanyPencaInviteUser';
-import CompanyPencas from './pages/CompanyPencas';
-import CompanyRegister from './pages/CompanyRegister';
+import CompanyHome from './pages/Company/CompanyHome';
+import CompanyLogin from './pages/Company/CompanyLogin';
+import CompanyLogout from './pages/Company/CompanyLogout';
+import CompanyPencaDetail from './pages/Company/CompanyPencaDetail';
+import CompanyPencaInviteUser from './pages/Company/CompanyPencaInviteUser';
+import CompanyPencas from './pages/Company/CompanyPencas';
+import CompanyRegister from './pages/Company/CompanyRegister';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Logout from './pages/Logout';

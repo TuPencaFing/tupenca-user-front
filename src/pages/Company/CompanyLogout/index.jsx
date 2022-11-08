@@ -2,9 +2,9 @@ import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import Spinner from '../../components/Spinner';
-import { destroySession } from '../../features/session/sessionSlice';
-import { getCompanyRoutes } from '../../utils/routes';
+import Spinner from '../../../components/Spinner';
+import { destroySession } from '../../../features/session/sessionSlice';
+import { getCompanyRoutes } from '../../../utils/routes';
 
 const CompanyLogout = () => {
     const dispatch = useDispatch();
