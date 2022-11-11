@@ -1,0 +1,39 @@
+.generalTitle {
+    margin: 30px;
+    padding: 0px;
+    display: flex;
+    flex-direction: row;
+    border-bottom: 2px solid black;
+    text-align: center;
+}
+
+.generalOptions {
+    margin: 0px;
+    padding: 10px;
+    position:relative; left:80px; top:2px;
+    border-bottom: 1px solid black;
+    text-align: center;
+}
+
+.generalTitle #tituloOption {
+    flex: 70%;
+    display: grid;
+    place-items: center;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif ;
+    font-size: 0.8em;
+    text-align: center;
+}
+
+.generalTitle #iconArrow {
+    flex: 30%;
+}
+
+.generalTitle #tituloGeneral {
+    flex: 70%;
+    display: grid;
+    place-items: center;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif ;
+    font-size: 1.2em;
+    text-align: center;
+}
+

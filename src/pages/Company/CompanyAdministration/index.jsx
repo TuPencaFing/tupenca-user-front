@@ -1,14 +1,15 @@
 import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import Sidebar from '../../../components/Sidebar'
+
 import CompanyPencaList from '../../../components/Company/CompanyPencaList';
 import Navbar from '../../../components/Navbar';
 import Spinner from '../../../components/Spinner';
 import useCompanyPencas from '../../../hooks/useCompanyPencas';
 import { EMPLOYEE_LOGGED_PAGES, EMPLOYEE_SETTINGS } from '../../../utils/navbarItems';
 import { getCompanyRoutes } from '../../../utils/routes';
+import Sidebar from '../../../components/Sidebar'
 
-const CompanyPencas = () => {
+const CompanyAdministration = () => {
     let params = useParams();
     const {loading, pencas} = useCompanyPencas();
 
@@ -26,19 +27,9 @@ const CompanyPencas = () => {
                 pages={EMPLOYEE_LOGGED_PAGES(params.companyCode)}
                 settings={EMPLOYEE_SETTINGS(params.companyCode)}
             />
-            <Sidebar type={"pencas"} />
-            {/*pencas && pencas.length > 0 ? (
-                <CompanyPencaList
-                    pencas={pencas}
-                    handleClickPenca={handleClickPenca}
-                />
-            ) : (
-                <>
-                    No hay pencas
-                </>
-            )*/}
+            <Sidebar type={"administration"} />
         </>
     );
 };
 
-export default CompanyPencas;
+export default CompanyAdministration;

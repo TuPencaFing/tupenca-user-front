@@ -7,6 +7,8 @@ import CompanyPencaDetail from './pages/Company/CompanyPencaDetail';
 import CompanyPencaInviteUser from './pages/Company/CompanyPencaInviteUser';
 import CompanyPencas from './pages/Company/CompanyPencas';
 import CompanyRegister from './pages/Company/CompanyRegister';
+import CompanyEmployeeAdministration from './pages/Company/CompanyEmployeeAdministration';
+import CompanyAdministration from './pages/Company/CompanyAdministration';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Logout from './pages/Logout';
@@ -44,6 +46,8 @@ const App = () => (
             <Route element={<CompanyLayout />}>
                 <Route path={`${ROUTES.companyAdmin}/:companyCode`} element={<CompanyHome />} />
                 <Route path={`${ROUTES.companyAdmin}/:companyCode/pencas`} element={<CompanyPencas />} />
+                <Route path={`${ROUTES.companyAdmin}/:companyCode/funcionarios`} element={<CompanyEmployeeAdministration />} />
+                <Route path={`${ROUTES.companyAdmin}/:companyCode/administracion`} element={<CompanyAdministration />} />
                 <Route path={`${ROUTES.companyAdmin}/:companyCode/pencas/:pencaId`} element={<CompanyPencaDetail />} />
                 <Route path={`${ROUTES.companyAdmin}/:companyCode/pencas/:pencaId/invitarUsuario`} element={<CompanyPencaInviteUser />} />
             </Route>

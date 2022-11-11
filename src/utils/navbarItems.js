@@ -41,16 +41,16 @@ export const EMPLOYEE_LOGGED_PAGES = (companyCode) => {
 
     return [
         {
-            name: 'Administrar penca',
+            name: 'Administración de pencas',
             route: getCompanyRoutes(companyCode).pencas,
         },
         {
-            name: 'Administrar funcionarios',
-            route: null,
+            name: 'Administración de funcionarios',
+            route:  getCompanyRoutes(companyCode).funcionarios,
         },
         {
-            name: 'Configuración de mi empresa',
-            route: null,
+            name: 'Administración de la empresa',
+            route:  getCompanyRoutes(companyCode).administracion,
         },
     ];
 };
