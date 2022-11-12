@@ -2,7 +2,7 @@ import React from 'react';
 
 import Navbar from '../../components/Navbar';
 import SignupForm from '../../components/SignupForm';
-import { USER_PAGES } from '../../utils/navbarItems';
+import { USER_PAGES, USER_ROUTES } from '../../utils/navbarItems';
 
 const Register = () => {
 
@@ -10,6 +10,7 @@ const Register = () => {
         <>
             <Navbar
                 pages={USER_PAGES}
+                routes={USER_ROUTES}
             />
             <SignupForm />
         </>

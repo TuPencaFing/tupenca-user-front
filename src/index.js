@@ -6,6 +6,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { persistor, store } from './app/store';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import "@fontsource/montserrat";
 import './index.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

@@ -4,7 +4,7 @@ import Navbar from '../../components/Navbar';
 import PencaList from '../../components/PencaList';
 import Spinner from '../../components/Spinner';
 import useMisPencas from '../../hooks/useMisPencas';
-import { USER_LOGGED_PAGES, USERS_SETTINGS } from '../../utils/navbarItems';
+import { USER_LOGGED_PAGES, USER_ROUTES } from '../../utils/navbarItems';
 
 const MisPencas = () => {
     const {loading, pencas} = useMisPencas();
@@ -15,7 +15,7 @@ const MisPencas = () => {
         <>
             <Navbar
                 pages={USER_LOGGED_PAGES}
-                settings={USERS_SETTINGS}
+                routes={USER_ROUTES}
             />
             {pencas && pencas.length > 0 ? (
                 <PencaList

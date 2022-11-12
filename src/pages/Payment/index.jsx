@@ -2,7 +2,7 @@ import React from 'react';
 
 import Navbar from '../../components/Navbar';
 import PaymentForm from '../../components/PaymentForm';
-import { USER_LOGGED_PAGES, USERS_SETTINGS } from '../../utils/navbarItems';
+import { USER_LOGGED_PAGES, USER_ROUTES } from '../../utils/navbarItems';
 
 const Payment = () => {
 
@@ -10,7 +10,7 @@ const Payment = () => {
         <>
             <Navbar
                 pages={USER_LOGGED_PAGES}
-                settings={USERS_SETTINGS}
+                routes={USER_ROUTES}
             />
             <PaymentForm />
         </>

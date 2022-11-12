@@ -17,11 +17,6 @@ export const USER_LOGGED_PAGES = [
         route: ROUTES.misPencas,
     },
     {
-        name: 'Empresas',
-        submenu: true,
-        route: null,
-    },
-    {
         name: 'Próximos eventos',
         route: ROUTES.upcomingEvents,
     },
@@ -55,21 +50,15 @@ export const EMPLOYEE_LOGGED_PAGES = (companyCode) => {
     ];
 };
 
-export const USERS_SETTINGS = [
-    {
-        id: 1,
-        name: 'Cerrar sesión',
-        route: ROUTES.logout,
-    }
-];
+export const USER_ROUTES = {
+    loginUrl: ROUTES.login,
+    logoutUrl: ROUTES.logout,
+};
 
-export const EMPLOYEE_SETTINGS = (companyCode) => {
-
-    return [
-        {
-            id: 1,
-            name: 'Cerrar sesión',
-            route: getCompanyRoutes(companyCode).logout,
-        }
-    ];
+export const EMPLOYEE_ROUTES = (companyCode) => {
+    const routes = getCompanyRoutes(companyCode);
+    return {
+        loginUrl: routes.login,
+        logoutUrl: routes.logout,
+    };
 };
