@@ -6,7 +6,7 @@ import Navbar from '../../components/Navbar';
 import LoginForm from '../../components/LoginForm';
 import { setSession } from '../../features/session/sessionSlice';
 import { logIn } from '../../services/users';
-import { USER_PAGES } from '../../utils/navbarItems';
+import { USER_PAGES, USER_ROUTES } from '../../utils/navbarItems';
 
 const Login = () => {
     const dispatch = useDispatch();
@@ -33,6 +33,7 @@ const Login = () => {
         <>
             <Navbar
                 pages={USER_PAGES}
+                routes={USER_ROUTES}
             />
             <LoginForm
                 feedbackMessage={feedbackMessage}

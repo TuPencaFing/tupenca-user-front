@@ -2,7 +2,7 @@ import React from 'react';
 
 import Navbar from '../../../components/Navbar';
 import CompanyRegisterForm from '../../../components/Company/CompanyRegisterForm';
-import { EMPLOYEE_PAGES } from '../../../utils/navbarItems';
+import { EMPLOYEE_PAGES, USER_ROUTES } from '../../../utils/navbarItems';
 
 const CompanyRegister = () => {
 
@@ -10,6 +10,7 @@ const CompanyRegister = () => {
         <>
             <Navbar
                 pages={EMPLOYEE_PAGES}
+                routes={USER_ROUTES}
             />
             <CompanyRegisterForm />
         </>

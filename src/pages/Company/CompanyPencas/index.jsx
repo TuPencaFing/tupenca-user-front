@@ -5,7 +5,7 @@ import CompanyPencaList from '../../../components/Company/CompanyPencaList';
 import Navbar from '../../../components/Navbar';
 import Spinner from '../../../components/Spinner';
 import useCompanyPencas from '../../../hooks/useCompanyPencas';
-import { EMPLOYEE_LOGGED_PAGES, EMPLOYEE_SETTINGS } from '../../../utils/navbarItems';
+import { EMPLOYEE_LOGGED_PAGES, EMPLOYEE_ROUTES } from '../../../utils/navbarItems';
 import { getCompanyRoutes } from '../../../utils/routes';
 
 const CompanyPencas = () => {
@@ -24,7 +24,7 @@ const CompanyPencas = () => {
         <>
             <Navbar
                 pages={EMPLOYEE_LOGGED_PAGES(params.companyCode)}
-                settings={EMPLOYEE_SETTINGS(params.companyCode)}
+                routes={EMPLOYEE_ROUTES(params.companyCode)}
             />
             {pencas && pencas.length > 0 ? (
                 <CompanyPencaList
