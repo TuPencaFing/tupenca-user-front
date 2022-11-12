@@ -45,6 +45,8 @@ body {
 
 .SidebarList #active {
     background-color: black;
+    border-right: 4px solid rgb(248, 50, 0);
+    z-index: 100000000;
 }
 
 .SidebarList .row:hover {

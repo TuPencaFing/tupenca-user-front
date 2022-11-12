@@ -7,3 +7,7 @@ export const createCompany = (data) => {
         razonsocial: companyName,
     });
 };
+
+export const getCompany = (companyId) => {
+    return axiosInstance.get(`/api/empresas/${companyId}`);
+};

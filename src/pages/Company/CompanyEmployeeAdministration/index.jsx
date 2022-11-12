@@ -5,24 +5,22 @@ import Navbar from '../../../components/Navbar';
 import Spinner from '../../../components/Spinner';
 import './styles.scss'
 import useCompanyPencas from '../../../hooks/useCompanyPencas';
+import useCompanyEmployees from '../../../hooks/useCompanyEmployees';
 import { EMPLOYEE_LOGGED_PAGES, EMPLOYEE_SETTINGS } from '../../../utils/navbarItems';
-import { getCompanyRoutes } from '../../../utils/routes';
 import Sidebar from '../../../components/Sidebar'
 import Grid from "@mui/material/Grid";
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import EmployeeRegisterForm from '../../../components/EmployeeRegisterForm';
+import EmployeeRegisterForm from '../../../components/Company/EmployeeRegisterForm';
+import CompanyEmplyeeList from '../../../components/Company/CompanyEmployeeList';
 
 const CompanyEmployeeAdministration = () => {
     let params = useParams();
     const [formCreateEmployee, setFormCreateEmployee] = useState(false);
     const [listEmployees, setListEmployees] = useState(false);
     const {loading, pencas} = useCompanyPencas();
+    const {loadingEmployees, employees} = useCompanyEmployees();
 
     const navigate = useNavigate();
-
-    const handleClickPenca = (pencaId) => {
-        navigate(`${getCompanyRoutes(params.companyCode).pencas}/${pencaId}`);
-    };
 
     function handleCreateClickEvent() {
         setFormCreateEmployee(true);
@@ -34,7 +32,7 @@ const CompanyEmployeeAdministration = () => {
         setListEmployees(true);
     };
 
-    if (loading) return <Spinner />;
+    if (loading || loadingEmployees) return <Spinner />;
 
     return (
         <>
@@ -61,7 +59,7 @@ const CompanyEmployeeAdministration = () => {
                         </Grid>
                         <Grid item style={{marginLeft: 300}}>
                             {formCreateEmployee && <EmployeeRegisterForm />}
-                            {listEmployees && <div>Chau</div>}
+                            {listEmployees && <CompanyEmplyeeList employees={employees} />}
                         </Grid>
                     </Grid>
                 </Grid>
