@@ -24,6 +24,11 @@
     text-align: center;
 }
 
+.generalOptions #tituloOption:hover {
+    cursor: pointer;
+    background-color: rgb(201, 106, 51);
+}
+
 .generalTitle #iconArrow {
     flex: 30%;
 }

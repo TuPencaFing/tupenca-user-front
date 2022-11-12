@@ -10,7 +10,7 @@ function SidebarData(type) {
         case 'employeeAdministration':
             rows.push({
                 title: 'General',
-                link: "/employeeAdministrationGeneral"
+                link: window.location.pathname
             });
             break;
         case 'administration':
