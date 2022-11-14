@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { getCompany } from '../services/companies';
+import { getCompanyEmployees } from '../services/companies';
 
 const useCompanyEmployees = () => {
     const { companyCode } = useParams();
@@ -10,9 +10,9 @@ const useCompanyEmployees = () => {
 
     useEffect(() => {
         setLoading(true);
-        getCompany(companyCode).then((response) => {
+        getCompanyEmployees(companyCode).then((response) => {
             const employeeResp = [];
-            response.data.funcionarios.forEach((funcionario) => {
+            response.data.forEach((funcionario) => {
                 employeeResp.push({
                     id: funcionario.id,
                     userName: funcionario.userName,

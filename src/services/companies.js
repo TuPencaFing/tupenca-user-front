@@ -8,6 +8,6 @@ export const createCompany = (data) => {
     });
 };
 
-export const getCompany = (companyId) => {
-    return axiosInstance.get(`/api/empresas/${companyId}`);
+export const getCompanyEmployees = (companyId) => {
+    return axiosInstance.get(`/api/funcionarios/empresa/${companyId}`);
 };

@@ -1,10 +1,11 @@
 import React from 'react';
-import LocalFireDepartmentIcon from '@mui/icons-material/LocalFireDepartment';
 import Button from "@mui/material/Button";
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
+import { deleteEmployee } from '../../../services/employees';
 import './styles.scss';
+import { useState } from 'react';
 
 const StyledPaper = styled(Paper)(({ theme }) => ({
     ...theme.typography.body2,
@@ -13,15 +14,23 @@ const StyledPaper = styled(Paper)(({ theme }) => ({
     color: theme.palette.text.primary,
 }));
 
+
 const CompanyEmplyeeList = ({ employees }) => {
 
+    const [rows, setRows] = useState(employees);
+
+    function handleDeleteEmployee(id){
+        deleteEmployee(id);
+        setRows(rows.filter(row => row.id !== id));
+    }
+    
     return (
         <>
             <div className="pencas-list-header">
                 <h2>Funcionarios</h2>
             </div>
             <div className="pencas-list">
-                {employees.map((employee) => (
+                {rows.map((employee) => (
                     <StyledPaper
                         key={employee.id}
                         sx={{
@@ -40,15 +49,13 @@ const CompanyEmplyeeList = ({ employees }) => {
                                     <span className="penca-betting-pool">
                                         <strong>Dirección de correo:</strong> {employee.email}
                                     </span>
-                                    {/*handleJoinPenca && (
                                         <Button
                                             className="join-button"
                                             variant="contained"
-                                            onClick={() => handleJoinPenca(penca.id)}
+                                            onClick={() => { if (window.confirm('Confirma eliminar el funcionario?')) handleDeleteEmployee(employee.id) } }
                                         >
-                                            Unirme
+                                            Eliminar
                                         </Button>
-                                    )*/}
                                 </div>
                             </Grid>
                         </Grid>
