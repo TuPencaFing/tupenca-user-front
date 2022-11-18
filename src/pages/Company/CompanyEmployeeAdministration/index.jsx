@@ -42,7 +42,7 @@ const CompanyEmployeeAdministration = () => {
             />
             <Grid container alignItems="left" >
                 <Grid item>
-                    <Sidebar type={"employeeAdministration"} />
+                    <Sidebar type={"employeeAdministration"} companyCode={params.companyCode}/>
                 </Grid>
                 <Grid item style={{marginLeft: 10}}>
                     <Grid container alignItems="left" >

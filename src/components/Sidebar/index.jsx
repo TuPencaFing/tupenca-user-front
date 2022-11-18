@@ -5,6 +5,7 @@ import SidebarData from './SidebarData'
 function Sidebar(props){
 
     let sidebarType;
+    const companyCode = props.companyCode;
 
     switch (props.type) {
         case 'administration':
@@ -29,7 +30,7 @@ function Sidebar(props){
                         CONFIGURACIONES
                     </div>
                 </li>
-                {SidebarData(sidebarType).map((val,key) =>{
+                {SidebarData(sidebarType,companyCode).map((val,key) =>{
                     return  val.title ? (
                         <li key={key} 
                             className="row"

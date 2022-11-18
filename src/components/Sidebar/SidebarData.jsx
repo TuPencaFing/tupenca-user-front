@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import { useEffect } from 'react';
 import useCompanyPencas from '../../hooks/useCompanyPencas';
 
-function SidebarData(type) {
+function SidebarData(type,companyCode) {
     var rows = useState([]);
     const {loading, pencas} = useCompanyPencas();
 
@@ -16,7 +16,7 @@ function SidebarData(type) {
         case 'administration':
             rows.push({
                 title: 'General',
-                link: "/administrationGeneral"
+                link: "/admin-empresas/" + companyCode + "/administracion"
             });
             rows.push({
                 title: 'Look & Feel',
@@ -30,7 +30,7 @@ function SidebarData(type) {
         case 'pencas':
             rows.push({
                 title: 'General',
-                link: "/pencasGeneral"
+                link: "/admin-empresas/" + companyCode + "/pencas"
             });
             pencas.map((row)=> rows.push({ 
                 title: row.title, 

@@ -26,7 +26,7 @@ const CompanyPencas = () => {
                 pages={EMPLOYEE_LOGGED_PAGES(params.companyCode)}
                 settings={EMPLOYEE_SETTINGS(params.companyCode)}
             />
-            <Sidebar type={"pencas"} />
+            <Sidebar type={"pencas"} companyCode={params.companyCode}/>
             {/*pencas && pencas.length > 0 ? (
                 <CompanyPencaList
                     pencas={pencas}
