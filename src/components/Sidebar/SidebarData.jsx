@@ -20,12 +20,12 @@ function SidebarData(type,companyCode) {
             });
             rows.push({
                 title: 'Look & Feel',
-                link: "/administrationLookAndFeel"
+                link: "/admin-empresas/" + companyCode + "/administrationLookAndFeel"
             });
-            rows.push({
+            /*rows.push({
                 title: 'Look & Feel mail',
-                link: "/administrationLookAndFeelMail"
-            });
+                link: "/admin-empresas/" + companyCode + "/administrationLookAndFeelMail"
+            });*/
             break;
         case 'pencas':
             rows.push({

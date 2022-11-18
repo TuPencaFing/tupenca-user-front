@@ -22,4 +22,8 @@ export const getCompanySubscriptions = () => {
     return axiosInstance.get(`/api/planes`, {
         headers: { Authorization: `Bearer ${token}` 
     }});
+}; 
+
+export const createPencaCompany = (data) => {
+    return axiosInstance.post('/api/pencas-empresas', data);
 };

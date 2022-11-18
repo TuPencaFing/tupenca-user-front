@@ -4,19 +4,19 @@ import { useParams } from 'react-router-dom';
 import { getCompanySubscriptions } from '../services/companies';
 
 const useCompanySubscriptions = () => {
-    const { companyCode } = useParams();
     const [loading, setLoading] = useState(false);
     const [subscriptions, setSubscriptions] = useState([]);
 
     useEffect(() => {
         setLoading(true);
-        getCompanySubscriptions(companyCode).then((response) => {
+        getCompanySubscriptions().then((response) => {
             const subscriptionsResp = [];
             response.data.forEach((subscription) => {
                 subscriptionsResp.push({
                     id: subscription.id,
-                    userName: subscription.userName,
-                    email: subscription.email,
+                    cantUser: subscription.cantUser,
+                    percentageCost: subscription.percentageCost,
+                    cantPencas: subscription.cantPencas
                 });
             })
             setSubscriptions(subscriptionsResp);

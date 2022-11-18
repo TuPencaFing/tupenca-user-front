@@ -1,4 +1,5 @@
 import { axiosInstance } from './config';
+import { store } from '../app/store';
 
 export const getUpcomingEvents = () => {
     return axiosInstance.get('/api/eventos/misproximos');
@@ -11,4 +12,15 @@ export const savePrediction = (eventId, data) => {
         puntajeEquipoLocal,
         puntajeEquipoVisitante,
     });
+};
+
+export const getChampionships = () => {
+    return axiosInstance.get('/api/campeonatos');
+};
+
+export const getPrizes = () => {
+    const token = store.getState().session.token;
+    return axiosInstance.get(`/api/premios`, {
+        headers: { Authorization: `Bearer ${token}` 
+    }});
 };

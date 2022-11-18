@@ -15,6 +15,14 @@
     text-align: center;
 }
 
+.generalOptionsSinHover {
+    margin: 0px;
+    padding: 10px;
+    position:relative; left:80px; top:2px;
+    border-bottom: 1px solid black;
+    text-align: center;
+}
+
 .generalTitle #tituloOption {
     flex: 70%;
     display: grid;

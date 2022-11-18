@@ -19,6 +19,7 @@ export const getCompanyRoutes = (companyCode) => {
         pencas: `${ROUTES.companyAdmin}/${companyCode}/pencas`,
         funcionarios: `${ROUTES.companyAdmin}/${companyCode}/funcionarios`,
         administracion: `${ROUTES.companyAdmin}/${companyCode}/administracion`,
+        administrationLookAndFeel: `${ROUTES.companyAdmin}/${companyCode}/administrationLookAndFeel`,
     };
 };
 

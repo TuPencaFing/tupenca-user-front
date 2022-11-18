@@ -13,14 +13,19 @@ import CompanySubscriptionList from "../../../components/Company/CompanySubscrip
 
 const CompanyAdministration = () => {
     let params = useParams();
-    const {loading, company} = useCompany();
+    const {loading, company, plan} = useCompany();
     const {loadingSubscripcions, subscriptions} = useCompanySubscriptions();
     const [changePlan, setChangePlan] = useState(false);
 
     const navigate = useNavigate();
 
     function handleChangePlan() {
-        setChangePlan(true);
+        if(changePlan){
+            setChangePlan(false);
+        }
+        else{
+            setChangePlan(true);
+        }
     };
 
     if (loadingSubscripcions || loading) return <Spinner />;
@@ -42,7 +47,7 @@ const CompanyAdministration = () => {
                                 <KeyboardArrowDownIcon id="iconArrow"/> <div id="tituloGeneral">General</div>
                             </div>
                             <div className="generalOptions">
-                                <div id="tituloOption" onClick={handleChangePlan}><strong>{company.planId == 1 ? "Básico" : "Pro"}:</strong> {company.plan.cantUser} usuarios, {company.plan.cantPencas} penca/s </div>
+                                <div id="tituloOption" onClick={handleChangePlan}><strong>{company.planId == 1 ? "Básico" : "Pro"}:</strong> {plan.cantUser} usuarios, {plan.cantPencas} penca/s </div>
                             </div>
                         </Grid>
                         <Grid item style={{marginLeft: 300}}>
