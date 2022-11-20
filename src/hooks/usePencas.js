@@ -22,7 +22,7 @@ const usePencas = () => {
                 pencaResp.push({
                     id: penca.id,
                     title: penca.title,
-                    price: penca.CostEntry,
+                    price: penca.costEntry,
                     bettingPool: penca.pozo,
                 });
             })

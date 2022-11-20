@@ -21,9 +21,19 @@ export const getCompanyPencas = () => {
 };
 
 export const joinPenca = (pencaId, cardFormData) => {
-    const { token } = cardFormData;
+    const {
+        transaction_amount: transactionAmount,
+        token,
+        installments,
+        payment_method_id: paymentMethodId,
+        payer,
+    } = cardFormData;
     return axiosInstance.post(`/api/pencas-compartidas/${pencaId}/add`, {
         token,
+        installments,
+        payer,
+        payment_method_id: paymentMethodId,
+        transaction_amount: transactionAmount,
     });
 };
 

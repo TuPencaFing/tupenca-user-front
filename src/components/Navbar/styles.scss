@@ -13,6 +13,7 @@
     .current-page-path {
       border-bottom: 1px solid black;
       padding-bottom: 3px;
+      font-weight: bold;
     }
 
     button {
@@ -20,7 +21,7 @@
       margin-right: 12px;
       text-transform: none;
       color: black;
-      font-weight: bold;
+      font-weight: 500;
       border-radius: 0;
     }
 
