@@ -27,3 +27,7 @@ export const getCompanySubscriptions = () => {
 export const createPencaCompany = (data) => {
     return axiosInstance.post('/api/pencas-empresas', data);
 };
+
+export const editCompanySubscription = (companyCode,data) => {
+    return axiosInstance.patch(`/api/empresas/${companyCode}/plan`, data);
+};

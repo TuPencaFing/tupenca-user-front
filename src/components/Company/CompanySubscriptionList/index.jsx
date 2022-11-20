@@ -5,6 +5,9 @@ import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
 import './styles.scss';
 import { useState } from 'react';
+import { editCompanySubscription } from '../../../services/companies';
+import Alert from '@mui/material/Alert';
+import { useParams } from 'react-router-dom';
 
 const StyledPaper = styled(Paper)(({ theme }) => ({
     ...theme.typography.body2,
@@ -15,13 +18,28 @@ const StyledPaper = styled(Paper)(({ theme }) => ({
 
 
 const CompanySubscriptionList = ({ subscriptions, activeSubscription }) => {
-
+    const {companyCode} = useParams();
     const [rows, setRows] = useState(subscriptions);
     const [active, setActive] = useState(activeSubscription);
+    const [feedbackMessage, setFeedbackMessage] = useState(null);
 
     function handleUpgradeSubscription(id){
-        
-    }
+        const data = {
+            id: id
+          };
+        editCompanySubscription(companyCode,data).then((response) => {
+            setFeedbackMessage({
+                type: 'success',
+                message: 'Se cambió el plan de la empresa.',
+            });
+        }).catch((error) => {
+            console.log('Error in the company penca registration: ', error);
+            setFeedbackMessage({
+                type: 'error',
+                message: 'Ocurrió un error al intentar crear la penca de su empresa, inténtelo nuevamente.',
+            });
+        });
+    };
     
     return (
         <>
@@ -55,12 +73,19 @@ const CompanySubscriptionList = ({ subscriptions, activeSubscription }) => {
                                     >
                                         Cambiar
                                     </Button>} 
-                                    
                             </div>
                         </Grid>
                     </Grid>
                 </StyledPaper>
             ))}
+             {feedbackMessage && (
+                <>
+                    <br />
+                    <Alert severity={feedbackMessage.type}>
+                        {feedbackMessage.message}
+                    </Alert>
+                </>
+            )}
         </div>
     </>
     );
