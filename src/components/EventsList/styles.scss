@@ -6,31 +6,57 @@
 
   .event-item {
     margin-top: 8px;
-    margin-bottom: 8px;
-    padding: 0 16px;
+    margin-bottom: 24px;
     display: flex;
     align-items: center;
 
     .local-team, .visiting-team, .tie {
+      background-color: #FBDEC7;
       height: 72px;
-      margin: 0 8px;
+      margin: 0 16px;
       padding: 0 16px;
       border-radius: 8px;
       display: flex;
       align-items: center;
       cursor: pointer;
+      font-weight: 600;
     }
 
-    .local-team, .visiting-team {
-      width: 45%;
-      justify-content: space-between;
+    .local-team {
+      width: calc(37% + 32px);
+    }
 
-      input {
-        width: 48px;
-        height: 16px;
-        font-size: 20px;
-        text-align: center;
-      }
+    .local-team .local-team-name {
+      margin-left: 120px;
+      margin-right: auto;
+    }
+
+    .local-team .local-team-prediction, .visiting-team .visiting-team-prediction {
+      padding: 0 24px;
+      font-size: 24px;
+      color: #F20F0F;
+    }
+
+    .local-team .local-team-result, .visiting-team .visiting-team-result {
+      padding: 0 16px;
+      font-size: 32px;
+    }
+
+    .local-team .local-team-prediction.hit-result, .visiting-team .visiting-team-prediction.hit-result {
+      color: #07821B;
+    }
+
+    .visiting-team {
+      width: calc(37% + 32px);
+    }
+
+    .visiting-team .visiting-team-name {
+      margin-right: 120px;
+      margin-left: auto;
+    }
+
+    .local-team.tie-exists, .visiting-team.tie-exists {
+      width: 32%;
     }
 
     .tie {
@@ -38,23 +64,13 @@
       justify-content: center;
     }
 
-    .selected {
-      border: 2px solid black;
-    }
-
-    > div {
-      background-color: #FBDEC7;
-    }
-  }
-
-  .event-item-actions {
-    margin-right: 24px;
-    margin-bottom: 16px;
-    display: flex;
-    justify-content: flex-end;
-
-    button {
-      background-color: black;
+    .event-result {
+      margin: 0 auto;
+      width: 10%;
+      min-width: 180px;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
     }
   }
 }

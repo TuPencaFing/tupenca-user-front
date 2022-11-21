@@ -12,7 +12,7 @@ const StyledPaper = styled(Paper)(({ theme }) => ({
     color: theme.palette.text.primary,
 }));
 
-const PencaList = ({ headerIcon, pencas, handleJoinPenca }) => {
+const PencaList = ({ headerIcon, pencas, handleClickPenca, handleJoinPenca }) => {
 
     return (
         <>
@@ -27,6 +27,7 @@ const PencaList = ({ headerIcon, pencas, handleJoinPenca }) => {
                     <StyledPaper
                         className="penca-item"
                         key={penca.id}
+                        onClick={handleClickPenca ? () => handleClickPenca(penca.id) : null}
                     >
                         <div className="penca-item-left">
                             <div className="penca-name">

@@ -40,3 +40,7 @@ export const joinPenca = (pencaId, cardFormData) => {
 export const getPencaById = (pencaId) => {
     return axiosInstance.get(`/api/pencas-compartidas/${pencaId}`);
 };
+
+export const getPencaInfoById = (pencaId) => {
+    return axiosInstance.get(`/api/pencas-compartidas/${pencaId}/info`);
+};

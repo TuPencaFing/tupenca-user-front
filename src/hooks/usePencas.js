@@ -10,7 +10,7 @@ const usePencas = () => {
     const [pencas, setPencas] = useState([]);
 
     const handleJoinPenca = (pencaId) => {
-        navigate(`${ROUTES.pencas}/${pencaId}/payment`);
+        navigate(`${ROUTES.pencas}/${pencaId}/pago`);
     };
 
     useEffect(() => {
