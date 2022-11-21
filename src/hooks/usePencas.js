@@ -10,7 +10,7 @@ const usePencas = () => {
     const [pencas, setPencas] = useState([]);
 
     const handleJoinPenca = (pencaId) => {
-        navigate(`${ROUTES.pencas}/${pencaId}/payment`);
+        navigate(`${ROUTES.pencas}/${pencaId}/pago`);
     };
 
     useEffect(() => {
@@ -22,7 +22,7 @@ const usePencas = () => {
                 pencaResp.push({
                     id: penca.id,
                     title: penca.title,
-                    price: penca.CostEntry,
+                    price: penca.costEntry,
                     bettingPool: penca.pozo,
                 });
             })

@@ -12,9 +12,10 @@ import Login from './pages/Login';
 import Logout from './pages/Logout';
 import MisPencas from './pages/MisPencas';
 import Pencas from './pages/Pencas';
+import PencaEvents from './pages/PencaEvents';
+import PencaParticipants from './pages/PencaParticipants';
 import Payment from './pages/Payment';
 import Register from './pages/Register';
-import UpcomingEvents from './pages/UpcomingEvents';
 import UserInvitation from './pages/UserInvitation';
 import CompanyLayout from './router/CompanyLayout';
 import PrivateLayout from './router/PrivateLayout';
@@ -35,9 +36,11 @@ const App = () => (
             </Route>
             <Route element={<PrivateLayout />}>
                 <Route path={ROUTES.pencas} element={<Pencas />} />
-                <Route path={`${ROUTES.pencas}/:pencaId/payment`} element={<Payment />} />
+                <Route path={`${ROUTES.pencas}/:pencaId`} element={<PencaEvents />} />
+                <Route path={`${ROUTES.pencas}/:pencaId/eventos`} element={<PencaEvents />} />
+                <Route path={`${ROUTES.pencas}/:pencaId/participantes`} element={<PencaParticipants />} />
+                <Route path={`${ROUTES.pencas}/:pencaId/pago`} element={<Payment />} />
                 <Route path={ROUTES.misPencas} element={<MisPencas />} />
-                <Route path={ROUTES.upcomingEvents} element={<UpcomingEvents />} />
                 <Route path={ROUTES.logout} element={<Logout />} />
                 <Route path={`${ROUTES.invite}/:token`} element={<UserInvitation />} />
             </Route>

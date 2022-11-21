@@ -61,7 +61,7 @@ const PaymentForm = () => {
     };
 
     useEffect(() => {
-        const mercadopago = new window.MercadoPago('TEST-45a07852-3593-44df-b47e-a3a2c4e618f1');
+        const mercadopago = new window.MercadoPago(process.env.REACT_APP_MERCADO_LIBRE_API_KEY);
         const bricksBuilder = mercadopago.bricks();
         getPencaById(params.pencaId).then((response) => {
             console.log('Response of get penca by ID: ', response);

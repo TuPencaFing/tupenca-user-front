@@ -18,7 +18,7 @@ const CompanyPencaList = ({ pencas, handleClickPenca }) => {
             <div className="pencas-list-header">
                 <h2>Pencas</h2>
             </div>
-            <div className="pencas-list">
+            <div className="company-pencas-list">
                 {pencas.map((penca) => (
                     <StyledPaper
                         key={penca.id}

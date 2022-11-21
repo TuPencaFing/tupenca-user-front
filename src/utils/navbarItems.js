@@ -17,14 +17,6 @@ export const USER_LOGGED_PAGES = [
         route: ROUTES.misPencas,
     },
     {
-        name: 'Próximos eventos',
-        route: ROUTES.upcomingEvents,
-    },
-    {
-        name: 'Foro',
-        route: null,
-    },
-    {
         name: 'Premios',
         route: null,
     },
