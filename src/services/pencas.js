@@ -44,3 +44,7 @@ export const getPencaById = (pencaId) => {
 export const getPencaInfoById = (pencaId) => {
     return axiosInstance.get(`/api/pencas-compartidas/${pencaId}/info`);
 };
+
+export const getParticipantsByPencaId = (pencaId) => {
+    return axiosInstance.get(`/api/pencas-compartidas/${pencaId}/usuarios`);
+};

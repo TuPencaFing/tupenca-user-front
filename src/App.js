@@ -13,6 +13,7 @@ import Logout from './pages/Logout';
 import MisPencas from './pages/MisPencas';
 import Pencas from './pages/Pencas';
 import PencaEvents from './pages/PencaEvents';
+import PencaParticipants from './pages/PencaParticipants';
 import Payment from './pages/Payment';
 import Register from './pages/Register';
 import UserInvitation from './pages/UserInvitation';
@@ -37,6 +38,7 @@ const App = () => (
                 <Route path={ROUTES.pencas} element={<Pencas />} />
                 <Route path={`${ROUTES.pencas}/:pencaId`} element={<PencaEvents />} />
                 <Route path={`${ROUTES.pencas}/:pencaId/eventos`} element={<PencaEvents />} />
+                <Route path={`${ROUTES.pencas}/:pencaId/participantes`} element={<PencaParticipants />} />
                 <Route path={`${ROUTES.pencas}/:pencaId/pago`} element={<Payment />} />
                 <Route path={ROUTES.misPencas} element={<MisPencas />} />
                 <Route path={ROUTES.logout} element={<Logout />} />
