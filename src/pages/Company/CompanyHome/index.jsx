@@ -2,7 +2,7 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 
 import Navbar from '../../../components/Navbar';
-import { EMPLOYEE_LOGGED_PAGES, EMPLOYEE_SETTINGS } from '../../../utils/navbarItems';
+import { EMPLOYEE_LOGGED_PAGES, EMPLOYEE_ROUTES } from '../../../utils/navbarItems';
 
 const CompanyHome = () => {
     let params = useParams();
@@ -11,7 +11,7 @@ const CompanyHome = () => {
         <>
             <Navbar
                 pages={EMPLOYEE_LOGGED_PAGES(params.companyCode)}
-                settings={EMPLOYEE_SETTINGS(params.companyCode)}
+                routes={EMPLOYEE_ROUTES(params.companyCode)}
             />
         </>
     );

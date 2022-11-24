@@ -1,52 +1,46 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import AppBar from '@mui/material/AppBar';
-import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
 import Toolbar from '@mui/material/Toolbar';
 import Tooltip from '@mui/material/Tooltip';
-import Typography from '@mui/material/Typography';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import MenuIcon from '@mui/icons-material/Menu';
 
 import logo from '../../assets/logo.png';
 import './styles.scss';
 
-const Navbar = ({ pages, settings }) => {
+const Navbar = ({ pages, routes }) => {
+    let location = useLocation();
     const navigate = useNavigate();
     const { user } = useSelector((state) => state.session);
     const [anchorElNav, setAnchorElNav] = useState(null);
-    const [anchorElUser, setAnchorElUser] = useState(null);
 
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
-    };
-    const handleOpenUserMenu = (event) => {
-        setAnchorElUser(event.currentTarget);
     };
 
     const handleCloseNavMenu = () => {
         setAnchorElNav(null);
     };
 
-    const handleCloseUserMenu = () => {
-        setAnchorElUser(null);
-    };
-
-    const handleClickSetting = (route) => {
-        handleCloseUserMenu();
-        navigate(route);
-    };
-
     const handleClickPage = (route) => {
         handleCloseNavMenu();
         navigate(route);
     };
+
+    const classNamePage = (route) => {
+        if (location.pathname === route) {
+            return 'current-page-path';
+        } else {
+            return 'page-path';
+        }
+    }
 
     return (
         <AppBar className="navbar" position="sticky" color="inherit">
@@ -110,45 +104,27 @@ const Navbar = ({ pages, settings }) => {
                                 key={page.name}
                                 onClick={() => handleClickPage(page.route)}
                                 sx={{ display: 'block' }}
+                                className={classNamePage(page.route)}
                             >
                                 {page.name}
                             </Button>
                         ))}
                     </Box>
                     {user ? (
-                        <Box sx={{ flexGrow: 0 }}>
-                            <Tooltip title={user.name}>
-                                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                    <Avatar alt={user.name.toUpperCase()} src="/static/images/avatar/2.jpg" />
-                                </IconButton>
-                            </Tooltip>
-                            <Menu
-                                id="menu-appbar"
-                                sx={{ mt: '45px' }}
-                                anchorEl={anchorElUser}
-                                anchorOrigin={{
-                                    vertical: 'top',
-                                    horizontal: 'right',
-                                }}
-                                keepMounted
-                                transformOrigin={{
-                                    vertical: 'top',
-                                    horizontal: 'right',
-                                }}
-                                open={Boolean(anchorElUser)}
-                                onClose={handleCloseUserMenu}
+                        <Box className="user-logged">
+                            <Button
+                                className="logout-button"
+                                variant="contained"
+                                onClick={() => navigate(routes.logoutUrl)}
                             >
-                                {settings.map((setting) => (
-                                    <MenuItem key={setting.id} onClick={() => handleClickSetting(setting.route)}>
-                                        <Typography textAlign="center">
-                                            {setting.name}
-                                        </Typography>
-                                    </MenuItem>
-                                ))}
-                            </Menu>
+                                Cerrar sesión
+                            </Button>
+                            <Tooltip title={user.name}>
+                                <AccountCircleIcon fontSize="large" />
+                            </Tooltip>
                         </Box>
                     ) : (
-                        <Button className="login-button" variant="contained" onClick={() => navigate('/login')}>
+                        <Button className="login-button" variant="contained" onClick={() => navigate(routes.loginUrl)}>
                             Iniciar sesión
                         </Button>
                     )}

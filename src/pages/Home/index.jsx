@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 
 import Navbar from '../../components/Navbar';
 import PencaList from '../../components/PencaList';
-import { USER_LOGGED_PAGES, USER_PAGES, USERS_SETTINGS } from '../../utils/navbarItems';
+import { USER_LOGGED_PAGES, USER_PAGES, USER_ROUTES } from '../../utils/navbarItems';
 
 const pencas = [{
     id: 1,
@@ -45,7 +45,7 @@ const Home = () => {
         <>
             <Navbar
                 pages={pages}
-                settings={USERS_SETTINGS}
+                routes={USER_ROUTES}
             />
             <PencaList
                 headerIcon

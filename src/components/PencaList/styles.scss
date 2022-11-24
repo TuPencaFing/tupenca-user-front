@@ -26,35 +26,67 @@
   padding-right: 24px;
   padding-lefT: 24px;
 
-  > div {
+  .penca-item {
     background-color: #FBDEC7;
-    height: 48px;
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-  }
-
-  .penca-name {
-    color: #030506;
-    font-size: 18px;
-  }
-
-  .penca-footer {
+    margin: 8px auto;
+    padding: 8px 16px;
+    height: 56px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    cursor: pointer;
 
-    .penca-betting-pool {
-      color: #B03618;
-      font-size: 14px;
+    .penca-item-left {
+
+      .penca-name {
+        margin-bottom: 8px;
+        color: #030506;
+        font-size: 16px;
+        font-weight: 600;
+      }
+
+      .penca-betting-pool {
+        color: #B03618;
+        font-size: 14px;
+        font-weight: 600;
+      }
     }
 
-    .join-button {
-      background-color: black;
+    .penca-item-right {
+      text-align: center;
+
+      .join-button {
+        margin-bottom: 4px;
+        background-color: black;
+      }
+
+      .join-button:hover {
+        background-color: #494949;
+      }
+
+      .penca-price {
+        color: #B03618;
+        font-size: 12px;
+      }
     }
 
-    .join-button:hover {
-      background-color: #494949;
+    .penca-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .penca-betting-pool {
+        color: #B03618;
+        font-size: 14px;
+      }
+
+      .join-button {
+        background-color: black;
+      }
+
+      .join-button:hover {
+        background-color: #494949;
+      }
     }
   }
 }

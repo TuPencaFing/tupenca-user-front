@@ -4,7 +4,7 @@ html, body, #root {
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -12,8 +12,15 @@ body {
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: 'Montserrat', source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+[class^='MuiPaper-root'] {
+  font-family: 'Montserrat', 'Roboto', 'Helvetica', 'Arial', sans-serif !important;
+}
+
+button {
+  font-family: inherit !important;
 }
 
 a.no-style:link, a.no-style:visited {

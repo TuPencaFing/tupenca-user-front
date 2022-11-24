@@ -5,7 +5,6 @@ const ROUTES = {
     register: '/registro',
     pencas: '/pencas',
     misPencas: '/mis-pencas',
-    upcomingEvents: '/proximos-eventos',
     companyRegister: '/empresas/registro',
     companyAdmin: '/admin-empresas',
     invite: '/invitacion',

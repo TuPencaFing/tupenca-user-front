@@ -8,12 +8,24 @@
 
   .navbar-options {
     flex-grow: 1;
-    color: white;
+    color: black;
+
+    .current-page-path {
+      border-bottom: 1px solid black;
+      padding-bottom: 3px;
+      font-weight: bold;
+    }
 
     button {
       color: black;
       font-weight: 500;
       font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      margin-left: 12px;
+      margin-right: 12px;
+      text-transform: none;
+      color: black;
+      font-weight: 500;
+      border-radius: 0;
     }
 
     button:hover {
@@ -21,11 +33,19 @@
     }
   }
 
-  .login-button {
+  .user-logged {
+    flex-grow: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .login-button, .logout-button {
+    margin-right: 16px;
     background-color: black;
   }
 
-  .login-button:hover {
+  .login-button:hover, .logout-button:hover {
     background-color: #494949;
   }
 }

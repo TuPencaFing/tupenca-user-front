@@ -6,7 +6,7 @@ import Navbar from '../../../components/Navbar';
 import LoginForm from '../../../components/LoginForm';
 import { setCompanySession } from '../../../features/session/sessionSlice';
 import { logIn } from '../../../services/employees';
-import { EMPLOYEE_PAGES } from '../../../utils/navbarItems';
+import { EMPLOYEE_PAGES, EMPLOYEE_ROUTES } from '../../../utils/navbarItems';
 
 const CompanyLogin = () => {
     const dispatch = useDispatch();
@@ -37,6 +37,7 @@ const CompanyLogin = () => {
         <>
             <Navbar
                 pages={EMPLOYEE_PAGES}
+                routes={EMPLOYEE_ROUTES(params.companyCode)}
             />
             <LoginForm
                 feedbackMessage={feedbackMessage}

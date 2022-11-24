@@ -1,11 +1,15 @@
 import React, { Fragment } from 'react';
-import Button from "@mui/material/Button";
-import TextField from "@mui/material/TextField";
-import SendIcon from '@mui/icons-material/Send';
+import { useNavigate, useParams } from 'react-router-dom';
 
+import EventScore from '../EventScore';
+import ROUTES from '../../utils/routes';
+import eventSuccess from '../../assets/event-success.png';
+import eventFail from '../../assets/event-fail.png';
 import './styles.scss';
 
-const EventsList = ({ events, updateResult, updateLocalScore, updateVisitorScore, handleSavePrediction }) => {
+const EventsList = ({ events }) => {
+    let params = useParams();
+    const navigate = useNavigate();
 
     const formatDate = (dateStr) => {
         const date = new Date(dateStr);
@@ -16,72 +20,106 @@ const EventsList = ({ events, updateResult, updateLocalScore, updateVisitorScore
         });
     };
 
-    const handleChangeLocalScore = (eventId, score) => {
-        updateLocalScore(eventId, score);
+    const uruguayanDate = (date) => {
+        return new Date(date).toLocaleString("es-ES", {
+            timeZone: 'America/Montevideo',
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+        });
     };
 
-    const handleChangeVisitorScore = (eventId, score) => {
-        updateVisitorScore(eventId, score);
+    const handleClickEvent = (eventId) => {
+        navigate(`${ROUTES.pencas}/${params.pencaId}/events/${eventId}`);
     };
 
     return (
         <div className="events-list">
             {events.map((event, key) => {
+                const {
+                    id: eventId,
+                    fechaInicial: initialDate,
+                    equipoLocal: localTeam,
+                    equipoVisitante: visitingTeam,
+                    prediccion: prediction,
+                    resultado: result,
+                    isEmpateValid,
+                    isPuntajeEquipoValid,
+                } = event;
+                let hit = null;
+                if (prediction && result) {
+                    if (isPuntajeEquipoValid) {
+                        hit = (prediction.puntajeEquipoLocal === result.puntajeEquipoLocal)
+                            && (prediction.puntajeEquipoVisitante === result.puntajeEquipoVisitante);
+                    } else {
+                        hit = prediction.resultado === result.resultado;
+                    }
+                }
                 return (
-                    <Fragment key={event.id}>
-                        {(key === 0 || events[key - 1].date !== events[key].date) && (
+                    <Fragment key={eventId}>
+                        {(key === 0 || uruguayanDate(events[key - 1].fechaInicial) !== uruguayanDate(initialDate)) && (
                             <div>
-                                {formatDate(event.fechaInicial)}
+                                {formatDate(initialDate)}
                             </div>
                         )}
                         <div className="event-item">
                             <div
-                                className={event.prediccion?.prediccion === 1 ? "local-team selected" : "local-team"}
-                                onClick={() => updateResult(event.id, 1)}
+                                className={isEmpateValid ? "local-team tie-exists" : "local-team"}
+                                onClick={() => handleClickEvent(eventId)}
                             >
-                                <TextField
-                                    name="local_team_result"
-                                    type="number"
-                                    variant="standard"
-                                    InputProps={{ inputProps: { min: 0, max: 999 } }}
-                                    placeholder="0"
-                                    value={event.prediccion?.puntajeEquipoLocal || 0}
-                                    onClick={(e) => e.stopPropagation()}
-                                    onChange={(e) => handleChangeLocalScore(event.id, e.target.value)}
-                                />
-                                {event.equipoLocal.nombre}
+                                <div className="local-team-name">
+                                    {localTeam.nombre}
+                                </div>
+                                {isPuntajeEquipoValid && prediction ? (
+                                    <div className={hit ? "local-team-prediction hit-result" : "local-team-prediction"}>
+                                        {prediction.puntajeEquipoLocal}
+                                    </div>
+                                ) : null}
+                                {isPuntajeEquipoValid && result ? (
+                                    <div className="local-team-result">
+                                        {result.puntajeEquipoLocal}
+                                    </div>
+                                ) : <div className="local-team-result">-</div>}
                             </div>
+                            {isEmpateValid ? (
+                                <div
+                                    className="tie"
+                                    onClick={() => handleClickEvent(eventId)}
+                                >
+                                    Empate
+                                </div>
+                            ) : null}
                             <div
-                                className={event.prediccion?.prediccion === 0 ? "tie selected" : "tie"}
-                                onClick={() => updateResult(event.id, 0)}
+                                className={isEmpateValid ? "visiting-team tie-exists" : "visiting-team"}
+                                onClick={() => handleClickEvent(eventId)}
                             >
-                                Empate
+                                {isPuntajeEquipoValid && result ? (
+                                    <div className="visiting-team-result">
+                                        {result.puntajeEquipoVisitante}
+                                    </div>
+                                ) : <div className="visiting-team-result">-</div>}
+                                {isPuntajeEquipoValid && prediction ? (
+                                    <div className={hit ? "visiting-team-prediction hit-result" : "visiting-team-prediction"}>
+                                        {prediction.puntajeEquipoVisitante}
+                                    </div>
+                                ) : null}
+                                <div className="visiting-team-name">
+                                    {visitingTeam.nombre}
+                                </div>
                             </div>
-                            <div
-                                className={event.prediccion?.prediccion === 2 ? "visiting-team selected" : "visiting-team"}
-                                onClick={() => updateResult(event.id, 2)}
-                            >
-                                {event.equipoVisitante.nombre}
-                                <TextField
-                                    name="visiting_team_result"
-                                    type="number"
-                                    variant="standard"
-                                    InputProps={{ inputProps: { min: 0, max: 999 } }}
-                                    placeholder="0"
-                                    value={event.prediccion?.puntajeEquipoVisitante || 0}
-                                    onClick={(e) => e.stopPropagation()}
-                                    onChange={(e) => handleChangeVisitorScore(event.id, e.target.value)}
-                                />
+                            <div className="event-result">
+                                {hit ? (
+                                    <>
+                                        <img width="39px" src={eventSuccess} alt="Resultado acertado" />
+                                        <EventScore score="+5" />
+                                    </>
+                                ) : (hit !== null) ? (
+                                    <>
+                                        <img width="39px" src={eventFail} alt="Resultado equivocado" />
+                                        <EventScore score="+0" />
+                                    </>
+                                ) : null}
                             </div>
-                        </div>
-                        <div className="event-item-actions">
-                            <Button
-                                variant="contained"
-                                endIcon={<SendIcon />}
-                                onClick={() => handleSavePrediction(event.id)}
-                            >
-                                Guardar
-                            </Button>
                         </div>
                     </Fragment>
                 );
