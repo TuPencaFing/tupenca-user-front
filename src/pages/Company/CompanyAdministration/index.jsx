@@ -5,7 +5,7 @@ import Navbar from '../../../components/Navbar';
 import Spinner from '../../../components/Spinner';
 import useCompany from '../../../hooks/useCompany';
 import useCompanySubscriptions from '../../../hooks/useCompanySubscriptions';
-import { EMPLOYEE_LOGGED_PAGES, EMPLOYEE_SETTINGS } from '../../../utils/navbarItems';
+import { EMPLOYEE_LOGGED_PAGES, EMPLOYEE_ROUTES } from '../../../utils/navbarItems';
 import Sidebar from '../../../components/Sidebar'
 import Grid from "@mui/material/Grid";
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
@@ -34,7 +34,7 @@ const CompanyAdministration = () => {
         <>
             <Navbar
                 pages={EMPLOYEE_LOGGED_PAGES(params.companyCode)}
-                settings={EMPLOYEE_SETTINGS(params.companyCode)}
+                settings={EMPLOYEE_ROUTES(params.companyCode)}
             />
             <Grid container alignItems="left" >
                 <Grid item>

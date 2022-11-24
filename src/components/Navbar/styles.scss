@@ -1,9 +1,14 @@
+:root {
+  --color-navbar: #E76F51;
+  --color-textnavbar: black;
+}
+
 .navbar {
-  background-color: #E76F51 !important;
+  background-color: var(--color-navbar) !important;
 
   .navbar-icon {
     margin-right: 16px;
-    display: flex;
+    display: flex; 
   }
 
   .navbar-options {
@@ -23,13 +28,13 @@
       margin-left: 12px;
       margin-right: 12px;
       text-transform: none;
-      color: black;
+      color: var(--color-textnavbar);
       font-weight: 500;
       border-radius: 0;
     }
 
     button:hover {
-      background-color: #C43C1B;
+      filter: brightness(0.07);
     }
   }
 

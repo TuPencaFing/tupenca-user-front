@@ -1,5 +1,9 @@
+:root {
+  --color-generalbackground: #F5AA6D;
+}
+
 html, body, #root {
-  background-color: #F5AA6D;
+  background-color: var(--color-generalbackground);
 }
 
 body {

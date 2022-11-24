@@ -6,7 +6,7 @@ import Spinner from '../../../components/Spinner';
 import './styles.scss'
 import useCompanyPencas from '../../../hooks/useCompanyPencas';
 import useCompanyEmployees from '../../../hooks/useCompanyEmployees';
-import { EMPLOYEE_LOGGED_PAGES, EMPLOYEE_SETTINGS } from '../../../utils/navbarItems';
+import { EMPLOYEE_LOGGED_PAGES, EMPLOYEE_ROUTES } from '../../../utils/navbarItems';
 import Sidebar from '../../../components/Sidebar'
 import Grid from "@mui/material/Grid";
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
@@ -72,22 +72,24 @@ const CompanyEmployeeAdministration = () => {
 
    const handleChangeOfGTColor = (color) => {
         setGTC({ color: color.hex });
+        document.documentElement.style.setProperty('--color-generaltext', color.hex)
         console.log(GTC);
     };
 
     const handleChangeOfGBColor = (color) => {
         setGBC({ color: color.hex });
+        document.documentElement.style.setProperty('--color-generalbackground', color.hex)
         console.log(GBC);
     };
 
     const handleChangeOfBTColor = (color) => {
         setBTC({ color: color.hex });
-        console.log(BTC);
+        document.documentElement.style.setProperty('--color-textnavbar', color.hex)
     };
 
     const handleChangeOfBBColor = (color) => {
         setBBC({ color: color.hex });
-        console.log(BBC);
+        document.documentElement.style.setProperty('--color-navbar', color.hex)
     };
 
 
@@ -97,7 +99,7 @@ const CompanyEmployeeAdministration = () => {
         <>
             <Navbar
                 pages={EMPLOYEE_LOGGED_PAGES(params.companyCode)}
-                settings={EMPLOYEE_SETTINGS(params.companyCode)}
+                settings={EMPLOYEE_ROUTES(params.companyCode)}
             />
             <Grid container alignItems="left" >
                 <Grid item>
