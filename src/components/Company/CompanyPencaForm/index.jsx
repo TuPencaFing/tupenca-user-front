@@ -17,7 +17,6 @@ import logo from '../../../assets/logo.png';
 import { Select, MenuItem, FormHelperText, InputLabel, Chip } from '@material-ui/core';
 import { createPencaCompany } from '../../../services/companies';
 import { Copyright } from '../../../utils/copyright';
-import { getCompanyRoutes } from '../../../utils/routes';
 import TextFieldAdapter from '../../TextFieldAdapter';
 import './styles.scss';
 import { store } from "../../../app/store"
