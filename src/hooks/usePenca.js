@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 import { getPencaInfoById } from '../services/pencas';
 
-const usePencas = (pencaId) => {
+const usePenca = (pencaId) => {
     const [loading, setLoading] = useState(false);
     const [penca, setPenca] = useState(null);
     const [events, setEvents] = useState([]);
@@ -31,6 +31,7 @@ const usePencas = (pencaId) => {
                 championshipName,
                 sportName,
             };
+            eventos.sort((event, rightEvent) => new Date(event.fechaInicial) - new Date (rightEvent.fechaInicial));
             setPenca(pencaResp);
             setEvents(eventos);
         }).catch((error) => {
@@ -43,4 +44,4 @@ const usePencas = (pencaId) => {
     return {loading, penca, events};
 };
 
-export default usePencas;
+export default usePenca;

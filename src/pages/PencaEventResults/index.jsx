@@ -10,7 +10,7 @@ import usePenca from '../../hooks/usePenca';
 import { USER_LOGGED_PAGES, USER_ROUTES } from '../../utils/navbarItems';
 import './styles.scss';
 
-const PencaEvents = () => {
+const PencaEventResults = () => {
     let params = useParams();
     const {loading, penca, events} = usePenca(params.pencaId);
 
@@ -43,4 +43,4 @@ const PencaEvents = () => {
     );
 };
 
-export default PencaEvents;
+export default PencaEventResults;

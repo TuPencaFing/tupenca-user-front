@@ -5,12 +5,14 @@
   padding-lefT: 24px;
 
   .event-item {
-    margin-top: 8px;
-    margin-bottom: 24px;
+    margin-bottom: 16px;
+    padding-top: 8px;
+    padding-bottom: 8px;
     display: flex;
     align-items: center;
+    cursor: pointer;
 
-    .local-team, .visiting-team, .tie {
+    .local-team, .visiting-team {
       background-color: #FBDEC7;
       height: 72px;
       margin: 0 16px;
@@ -27,8 +29,12 @@
     }
 
     .local-team .local-team-name {
-      margin-left: 120px;
+      margin-left: 40px;
       margin-right: auto;
+    }
+
+    .local-team .local-team-image {
+      margin-right: 40px;
     }
 
     .local-team .local-team-prediction, .visiting-team .visiting-team-prediction {
@@ -51,17 +57,12 @@
     }
 
     .visiting-team .visiting-team-name {
-      margin-right: 120px;
+      margin-right: 40px;
       margin-left: auto;
     }
 
-    .local-team.tie-exists, .visiting-team.tie-exists {
-      width: 32%;
-    }
-
-    .tie {
-      width: 10%;
-      justify-content: center;
+    .visiting-team .visitor-team-image {
+      margin-left: 40px;
     }
 
     .event-result {
@@ -72,5 +73,9 @@
       justify-content: space-around;
       align-items: center;
     }
+  }
+
+  .event-item:hover {
+    background-color: white;
   }
 }

@@ -30,7 +30,7 @@ const EventsList = ({ events }) => {
     };
 
     const handleClickEvent = (eventId) => {
-        navigate(`${ROUTES.pencas}/${params.pencaId}/events/${eventId}`);
+        navigate(`${ROUTES.pencas}/${params.pencaId}/eventos/${eventId}`);
     };
 
     return (
@@ -43,7 +43,7 @@ const EventsList = ({ events }) => {
                     equipoVisitante: visitingTeam,
                     prediccion: prediction,
                     resultado: result,
-                    isEmpateValid,
+                    // isEmpateValid,
                     isPuntajeEquipoValid,
                 } = event;
                 let hit = null;
@@ -62,14 +62,17 @@ const EventsList = ({ events }) => {
                                 {formatDate(initialDate)}
                             </div>
                         )}
-                        <div className="event-item">
+                        <div className="event-item" onClick={() => handleClickEvent(eventId)}>
                             <div
-                                className={isEmpateValid ? "local-team tie-exists" : "local-team"}
-                                onClick={() => handleClickEvent(eventId)}
+                                className="local-team"
                             >
                                 <div className="local-team-name">
                                     {localTeam.nombre}
                                 </div>
+                                <div className="local-team-image">
+                                    <img src={localTeam.image} alt="Local team" width="48px" />
+                                </div>
+
                                 {isPuntajeEquipoValid && prediction ? (
                                     <div className={hit ? "local-team-prediction hit-result" : "local-team-prediction"}>
                                         {prediction.puntajeEquipoLocal}
@@ -81,17 +84,8 @@ const EventsList = ({ events }) => {
                                     </div>
                                 ) : <div className="local-team-result">-</div>}
                             </div>
-                            {isEmpateValid ? (
-                                <div
-                                    className="tie"
-                                    onClick={() => handleClickEvent(eventId)}
-                                >
-                                    Empate
-                                </div>
-                            ) : null}
                             <div
-                                className={isEmpateValid ? "visiting-team tie-exists" : "visiting-team"}
-                                onClick={() => handleClickEvent(eventId)}
+                                className="visiting-team"
                             >
                                 {isPuntajeEquipoValid && result ? (
                                     <div className="visiting-team-result">
@@ -103,6 +97,9 @@ const EventsList = ({ events }) => {
                                         {prediction.puntajeEquipoVisitante}
                                     </div>
                                 ) : null}
+                                <div className="visitor-team-image">
+                                    <img src={visitingTeam.image} alt="Visitor team" width="48px" />
+                                </div>
                                 <div className="visiting-team-name">
                                     {visitingTeam.nombre}
                                 </div>
