@@ -54,6 +54,8 @@ const EventDetail = ({ event }) => {
                     <form onSubmit={handleSubmit} className="event-detail-form">
                         <div className="event-detail-result">
                             <div className="event-detail-local">
+                                <img src={event.localTeam.image} alt="Local team" width="160px" />
+                                <br />
                                 {event.localTeam.name}
                                 <br />
                                 <br />
@@ -89,6 +91,8 @@ const EventDetail = ({ event }) => {
                                 )}
                             </div>
                             <div className="event-detail-visitor">
+                                <img src={event.visitorTeam.image} alt="Visitor team" width="160px" />
+                                <br />
                                 {event.visitorTeam.name}
                                 <br />
                                 <br />
