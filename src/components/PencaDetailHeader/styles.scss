@@ -6,6 +6,14 @@
   justify-content: space-between;
   align-items: center;
 
+  .penca-detail-header-basic {
+    display: flex;
+
+    .penca-detail-header-image {
+      margin-right: 16px;
+    }
+  }
+
   .penca-detail-header-menu {
     // flex-grow: 1;
     color: white;
