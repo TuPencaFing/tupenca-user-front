@@ -12,7 +12,7 @@
     align-items: center;
     cursor: pointer;
 
-    .local-team, .visiting-team, .tie {
+    .local-team, .visiting-team {
       background-color: #FBDEC7;
       height: 72px;
       margin: 0 16px;
@@ -63,15 +63,6 @@
 
     .visiting-team .visitor-team-image {
       margin-left: 40px;
-    }
-
-    .local-team.tie-exists, .visiting-team.tie-exists {
-      width: 32%;
-    }
-
-    .tie {
-      width: 10%;
-      justify-content: center;
     }
 
     .event-result {

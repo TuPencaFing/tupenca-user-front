@@ -43,7 +43,7 @@ const EventsList = ({ events }) => {
                     equipoVisitante: visitingTeam,
                     prediccion: prediction,
                     resultado: result,
-                    isEmpateValid,
+                    // isEmpateValid,
                     isPuntajeEquipoValid,
                 } = event;
                 let hit = null;
@@ -64,7 +64,7 @@ const EventsList = ({ events }) => {
                         )}
                         <div className="event-item" onClick={() => handleClickEvent(eventId)}>
                             <div
-                                className={isEmpateValid ? "local-team tie-exists" : "local-team"}
+                                className="local-team"
                             >
                                 <div className="local-team-name">
                                     {localTeam.nombre}
@@ -84,15 +84,8 @@ const EventsList = ({ events }) => {
                                     </div>
                                 ) : <div className="local-team-result">-</div>}
                             </div>
-                            {isEmpateValid ? (
-                                <div
-                                    className="tie"
-                                >
-                                    Empate
-                                </div>
-                            ) : null}
                             <div
-                                className={isEmpateValid ? "visiting-team tie-exists" : "visiting-team"}
+                                className="visiting-team"
                             >
                                 {isPuntajeEquipoValid && result ? (
                                     <div className="visiting-team-result">
