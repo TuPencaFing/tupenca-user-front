@@ -31,3 +31,11 @@ export const createPencaCompany = (data) => {
 export const editCompanySubscription = (companyCode,data) => {
     return axiosInstance.patch(`/api/empresas/${companyCode}/plan`, data);
 };
+
+export const editCompanyLookAndFeel = (companyCode, data) => {
+    return axiosInstance.put(`/api/lookandfeel/${companyCode}`, data);
+};
+
+export const getCompanyColors = (companyId) => {
+    return axiosInstance.get(`/api/lookandfeel/${companyId}`);
+};

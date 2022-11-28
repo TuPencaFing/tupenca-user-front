@@ -4,6 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import Navbar from '../../../components/Navbar';
 import Spinner from '../../../components/Spinner';
 import useCompany from '../../../hooks/useCompany';
+import useColors from '../../../hooks/useColors';
 import useCompanySubscriptions from '../../../hooks/useCompanySubscriptions';
 import { EMPLOYEE_LOGGED_PAGES, EMPLOYEE_ROUTES } from '../../../utils/navbarItems';
 import Sidebar from '../../../components/Sidebar'
@@ -14,6 +15,7 @@ import CompanySubscriptionList from "../../../components/Company/CompanySubscrip
 const CompanyAdministration = () => {
     let params = useParams();
     const {loading, company, plan} = useCompany();
+    const {loadingColors} = useColors();
     const {loadingSubscripcions, subscriptions} = useCompanySubscriptions();
     const [changePlan, setChangePlan] = useState(false);
 
@@ -28,7 +30,7 @@ const CompanyAdministration = () => {
         }
     };
 
-    if (loadingSubscripcions || loading) return <Spinner />;
+    if (loadingSubscripcions || loading || loadingColors) return <Spinner />;
 
     return (
         <>

@@ -9,12 +9,14 @@ import useCompanyEmployees from '../../../hooks/useCompanyEmployees';
 import { EMPLOYEE_LOGGED_PAGES, EMPLOYEE_ROUTES } from '../../../utils/navbarItems';
 import Sidebar from '../../../components/Sidebar'
 import Grid from "@mui/material/Grid";
+import useColors from '../../../hooks/useColors';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import EmployeeRegisterForm from '../../../components/Company/EmployeeRegisterForm';
 import CompanyEmplyeeList from '../../../components/Company/CompanyEmployeeList';
 
 const CompanyEmployeeAdministration = () => {
     let params = useParams();
+    const {loadingColors} = useColors();
     const [formCreateEmployee, setFormCreateEmployee] = useState(false);
     const [listEmployees, setListEmployees] = useState(false);
     const {loading, pencas} = useCompanyPencas();
@@ -32,7 +34,7 @@ const CompanyEmployeeAdministration = () => {
         setListEmployees(true);
     };
 
-    if (loading || loadingEmployees) return <Spinner />;
+    if (loading || loadingEmployees || loadingColors) return <Spinner />;
 
     return (
         <>

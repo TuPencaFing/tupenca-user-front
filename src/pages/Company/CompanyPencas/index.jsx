@@ -7,12 +7,14 @@ import useCompanyPencas from '../../../hooks/useCompanyPencas';
 import useCompany from '../../../hooks/useCompany';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import Grid from '@mui/material/Grid';
+import useColors from '../../../hooks/useColors';
 import { EMPLOYEE_LOGGED_PAGES, EMPLOYEE_ROUTES } from '../../../utils/navbarItems';
 import { getCompanyRoutes } from '../../../utils/routes';
 import CompanyPencaForm from "../../../components/Company/CompanyPencaForm";
 
 const CompanyPencas = () => {
     let params = useParams();
+    const {loadingColors} = useColors();
     const {loadingCompany, company, plan} = useCompany();
     const {loading, pencas} = useCompanyPencas();
     const [mostrarCrearPenca, setMostrarCrearPenca] = useState(false);
@@ -32,7 +34,7 @@ const CompanyPencas = () => {
         }
     };
 
-    if (loading || loadingCompany) return <Spinner />;
+    if (loading || loadingCompany || loadingColors) return <Spinner />;
 
     return (
         <>

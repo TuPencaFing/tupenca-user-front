@@ -24,6 +24,7 @@
 .generalOptionsSinHover {
     margin: 0px;
     padding: 10px;
+    color: var(--color-generaltext);
     position:relative; left:80px; top:2px;
     border-bottom: 1px solid black;
     text-align: center;
@@ -40,7 +41,7 @@
 
 .generalOptions #tituloOption:hover {
     cursor: pointer;
-    background-color: rgb(201, 106, 51);
+    filter: brightness(0.07);
 }
 
 .generalTitle #iconArrow {
@@ -56,3 +57,8 @@
     text-align: center;
 }
 
+.look-feel-button {
+    margin-top: 24px;
+    margin-bottom: 16px;
+    background-color: black;
+  }

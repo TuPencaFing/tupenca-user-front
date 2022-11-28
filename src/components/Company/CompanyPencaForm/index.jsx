@@ -25,13 +25,13 @@ const theme = createTheme();
 
 const CompanyPencaForm = ({planId}) => {
     const navigate = useNavigate();
+    const {companyCode} = useParams();
     const [codPlan, setCodPlan] = useState(planId);
     const [fileSelected, setFileSelected] = useState();
     const [campeonato, setCampeonato] = useState('');
     const {loading, championships} = useChampionships();
     const [premios, setPremios] = useState([]);
     const {loadingPrizes,prizes} = usePrizes();
-    const {companyCode} = useParams();
     const [mostrarImagen, setMostrarImagen] = useState(true);
     const [feedbackMessage, setFeedbackMessage] = useState(null);
 
