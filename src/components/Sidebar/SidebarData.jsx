@@ -1,5 +1,4 @@
 import React, {useState} from 'react'
-import { useEffect } from 'react';
 import useCompanyPencas from '../../hooks/useCompanyPencas';
 
 function SidebarData(type,companyCode) {
@@ -23,6 +22,20 @@ function SidebarData(type,companyCode) {
                 link: "/admin-empresas/" + companyCode + "/administrationLookAndFeel"
             });
             /*rows.push({
+                title: 'Look & Feel mail',
+                link: "/admin-empresas/" + companyCode + "/administrationLookAndFeelMail"
+            });*/
+            break;
+        case 'administrationWithoutLookAndFeel':
+            rows.push({
+                title: 'General',
+                link: "/admin-empresas/" + companyCode + "/administracion"
+            });
+            /*rows.push({
+                title: 'Look & Feel',
+                link: "/admin-empresas/" + companyCode + "/administrationLookAndFeel"
+            });
+            rows.push({
                 title: 'Look & Feel mail',
                 link: "/admin-empresas/" + companyCode + "/administrationLookAndFeelMail"
             });*/

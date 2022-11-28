@@ -11,6 +11,9 @@ function Sidebar(props){
         case 'administration':
           sidebarType = 'administration';
           break;
+        case 'administrationWithoutLookAndFeel':
+          sidebarType = 'administrationWithoutLookAndFeel';
+          break;
         case 'employeeAdministration':
           sidebarType = 'employeeAdministration';
           break;
