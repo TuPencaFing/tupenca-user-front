@@ -31,6 +31,7 @@ const usePenca = (pencaId) => {
                 championshipName,
                 sportName,
             };
+            eventos.sort((event, rightEvent) => new Date(event.fechaInicial) - new Date (rightEvent.fechaInicial));
             setPenca(pencaResp);
             setEvents(eventos);
         }).catch((error) => {
