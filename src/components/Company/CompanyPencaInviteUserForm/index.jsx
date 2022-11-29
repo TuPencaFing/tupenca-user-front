@@ -30,7 +30,7 @@ const CompanyPencaInviteUserForm = () => {
             console.log('Response invite user: ', response);
             setFeedbackMessage({
                 type: 'success',
-                message: 'Invitaciòn enviada con éxito.',
+                message: 'Invitación enviada con éxito.',
             });
         }).catch((error) => {
             console.log('Error invite user: ', error);

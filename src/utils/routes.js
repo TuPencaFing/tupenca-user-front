@@ -10,7 +10,7 @@ const ROUTES = {
     invite: '/invitacion',
 };
 
-export const getCompanyRoutes = (companyCode) => {
+export const getCompanyRoutes = (companyCode,pencaCode) => {
     return {
         home: `${ROUTES.companyAdmin}/${companyCode}/`,
         login: `${ROUTES.companyAdmin}/${companyCode}/login`,
@@ -19,6 +19,7 @@ export const getCompanyRoutes = (companyCode) => {
         funcionarios: `${ROUTES.companyAdmin}/${companyCode}/funcionarios`,
         administracion: `${ROUTES.companyAdmin}/${companyCode}/administracion`,
         administrationLookAndFeel: `${ROUTES.companyAdmin}/${companyCode}/administrationLookAndFeel`,
+        companyPencasAdministration: `${ROUTES.companyAdmin}/${companyCode}/pencas/${pencaCode}`,
     };
 };
 

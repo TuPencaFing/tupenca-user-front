@@ -47,7 +47,7 @@ function SidebarData(type,companyCode) {
             });
             pencas.map((row)=> rows.push({ 
                 title: row.title, 
-                link: "/pencasGeneral/" + row.id 
+                link: "/admin-empresas/" + companyCode + "/pencas/" + row.id 
             }));
             break;
         default:
