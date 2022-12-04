@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Form, Field } from 'react-final-form';
+import { PieChart } from 'react-minimal-pie-chart';
+import Alert from '@mui/material/Alert';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 
@@ -9,9 +11,10 @@ import TextFieldAdapter from '../TextFieldAdapter';
 import validate from './validate';
 import './styles.scss';
 
-const EventDetail = ({ event }) => {
+const EventDetail = ({ event, stats }) => {
     const navigate = useNavigate();
     let params = useParams();
+    const [feedbackMessage, setFeedbackMessage] = useState(null);
 
     const onSubmit = (values) => {
         console.log('form values: ', values);
@@ -42,8 +45,32 @@ const EventDetail = ({ event }) => {
             navigate(`/pencas/${params.pencaId}/eventos`);
         }).catch((error) => {
             console.log('Failed to save prediction', error);
+            if (error.response.status === 400) {
+                setFeedbackMessage({
+                    type: 'error',
+                    message: error.response.data,
+                });
+            } else {
+                setFeedbackMessage({
+                    type: 'error',
+                    message: 'No se ha podido predecir. Inténtelo nuevamente en unos minutos',
+                });
+            }
         });
     };
+
+    console.log('event dettt', event);
+
+    const dataGraph = [];
+    if (stats.localVictoryPercentage > 0) {
+        dataGraph.push({ title: `Gana ${event.localTeam.name}`, value: stats.localVictoryPercentage, color: '#AF7AC5' });
+    }
+    if (stats.visitorVictoryPercentage > 0) {
+        dataGraph.push({ title: `Gana ${event.visitorTeam.name}`, value: stats.visitorVictoryPercentage, color: '#5DADE2' });
+    }
+    if (stats.tiePercentage > 0) {
+        dataGraph.push({ title: 'Empate', value: stats.tiePercentage, color: '#CACFD2' });
+    }
 
     return (
         <div className="event-detail">
@@ -90,6 +117,43 @@ const EventDetail = ({ event }) => {
                                     </Field>
                                 )}
                             </div>
+                            <div className="event-detail-stats">
+                                <div className="event-detail-stats-graph">
+                                    {stats.localVictoryPercentage !== null
+                                    || stats.visitorVictoryPercentage !== null
+                                    || stats.tiePercentage !== null
+                                        ? (
+                                            <PieChart
+                                                data={dataGraph}
+                                                //label={({ dataEntry }) => `${dataEntry.value}% ${dataEntry.title}`}
+                                                label={({ dataEntry }) => `${dataEntry.value}%`}
+                                                labelStyle={{ fontSize: '6px', fill: 'black' }}
+                                                lineWidth={20}
+                                                labelPosition={70}
+                                                //paddingAngle={18}
+                                                rounded
+                                            />
+                                        ) : null}
+                                </div>
+                                <div className="event-detail-stats-ref">
+                                    {stats.localVictoryPercentage !== null
+                                    || stats.visitorVictoryPercentage !== null
+                                    || stats.tiePercentage !== null
+                                        ? (
+                                            <>
+                                                {`${stats.localVictoryPercentage ?? 0}% Gana ${event.localTeam.name}`}
+                                                <br />
+                                                {`${stats.visitorVictoryPercentage ?? 0}% Gana ${event.visitorTeam.name}`}
+                                                {event.isTieValid ? (
+                                                    <>
+                                                        <br />
+                                                        {`${stats.tiePercentage ?? 0}% Empate`}
+                                                    </>
+                                                ) : null}
+                                            </>
+                                        ) : null}
+                                </div>
+                            </div>
                             <div className="event-detail-visitor">
                                 <img src={event.visitorTeam.image} alt="Visitor team" width="160px" />
                                 <br />
@@ -128,6 +192,14 @@ const EventDetail = ({ event }) => {
                                 )}
                             </div>
                         </div>
+                        {feedbackMessage && (
+                            <div className="event-detail-error-message">
+                                <Alert severity={feedbackMessage.type}>
+                                    {feedbackMessage.message}
+                                </Alert>
+                                <br />
+                            </div>
+                        )}
                         <div className="event-detail-actions">
                             <Button
                                 type="submit"

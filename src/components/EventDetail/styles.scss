@@ -19,6 +19,27 @@
     .event-detail-local-result-select, .event-detail-visitor-result-select {
       width: 248px;
     }
+
+    .event-detail-stats {
+      width: 500px;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+
+      .event-detail-stats-graph {
+        max-width: 200px;
+      }
+
+      .event-detail-stats-ref {
+        margin-left: 8px;
+      }
+    }
+  }
+
+  .event-detail-error-message {
+    margin-top: 16px;
+    display: flex;
+    justify-content: center;
   }
 
   .event-detail-actions {

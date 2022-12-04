@@ -29,6 +29,33 @@ const EventsList = ({ events }) => {
         });
     };
 
+    const formatEventResult = (result, local) => {
+        let resultStr;
+        switch (result) {
+            case 0:
+                resultStr = 'Empate';
+                break;
+            case 1:
+                if (local) {
+                    resultStr = 'Ganador';
+                } else {
+                    resultStr = 'Perdedor';
+                }
+                break;
+            case 2:
+                if (local) {
+                    resultStr = 'Perdedor';
+                } else {
+                    resultStr = 'Ganador';
+                }
+                break;
+            default:
+                resultStr = '';
+                break;
+        }
+        return resultStr;
+    };
+
     const handleClickEvent = (eventId) => {
         navigate(`${ROUTES.pencas}/${params.pencaId}/eventos/${eventId}`);
     };
@@ -40,20 +67,18 @@ const EventsList = ({ events }) => {
                     id: eventId,
                     fechaInicial: initialDate,
                     equipoLocal: localTeam,
-                    equipoVisitante: visitingTeam,
+                    equipoVisitante: visitorTeam,
                     prediccion: prediction,
                     resultado: result,
                     // isEmpateValid,
-                    isPuntajeEquipoValid,
+                    isPuntajeEquipoValid: isScoreValid,
                 } = event;
-                let hit = null;
-                if (prediction && result) {
-                    if (isPuntajeEquipoValid) {
-                        hit = (prediction.puntajeEquipoLocal === result.puntajeEquipoLocal)
-                            && (prediction.puntajeEquipoVisitante === result.puntajeEquipoVisitante);
-                    } else {
-                        hit = prediction.resultado === result.resultado;
-                    }
+                // const isScoreValid = false;
+                let hit;
+                if (isScoreValid) {
+                    hit = prediction?.score > 0;
+                } else {
+                    hit = (result !== null) && (result.resultado === prediction?.prediccion);
                 }
                 return (
                     <Fragment key={eventId}>
@@ -72,45 +97,76 @@ const EventsList = ({ events }) => {
                                 <div className="local-team-image">
                                     <img src={localTeam.image} alt="Local team" width="48px" />
                                 </div>
-
-                                {isPuntajeEquipoValid && prediction ? (
-                                    <div className={hit ? "local-team-prediction hit-result" : "local-team-prediction"}>
-                                        {prediction.puntajeEquipoLocal}
-                                    </div>
+                                {prediction !== null ? (
+                                    <>
+                                        {isScoreValid ? (
+                                            <div className={hit ? "local-team-prediction-score hit-result" : "local-team-prediction-score"}>
+                                                {prediction.puntajeEquipoLocal}
+                                            </div>
+                                        ) : (
+                                            <div className={hit ? "local-team-prediction hit-result" : "local-team-prediction"}>
+                                                {formatEventResult(prediction.prediccion, true)}
+                                            </div>
+                                        )}
+                                    </>
                                 ) : null}
-                                {isPuntajeEquipoValid && result ? (
-                                    <div className="local-team-result">
-                                        {result.puntajeEquipoLocal}
-                                    </div>
-                                ) : <div className="local-team-result">-</div>}
+                                {result !== null ? (
+                                    <>
+                                        {isScoreValid ? (
+                                            <div className="local-team-result-score">
+                                                {result.puntajeEquipoLocal}
+                                            </div>
+                                        ) : (
+                                            <div className="local-team-result">
+                                                {formatEventResult(result.resultado, true)}
+                                            </div>
+                                        )}
+                                    </>
+                                ) : <div className="local-team-result-score">-</div>}
                             </div>
                             <div
-                                className="visiting-team"
+                                className="visitor-team"
                             >
-                                {isPuntajeEquipoValid && result ? (
-                                    <div className="visiting-team-result">
-                                        {result.puntajeEquipoVisitante}
-                                    </div>
-                                ) : <div className="visiting-team-result">-</div>}
-                                {isPuntajeEquipoValid && prediction ? (
-                                    <div className={hit ? "visiting-team-prediction hit-result" : "visiting-team-prediction"}>
-                                        {prediction.puntajeEquipoVisitante}
-                                    </div>
+                                {result !== null ? (
+                                    <>
+                                        {isScoreValid ? (
+                                            <div className="visitor-team-result-score">
+                                                {result.puntajeEquipoVisitante}
+                                            </div>
+                                        ) : (
+                                            <div className="visitor-team-result">
+                                                {formatEventResult(result.resultado, false)}
+                                            </div>
+                                        )}
+                                    </>
+                                ) : <div className="visitor-team-result-score">-</div>}
+                                {prediction !== null ? (
+                                    <>
+                                        {isScoreValid ? (
+                                            <div className={hit ? "visitor-team-prediction-score hit-result" : "visitor-team-prediction-score"}>
+                                                {prediction.puntajeEquipoVisitante}
+                                            </div>
+                                        ) : (
+                                            <div className={hit ? "visitor-team-prediction hit-result" : "visitor-team-prediction"}>
+                                                {formatEventResult(prediction.prediccion, false)}
+                                            </div>
+                                        )}
+                                    </>
                                 ) : null}
                                 <div className="visitor-team-image">
-                                    <img src={visitingTeam.image} alt="Visitor team" width="48px" />
+                                    <img src={visitorTeam.image} alt="Visitor team" width="48px" />
                                 </div>
-                                <div className="visiting-team-name">
-                                    {visitingTeam.nombre}
+                                <div className="visitor-team-name">
+                                    {visitorTeam.nombre}
                                 </div>
                             </div>
                             <div className="event-result">
                                 {hit ? (
                                     <>
                                         <img width="39px" src={eventSuccess} alt="Resultado acertado" />
-                                        <EventScore score="+5" />
+                                        <EventScore score={`+${prediction.score}`} />
                                     </>
-                                ) : (hit !== null) ? (
+                                ) : (prediction !== null && prediction.score !== null) ? (
                                     <>
                                         <img width="39px" src={eventFail} alt="Resultado equivocado" />
                                         <EventScore score="+0" />
