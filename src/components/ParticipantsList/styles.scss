@@ -7,6 +7,14 @@
 
     .participants-table-row {
 
+      .participant-username {
+        display: flex;
+        align-items: center;
+
+        div {
+          margin-right: 16px;
+        }
+      }
     }
   }
 }

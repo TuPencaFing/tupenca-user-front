@@ -1,5 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import Avatar from '@mui/material/Avatar';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -10,7 +11,7 @@ import Paper from '@mui/material/Paper';
 import './styles.scss';
 
 const ParticipantsList = ({ participants }) => {
-    const { user } = useSelector((state) => state.session);
+    const { user: userLogged } = useSelector((state) => state.session);
 
     return (
         <div className="participants-list">
@@ -18,8 +19,13 @@ const ParticipantsList = ({ participants }) => {
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
                     <TableBody>
                         {participants.map((participant) => {
+                            const {
+                                score,
+                                usuario: participantData,
+                            } = participant;
+                            const { id, userName, image } = participantData;
                             let styles = null;
-                            if (user.name === participant.userName) {
+                            if (userLogged.name === userName) {
                                 styles = {
                                     color: '#54086F',
                                     fontWeight: 'bold',
@@ -27,15 +33,18 @@ const ParticipantsList = ({ participants }) => {
                             }
                             return (
                                 <TableRow
-                                    key={participant.id}
+                                    key={id}
                                     className="participants-table-row"
                                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                 >
                                     <TableCell component="th" scope="row" style={styles}>
-                                        {participant.userName}
+                                        <div className="participant-username">
+                                            <Avatar alt={userName} src={image} />
+                                            {userName}
+                                        </div>
                                     </TableCell>
                                     <TableCell align="right" style={styles}>
-                                        {participant.totalScore}
+                                        {score}
                                     </TableCell>
                                 </TableRow>
                             );
