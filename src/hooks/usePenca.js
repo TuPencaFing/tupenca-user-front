@@ -18,10 +18,9 @@ const usePenca = (pencaId) => {
                 image,
                 puntajeTotal: totalScore,
                 campeonatoName: championshipName,
-                deporte,
+                deporteName: sportName,
                 eventos,
             } = response.data;
-            const { nombre: sportName } = deporte;
             const pencaResp = {
                 id,
                 title,

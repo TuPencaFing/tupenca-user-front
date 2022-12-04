@@ -1,23 +1,26 @@
 import { useEffect, useState } from 'react';
 
-import { getEventById } from '../services/events';
+import { getEventAndStatsByPencaIdAndEventId } from '../services/events';
 
-const useEvent = (eventId) => {
+const useEvent = (pencaId, eventId) => {
     const [loading, setLoading] = useState(false);
     const [event, setEvent] = useState(null);
+    const [stats, setStats] = useState(null);
 
     useEffect(() => {
         setLoading(true);
-        getEventById(eventId).then((response) => {
-            console.log('Response of get event info: ', response);
+        getEventAndStatsByPencaIdAndEventId(pencaId, eventId).then((response) => {
+            console.log('Response of get event info and stats: ', response);
+            const { event: eventResponse, stats: statsResponse } = response.data;
+            // Event
             const {
                 id,
                 equipoLocal: localTeam,
                 equipoVisitante: visitorTeam,
                 isEmpateValid: isTieValid,
                 isPuntajeEquipoValid: isScoreValid,
-            } = response.data;
-            const event = {
+            } = eventResponse;
+            const eventDto = {
                 id,
                 localTeam: {
                     id: localTeam.id,
@@ -32,15 +35,28 @@ const useEvent = (eventId) => {
                 isTieValid,
                 isScoreValid,
             };
-            setEvent(event);
+            // Stats
+            const {
+                porcentajeEmpate: tiePercentage,
+                porcentajeLocal: localVictoryPercentage,
+                porcentajeVisitante: visitorVictoryPercentage,
+            } = statsResponse;
+            const statsDto = {
+                tiePercentage,
+                localVictoryPercentage,
+                visitorVictoryPercentage
+            };
+            // setters
+            setEvent(eventDto);
+            setStats(statsDto);
         }).catch((error) => {
-            console.error('Error getting event info: ', error);
+            console.error('Error getting event info and stats: ', error);
         }).finally(() => {
             setLoading(false);
         });
-    }, [eventId]);
+    }, [pencaId, eventId]);
 
-    return {loading, event};
+    return {loading, event, stats};
 };
 
 export default useEvent;

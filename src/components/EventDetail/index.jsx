@@ -11,7 +11,7 @@ import TextFieldAdapter from '../TextFieldAdapter';
 import validate from './validate';
 import './styles.scss';
 
-const EventDetail = ({ event }) => {
+const EventDetail = ({ event, stats }) => {
     const navigate = useNavigate();
     let params = useParams();
     const [feedbackMessage, setFeedbackMessage] = useState(null);
@@ -61,6 +61,17 @@ const EventDetail = ({ event }) => {
 
     console.log('event dettt', event);
 
+    const dataGraph = [];
+    if (stats.localVictoryPercentage > 0) {
+        dataGraph.push({ title: `Gana ${event.localTeam.name}`, value: stats.localVictoryPercentage, color: '#AF7AC5' });
+    }
+    if (stats.visitorVictoryPercentage > 0) {
+        dataGraph.push({ title: `Gana ${event.visitorTeam.name}`, value: stats.visitorVictoryPercentage, color: '#5DADE2' });
+    }
+    if (stats.tiePercentage > 0) {
+        dataGraph.push({ title: 'Empate', value: stats.tiePercentage, color: '#CACFD2' });
+    }
+
     return (
         <div className="event-detail">
             <Form
@@ -108,25 +119,39 @@ const EventDetail = ({ event }) => {
                             </div>
                             <div className="event-detail-stats">
                                 <div className="event-detail-stats-graph">
-                                    <PieChart
-                                        data={[
-                                            { title: `Gana ${event.localTeam.name}`, value: 45, color: '#07821B' },
-                                            { title: `Gana ${event.visitorTeam.name}`, value: 30, color: '#F20F0F' },
-                                            { title: 'Empate', value: 25, color: '#0038A8' },
-                                        ]}
-                                        //label={({ dataEntry }) => `${dataEntry.value}% ${dataEntry.title}`}
-                                        label={({ dataEntry }) => `${dataEntry.value}%`}
-                                        labelStyle={{ fontSize: '6px', fill: 'black' }}
-                                        lineWidth={20}
-                                        labelPosition={70}
-                                        //paddingAngle={18}
-                                        rounded
-                                    />
+                                    {stats.localVictoryPercentage !== null
+                                    || stats.visitorVictoryPercentage !== null
+                                    || stats.tiePercentage !== null
+                                        ? (
+                                            <PieChart
+                                                data={dataGraph}
+                                                //label={({ dataEntry }) => `${dataEntry.value}% ${dataEntry.title}`}
+                                                label={({ dataEntry }) => `${dataEntry.value}%`}
+                                                labelStyle={{ fontSize: '6px', fill: 'black' }}
+                                                lineWidth={20}
+                                                labelPosition={70}
+                                                //paddingAngle={18}
+                                                rounded
+                                            />
+                                        ) : null}
                                 </div>
                                 <div className="event-detail-stats-ref">
-                                    45% Gana {event.localTeam.name}<br />
-                                    30% Gana {event.visitorTeam.name}<br />
-                                    25% Empate
+                                    {stats.localVictoryPercentage !== null
+                                    || stats.visitorVictoryPercentage !== null
+                                    || stats.tiePercentage !== null
+                                        ? (
+                                            <>
+                                                {`${stats.localVictoryPercentage ?? 0}% Gana ${event.localTeam.name}`}
+                                                <br />
+                                                {`${stats.visitorVictoryPercentage ?? 0}% Gana ${event.visitorTeam.name}`}
+                                                {event.isTieValid ? (
+                                                    <>
+                                                        <br />
+                                                        {`${stats.tiePercentage ?? 0}% Empate`}
+                                                    </>
+                                                ) : null}
+                                            </>
+                                        ) : null}
                                 </div>
                             </div>
                             <div className="event-detail-visitor">

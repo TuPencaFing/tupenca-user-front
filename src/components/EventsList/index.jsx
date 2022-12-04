@@ -30,7 +30,6 @@ const EventsList = ({ events }) => {
     };
 
     const formatEventResult = (result, local) => {
-        console.log(result, local);
         let resultStr;
         switch (result) {
             case 0:

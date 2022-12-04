@@ -12,7 +12,7 @@ import { USER_LOGGED_PAGES, USER_ROUTES } from '../../utils/navbarItems';
 const PencaEventDetail = () => {
     let params = useParams();
     const {loading: loadingPenca, penca} = usePenca(params.pencaId);
-    const {loading: loadingEvent, event} = useEvent(params.eventId);
+    const {loading: loadingEvent, event, stats} = useEvent(params.pencaId, params.eventId);
 
     if (loadingPenca || loadingEvent) return <Spinner />;
 
@@ -26,7 +26,7 @@ const PencaEventDetail = () => {
                 <PencaDetailHeader penca={penca} />
             ) : null}
             {event ? (
-                <EventDetail event={event} />
+                <EventDetail event={event} stats={stats} />
             ) : null}
         </>
     );

@@ -1,5 +1,4 @@
 const validate = (values, event) => {
-    console.log('validate: ', event);
     const errors = {};
     if (event.isScoreValid) {
         if (!values.localTeamResult) {
