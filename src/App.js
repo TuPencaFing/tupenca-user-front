@@ -23,40 +23,54 @@ import CompanyLayout from './router/CompanyLayout';
 import PrivateLayout from './router/PrivateLayout';
 import PublicOnlyLayout from './router/PublicOnlyLayout';
 import ROUTES from './utils/routes';
+import TestHome from "./pages/TestHome";
 
-const App = () => (
-    <BrowserRouter>
-        <Routes>
-            <Route element={<PublicOnlyLayout />}>
-                <Route path={ROUTES.home} element={<Home />} />
-                <Route path={ROUTES.login} element={<Login />} />
-                <Route path={ROUTES.register} element={<Register />} />
+const App = () => {
+    const companyCode = window.location.host.split(".")[0];
+    if (companyCode === "fing") {
+        return (
+            <BrowserRouter>
+                <Routes>
+                    <Route path={ROUTES.home} element={<TestHome companyCode={companyCode} />} />
+                </Routes>
+            </BrowserRouter>
+        );
+    }
 
-                {/* Company routes */}
-                <Route path={`${ROUTES.companyAdmin}/:companyCode/login`} element={<CompanyLogin />} />
-                <Route path={ROUTES.companyRegister} element={<CompanyRegister />} />
-            </Route>
-            <Route element={<PrivateLayout />}>
-                <Route path={ROUTES.pencas} element={<Pencas />} />
-                <Route path={`${ROUTES.pencas}/:pencaId`} element={<PencaEventResults />} />
-                <Route path={`${ROUTES.pencas}/:pencaId/eventos`} element={<PencaEventResults />} />
-                <Route path={`${ROUTES.pencas}/:pencaId/eventos/:eventId`} element={<PencaEventDetail />} />
-                <Route path={`${ROUTES.pencas}/:pencaId/participantes`} element={<PencaParticipants />} />
-                <Route path={`${ROUTES.pencas}/:pencaId/foro`} element={<PencaForum />} />
-                <Route path={`${ROUTES.pencas}/:pencaId/pago`} element={<Payment />} />
-                <Route path={ROUTES.misPencas} element={<MisPencas />} />
-                <Route path={ROUTES.logout} element={<Logout />} />
-                <Route path={`${ROUTES.invite}/:token`} element={<UserInvitation />} />
-            </Route>
-            <Route element={<CompanyLayout />}>
-                <Route path={`${ROUTES.companyAdmin}/:companyCode`} element={<CompanyHome />} />
-                <Route path={`${ROUTES.companyAdmin}/:companyCode/pencas`} element={<CompanyPencas />} />
-                <Route path={`${ROUTES.companyAdmin}/:companyCode/pencas/:pencaId`} element={<CompanyPencaDetail />} />
-                <Route path={`${ROUTES.companyAdmin}/:companyCode/pencas/:pencaId/invitarUsuario`} element={<CompanyPencaInviteUser />} />
-            </Route>
-            <Route path={`${ROUTES.companyAdmin}/:companyCode/logout`} element={<CompanyLogout />} />
-        </Routes>
-    </BrowserRouter>
-);
+    return (
+        <BrowserRouter>
+            <Routes>
+                <Route element={<PublicOnlyLayout />}>
+                    <Route path={ROUTES.home} element={<Home />} />
+                    <Route path={ROUTES.login} element={<Login />} />
+                    <Route path={ROUTES.register} element={<Register />} />
+
+                    {/* Company routes */}
+                    <Route path={`${ROUTES.companyAdmin}/:companyCode/login`} element={<CompanyLogin />} />
+                    <Route path={ROUTES.companyRegister} element={<CompanyRegister />} />
+                </Route>
+                <Route element={<PrivateLayout />}>
+                    <Route path={ROUTES.pencas} element={<Pencas />} />
+                    <Route path={`${ROUTES.pencas}/:pencaId`} element={<PencaEventResults />} />
+                    <Route path={`${ROUTES.pencas}/:pencaId/eventos`} element={<PencaEventResults />} />
+                    <Route path={`${ROUTES.pencas}/:pencaId/eventos/:eventId`} element={<PencaEventDetail />} />
+                    <Route path={`${ROUTES.pencas}/:pencaId/participantes`} element={<PencaParticipants />} />
+                    <Route path={`${ROUTES.pencas}/:pencaId/foro`} element={<PencaForum />} />
+                    <Route path={`${ROUTES.pencas}/:pencaId/pago`} element={<Payment />} />
+                    <Route path={ROUTES.misPencas} element={<MisPencas />} />
+                    <Route path={ROUTES.logout} element={<Logout />} />
+                    <Route path={`${ROUTES.invite}/:token`} element={<UserInvitation />} />
+                </Route>
+                <Route element={<CompanyLayout />}>
+                    <Route path={`${ROUTES.companyAdmin}/:companyCode`} element={<CompanyHome />} />
+                    <Route path={`${ROUTES.companyAdmin}/:companyCode/pencas`} element={<CompanyPencas />} />
+                    <Route path={`${ROUTES.companyAdmin}/:companyCode/pencas/:pencaId`} element={<CompanyPencaDetail />} />
+                    <Route path={`${ROUTES.companyAdmin}/:companyCode/pencas/:pencaId/invitarUsuario`} element={<CompanyPencaInviteUser />} />
+                </Route>
+                <Route path={`${ROUTES.companyAdmin}/:companyCode/logout`} element={<CompanyLogout />} />
+            </Routes>
+        </BrowserRouter>
+    );
+};
 
 export default App;
