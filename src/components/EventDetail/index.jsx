@@ -59,8 +59,6 @@ const EventDetail = ({ event, stats }) => {
         });
     };
 
-    console.log('event dettt', event);
-
     const dataGraph = [];
     if (stats.localVictoryPercentage > 0) {
         dataGraph.push({ title: `Gana ${event.localTeam.name}`, value: stats.localVictoryPercentage, color: '#AF7AC5' });

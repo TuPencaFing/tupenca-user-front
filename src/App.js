@@ -11,11 +11,12 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Logout from './pages/Logout';
 import MisPencas from './pages/MisPencas';
+import Payment from './pages/Payment';
 import Pencas from './pages/Pencas';
+import PencaForum from './pages/PencaForum';
 import PencaEventDetail from './pages/PencaEventDetail';
 import PencaEventResults from './pages/PencaEventResults';
 import PencaParticipants from './pages/PencaParticipants';
-import Payment from './pages/Payment';
 import Register from './pages/Register';
 import UserInvitation from './pages/UserInvitation';
 import CompanyLayout from './router/CompanyLayout';
@@ -41,6 +42,7 @@ const App = () => (
                 <Route path={`${ROUTES.pencas}/:pencaId/eventos`} element={<PencaEventResults />} />
                 <Route path={`${ROUTES.pencas}/:pencaId/eventos/:eventId`} element={<PencaEventDetail />} />
                 <Route path={`${ROUTES.pencas}/:pencaId/participantes`} element={<PencaParticipants />} />
+                <Route path={`${ROUTES.pencas}/:pencaId/foro`} element={<PencaForum />} />
                 <Route path={`${ROUTES.pencas}/:pencaId/pago`} element={<Payment />} />
                 <Route path={ROUTES.misPencas} element={<MisPencas />} />
                 <Route path={ROUTES.logout} element={<Logout />} />

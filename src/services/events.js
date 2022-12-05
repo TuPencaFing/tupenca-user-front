@@ -16,8 +16,7 @@ const getEventById = (eventId) => {
 };
 
 const getStatsByPencaIdAndEventId = (pencaId, eventId) => {
-    console.log('stats: ', pencaId, eventId);
-    return axiosInstance.get(`/api/pencas-compartidas/${pencaId}/evento/${eventId}/estadisticas`);
+    return axiosInstance.get(`/api/pencas-compartidas/${pencaId}/eventos/${eventId}/estadisticas`);
 };
 
 export const getEventAndStatsByPencaIdAndEventId = (pencaId, eventId) => {
