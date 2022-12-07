@@ -1,9 +1,17 @@
-.company-register-form {
-  margin-top: 24px;
+.company-register-container {
+  margin: 16px auto;
+  width: 60%;
 
-  .company-register-form-button {
-    margin-top: 24px;
-    margin-bottom: 16px;
-    background-color: black;
+  .company-register-header {
+    text-align: center;
+  }
+
+  .company-register-form {
+
+    .company-register-form-button {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      background-color: black;
+    }
   }
 }

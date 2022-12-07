@@ -1,0 +1,21 @@
+.company-plan-item {
+  width: 32%;
+  height: 350px;
+  text-align: center;
+  background-color: #FBDEC7;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+
+  .company-plan-item-details {
+    span {
+      line-height: 2;
+    }
+  }
+
+  .company-plan-item-button button {
+    margin-top: 24px;
+    margin-bottom: 16px;
+    background-color: black;
+  }
+}

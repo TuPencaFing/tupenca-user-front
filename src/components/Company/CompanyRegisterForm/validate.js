@@ -4,6 +4,8 @@ const validate = (values) => {
         errors.companyName = 'La razón social es requerida';
     if (!values.rut)
         errors.rut = 'El rut es requerido';
+    if (!values.companyCode)
+        errors.companyCode = 'El código de la empresa es requerido';
     if (!values.email)
         errors.email = 'El email es requerido';
     if (!values.username)
