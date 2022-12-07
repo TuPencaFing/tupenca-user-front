@@ -1,18 +1,14 @@
 import React, { useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
 
-import { getPencaById, joinPenca } from '../../services/pencas';
-import ROUTES from '../../utils/routes';
 import './styles.scss';
+import Alert from "@mui/material/Alert";
 
-const PaymentForm = () => {
-    const navigate = useNavigate();
-    let params = useParams();
+const PaymentForm = ({ handleSubmit, amount, feedbackMessage }) => {
 
-    const renderCardPaymentBrick = async (bricksBuilder, penca) => {
+    const renderCardPaymentBrick = async (bricksBuilder) => {
         const settings = {
             initialization: {
-                amount: penca.costEntry, // monto a ser pago
+                amount: amount, // monto a ser pago
             },
             callbacks: {
                 onReady: () => {
@@ -24,32 +20,11 @@ const PaymentForm = () => {
 
                     // ejemplo de envío de los datos recolectados por el Brick a su servidor
                     return new Promise((resolve, reject) => {
-                        joinPenca(params.pencaId, cardFormData).then((response) => {
-                            // recibir el resultado del pago
-                            console.log('Response of join penca: ', response);
-                            navigate(ROUTES.misPencas);
+                        handleSubmit(cardFormData).then(() => {
                             resolve();
-                        }).catch((error) => {
-                            // tratar respuesta de error al intentar crear el pago
-                            console.error('Error joining penca: ', error);
+                        }).catch(() => {
                             reject();
                         });
-
-                        // fetch("/process_payment", {
-                        //     method: "POST",
-                        //     headers: {
-                        //         "Content-Type": "application/json",
-                        //     },
-                        //     body: JSON.stringify(cardFormData)
-                        // })
-                        //     .then((response) => {
-                        //         // recibir el resultado del pago
-                        //         resolve();
-                        //     })
-                        //     .catch((error) => {
-                        //         // tratar respuesta de error al intentar crear el pago
-                        //         reject();
-                        //     })
                     });
                 },
                 onError: (error) => {
@@ -63,16 +38,18 @@ const PaymentForm = () => {
     useEffect(() => {
         const mercadopago = new window.MercadoPago(process.env.REACT_APP_MERCADO_LIBRE_API_KEY);
         const bricksBuilder = mercadopago.bricks();
-        getPencaById(params.pencaId).then((response) => {
-            console.log('Response of get penca by ID: ', response);
-            renderCardPaymentBrick(bricksBuilder, response.data);
-        }).catch((error) => {
-            console.error('Error getting penca by ID: ', error);
-        });
-    }, [params.pencaId, renderCardPaymentBrick]);
+        renderCardPaymentBrick(bricksBuilder);
+    }, [renderCardPaymentBrick]);
 
     return (
         <>
+            {feedbackMessage ? (
+                <div style={{ width: '40%', margin: '16px auto' }}>
+                    <Alert severity={feedbackMessage.type}>
+                        {feedbackMessage.message}
+                    </Alert>
+                </div>
+            ) : null}
             <div id="cardPaymentBrick_container" className="card-payment-brick-container"></div>
         </>
     );

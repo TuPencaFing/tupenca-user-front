@@ -3,6 +3,7 @@ import { persistReducer, persistStore } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import thunk from 'redux-thunk';
 
+import companyReducer from '../features/company/companySlice';
 import sessionReducer from '../features/session/sessionSlice';
 
 const persistConfig = {
@@ -12,6 +13,7 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
     session: sessionReducer,
+    company: companyReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
