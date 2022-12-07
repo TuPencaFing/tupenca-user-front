@@ -12,6 +12,7 @@ export const createCompany = (data) => {
     return axiosInstance.post('/api/empresas', {
         rut,
         razonsocial: companyName,
+        tenantCode: companyCode,
         planId,
         pago: {
             token,
