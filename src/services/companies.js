@@ -1,5 +1,4 @@
 import { axiosInstance } from './config';
-import { store } from '../app/store';
 
 export const createCompany = (data) => {
     const { companyName, rut, companyCode, planId, cardFormData } = data;
@@ -34,11 +33,8 @@ export const getCompanyEmployees = (companyId) => {
 };
 
 export const getCompanySubscriptions = () => {
-    const token = store.getState().session.token;
-    return axiosInstance.get(`/api/planes`, {
-        headers: { Authorization: `Bearer ${token}` 
-    }});
-}; 
+    return axiosInstance.get('/api/planes');
+};
 
 export const createPencaCompany = (data) => {
     return axiosInstance.post('/api/pencas-empresas', data);
