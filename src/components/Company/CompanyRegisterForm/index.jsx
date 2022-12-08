@@ -14,7 +14,7 @@ import logo from '../../../assets/logo.png';
 import { createCompany } from '../../../services/companies';
 import { createEmployee } from '../../../services/employees';
 import { Copyright } from '../../../utils/copyright';
-import { getCompanyRoutes } from '../../../utils/routes';
+import { getCompanyAdminRoutes } from '../../../utils/routes';
 import TextFieldAdapter from '../../TextFieldAdapter';
 import validate from './validate';
 import './styles.scss';
@@ -42,7 +42,7 @@ const CompanyRegisterForm = () => {
             };
             createEmployee(createEmployeeData).then((employeeResponse) => {
                 console.log('Employee registration response: ', employeeResponse);
-                navigate(getCompanyRoutes(id).login, {
+                navigate(getCompanyAdminRoutes(id).login, {
                     state: {
                         register: true,
                     },

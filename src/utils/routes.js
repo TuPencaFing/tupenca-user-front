@@ -10,7 +10,7 @@ const ROUTES = {
     invite: '/invitacion',
 };
 
-export const getCompanyRoutes = (companyCode,pencaCode) => {
+export const getCompanyAdminRoutes = (companyCode,pencaCode) => {
     return {
         home: `${ROUTES.companyAdmin}/${companyCode}/`,
         login: `${ROUTES.companyAdmin}/${companyCode}/login`,

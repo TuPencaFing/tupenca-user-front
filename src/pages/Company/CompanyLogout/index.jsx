@@ -4,7 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 import Spinner from '../../../components/Spinner';
 import { destroySession } from '../../../features/session/sessionSlice';
-import { getCompanyRoutes } from '../../../utils/routes';
+import { getCompanyAdminRoutes } from '../../../utils/routes';
 
 const CompanyLogout = () => {
     const dispatch = useDispatch();
@@ -13,7 +13,7 @@ const CompanyLogout = () => {
 
     useEffect(() => {
         dispatch(destroySession());
-        navigate(getCompanyRoutes(params.companyCode).login);
+        navigate(getCompanyAdminRoutes(params.companyCode).login);
     }, [dispatch, navigate, params.companyCode]);
 
     return <Spinner />;

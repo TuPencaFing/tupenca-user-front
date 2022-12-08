@@ -5,7 +5,7 @@ import Button from '@mui/material/Button';
 import Navbar from '../../../components/Navbar';
 import useColors from '../../../hooks/useColors';
 import { EMPLOYEE_LOGGED_PAGES, EMPLOYEE_ROUTES } from '../../../utils/navbarItems';
-import { getCompanyRoutes } from '../../../utils/routes';
+import { getCompanyAdminRoutes } from '../../../utils/routes';
 import CompanyPencaInviteUserForm from '../../../components/Company/CompanyPencaInviteUserForm';
 import CompanyUsersList from '../../../components/Company/CompanyUsersList';
 import Spinner from '../../../components/Spinner';

@@ -9,7 +9,7 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import Grid from '@mui/material/Grid';
 import useColors from '../../../hooks/useColors';
 import { EMPLOYEE_LOGGED_PAGES, EMPLOYEE_ROUTES } from '../../../utils/navbarItems';
-import { getCompanyRoutes } from '../../../utils/routes';
+import { getCompanyAdminRoutes } from '../../../utils/routes';
 import CompanyPencaForm from "../../../components/Company/CompanyPencaForm";
 
 const CompanyPencas = () => {
@@ -22,7 +22,7 @@ const CompanyPencas = () => {
     const navigate = useNavigate();
 
     const handleClickPenca = (pencaId) => {
-        navigate(`${getCompanyRoutes(params.companyCode).pencas}/${pencaId}`);
+        navigate(`${getCompanyAdminRoutes(params.companyCode).pencas}/${pencaId}`);
     };
 
     const handleClickCrearPenca = () => {

@@ -1,4 +1,4 @@
-import ROUTES, { getCompanyRoutes } from './routes';
+import ROUTES, { getCompanyAdminRoutes } from './routes';
 
 export const USER_PAGES = [
     {
@@ -29,15 +29,15 @@ export const EMPLOYEE_LOGGED_PAGES = (companyCode) => {
     return [
         {
             name: 'Administración de pencas',
-            route: getCompanyRoutes(companyCode).pencas,
+            route: getCompanyAdminRoutes(companyCode).pencas,
         },
         {
             name: 'Administración de funcionarios',
-            route:  getCompanyRoutes(companyCode).funcionarios,
+            route:  getCompanyAdminRoutes(companyCode).funcionarios,
         },
         {
             name: 'Administración de la empresa',
-            route:  getCompanyRoutes(companyCode).administracion,
+            route:  getCompanyAdminRoutes(companyCode).administracion,
         },
     ];
 };
@@ -48,7 +48,7 @@ export const USER_ROUTES = {
 };
 
 export const EMPLOYEE_ROUTES = (companyCode) => {
-    const routes = getCompanyRoutes(companyCode);
+    const routes = getCompanyAdminRoutes(companyCode);
     return {
         loginUrl: routes.login,
         logoutUrl: routes.logout,
