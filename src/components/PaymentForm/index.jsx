@@ -1,11 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
+import Alert from '@mui/material/Alert';
 
 import './styles.scss';
-import Alert from "@mui/material/Alert";
 
 const PaymentForm = ({ handleSubmit, amount, feedbackMessage }) => {
 
-    const renderCardPaymentBrick = async (bricksBuilder) => {
+    const renderCardPaymentBrick = useCallback(async (bricksBuilder) => {
         const settings = {
             initialization: {
                 amount: amount, // monto a ser pago
@@ -33,7 +33,7 @@ const PaymentForm = ({ handleSubmit, amount, feedbackMessage }) => {
             },
         };
         await bricksBuilder.create('cardPayment', 'cardPaymentBrick_container', settings);
-    };
+    }, [amount, handleSubmit]);
 
     useEffect(() => {
         const mercadopago = new window.MercadoPago(process.env.REACT_APP_MERCADO_LIBRE_API_KEY);

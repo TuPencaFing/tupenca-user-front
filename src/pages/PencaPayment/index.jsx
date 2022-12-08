@@ -39,10 +39,12 @@ const PencaPayment = () => {
                 pages={USER_LOGGED_PAGES}
                 routes={USER_ROUTES}
             />
-            <PaymentForm
-                handleSubmit={handleSubmit}
-                amount={amount}
-            />
+            {amount ? (
+                <PaymentForm
+                    handleSubmit={handleSubmit}
+                    amount={amount}
+                />
+            ) : null}
         </>
     );
 };
