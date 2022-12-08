@@ -13,10 +13,14 @@ const useCompanyUsers = () => {
         getCompanyUsers(pencaId).then((response) => {
             const usersResp = [];
             response.data.forEach((user) => {
+                const {
+                    score,
+                    usuario: participantData,
+                } = user;
                 usersResp.push({
-                    id: user.id,
-                    userName: user.userName,
-                    totalScore: user.totalScore,
+                    id: participantData.id,
+                    userName: participantData.userName,
+                    totalScore: score,
                 });
             })
             setUsers(usersResp);

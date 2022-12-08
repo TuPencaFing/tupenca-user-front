@@ -54,5 +54,6 @@ export const getStatsByPencaIdAndEventId = (pencaId, eventId) => {
 };
 
 export const getCompanyUsers = (pencaId) => {
-    return axiosInstance.get(`/api/pencas-empresas/${pencaId}/usuarios`);
+    // return axiosInstance.get(`/api/pencas-empresas/${pencaId}/usuarios`);
+    return axiosInstance.get(`/api/puntaje-usuario-penca/pencas/${pencaId}`);
 };
