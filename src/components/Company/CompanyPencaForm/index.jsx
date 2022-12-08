@@ -14,7 +14,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import useChampionships from "../../../hooks/useChampionships";
 import usePrizes from "../../../hooks/usePrizes";
 import logo from '../../../assets/logo.png';
-import { Select, MenuItem, FormHelperText, InputLabel, Chip } from '@material-ui/core';
+import { Select, MenuItem, FormHelperText, InputLabel, Chip } from '@mui/material';
 import { createPencaCompany } from '../../../services/companies';
 import { Copyright } from '../../../utils/copyright';
 import TextFieldAdapter from '../../TextFieldAdapter';
@@ -40,7 +40,7 @@ const CompanyPencaForm = ({planId}) => {
         const data = {
             id: 0,
             title: values.title,
-            description: values.description, 
+            description: values.description,
             image: "string",
             campeonato: {
               id: campeonato
