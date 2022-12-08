@@ -1,21 +1,20 @@
 import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import CompanyPencaList from '../../../components/Company/CompanyPencaList';
 import Navbar from '../../../components/Navbar';
+import PencaList from '../../../components/PencaList';
 import Spinner from '../../../components/Spinner';
-import useCompanyPencas from '../../../hooks/useCompanyPencas';
-import { EMPLOYEE_LOGGED_PAGES, EMPLOYEE_ROUTES } from '../../../utils/navbarItems';
-import { getCompanyAdminRoutes } from '../../../utils/routes';
+import useCompanyUserPencas from '../../../hooks/CompanyUser/useCompanyUserPencas';
+import { COMPANY_USER_PAGES, USER_ROUTES } from '../../../utils/navbarItems';
+import { getCompanyRoutes } from '../../../utils/routes';
 
-const CompanyPencas = () => {
+const CompanyUserPencas = () => {
     let params = useParams();
-    const {loading, pencas} = useCompanyPencas();
-
     const navigate = useNavigate();
+    const {loading, pencas} = useCompanyUserPencas();
 
     const handleClickPenca = (pencaId) => {
-        navigate(`${getCompanyAdminRoutes(params.companyCode).pencas}/${pencaId}`);
+        navigate(getCompanyRoutes(params.companyCode, pencaId).pencaEvents);
     };
 
     if (loading) return <Spinner />;
@@ -23,11 +22,11 @@ const CompanyPencas = () => {
     return (
         <>
             <Navbar
-                pages={EMPLOYEE_LOGGED_PAGES(params.companyCode)}
-                routes={EMPLOYEE_ROUTES(params.companyCode)}
+                pages={COMPANY_USER_PAGES(params.companyCode)}
+                routes={USER_ROUTES}
             />
             {pencas && pencas.length > 0 ? (
-                <CompanyPencaList
+                <PencaList
                     pencas={pencas}
                     handleClickPenca={handleClickPenca}
                 />
@@ -40,4 +39,4 @@ const CompanyPencas = () => {
     );
 };
 
-export default CompanyPencas;
+export default CompanyUserPencas;

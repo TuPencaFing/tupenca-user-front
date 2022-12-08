@@ -1,5 +1,5 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import EventsList from '../../components/EventsList';
 import EventScore from '../../components/EventScore';
@@ -8,13 +8,19 @@ import PencaDetailHeader from '../../components/PencaDetailHeader';
 import Spinner from '../../components/Spinner';
 import usePenca from '../../hooks/usePenca';
 import { USER_LOGGED_PAGES, USER_ROUTES } from '../../utils/navbarItems';
+import ROUTES from '../../utils/routes';
 import './styles.scss';
 
 const PencaEventResults = () => {
     let params = useParams();
+    const navigate = useNavigate();
     const {loading, penca, events} = usePenca(params.pencaId);
 
     if (loading) return <Spinner />;
+
+    const handleClickEvent = (eventId) => {
+        navigate(`${ROUTES.pencas}/${params.pencaId}/eventos/${eventId}`);
+    };
 
     return (
         <>
@@ -32,6 +38,7 @@ const PencaEventResults = () => {
                     </div>
                     <EventsList
                         events={events}
+                        handleClickEvent={handleClickEvent}
                     />
                 </>
             ) : (

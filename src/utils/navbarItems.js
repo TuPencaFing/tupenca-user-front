@@ -1,4 +1,4 @@
-import ROUTES, { getCompanyRoutes } from './routes';
+import ROUTES, { getCompanyAdminRoutes, getCompanyRoutes } from './routes';
 
 export const USER_PAGES = [
     {
@@ -22,6 +22,16 @@ export const USER_LOGGED_PAGES = [
     },
 ];
 
+export const COMPANY_USER_PAGES = (companyCode) => {
+
+    return [
+        {
+            name: 'Pencas',
+            route: getCompanyRoutes(companyCode).pencas,
+        },
+    ];
+};
+
 export const EMPLOYEE_PAGES = [];
 
 export const EMPLOYEE_LOGGED_PAGES = (companyCode) => {
@@ -29,7 +39,7 @@ export const EMPLOYEE_LOGGED_PAGES = (companyCode) => {
     return [
         {
             name: 'Administrar penca',
-            route: getCompanyRoutes(companyCode).pencas,
+            route: getCompanyAdminRoutes(companyCode).pencas,
         },
         {
             name: 'Administrar funcionarios',
@@ -48,7 +58,7 @@ export const USER_ROUTES = {
 };
 
 export const EMPLOYEE_ROUTES = (companyCode) => {
-    const routes = getCompanyRoutes(companyCode);
+    const routes = getCompanyAdminRoutes(companyCode);
     return {
         loginUrl: routes.login,
         logoutUrl: routes.logout,

@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { axiosInstance } from './config';
+import { getStatsByPencaIdAndEventId } from './pencas';
 
 export const savePrediction = (eventId, data) => {
     const { pencaId, result, localTeamResult, visitorTeamResult } = data;
@@ -11,12 +12,8 @@ export const savePrediction = (eventId, data) => {
     return axiosInstance.post(`/api/eventos/${eventId}/prediccion?pencaId=${pencaId}`, body);
 };
 
-const getEventById = (eventId) => {
+export const getEventById = (eventId) => {
     return axiosInstance.get(`/api/eventos/${eventId}`);
-};
-
-const getStatsByPencaIdAndEventId = (pencaId, eventId) => {
-    return axiosInstance.get(`/api/pencas-compartidas/${pencaId}/eventos/${eventId}/estadisticas`);
 };
 
 export const getEventAndStatsByPencaIdAndEventId = (pencaId, eventId) => {

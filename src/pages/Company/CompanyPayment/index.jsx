@@ -36,7 +36,7 @@ const CompanyPayment = () => {
             };
             createEmployee(createEmployeeData).then((employeeResponse) => {
                 console.log('Employee registration response: ', employeeResponse);
-                navigate(`${ROUTES.companyPlans}/registrationFinished`);
+                navigate(`${ROUTES.companies}/registrationFinished`);
             }).catch((error) => {
                 console.log('Error employee register: ', error);
                 setFeedbackMessage({

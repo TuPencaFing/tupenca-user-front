@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { Form, Field } from 'react-final-form';
 import { PieChart } from 'react-minimal-pie-chart';
 import Alert from '@mui/material/Alert';
@@ -11,8 +11,7 @@ import TextFieldAdapter from '../TextFieldAdapter';
 import validate from './validate';
 import './styles.scss';
 
-const EventDetail = ({ event, stats }) => {
-    const navigate = useNavigate();
+const EventDetail = ({ event, stats, redirectAfterSave }) => {
     let params = useParams();
     const [feedbackMessage, setFeedbackMessage] = useState(null);
 
@@ -42,7 +41,7 @@ const EventDetail = ({ event, stats }) => {
         console.log(event.id, data);
         savePrediction(event.id, data).then((response) => {
             console.log('Prediction saved successfully', response);
-            navigate(`/pencas/${params.pencaId}/eventos`);
+            redirectAfterSave();
         }).catch((error) => {
             console.log('Failed to save prediction', error);
             if (error.response.status === 400) {
