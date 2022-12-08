@@ -5,9 +5,9 @@ import Forum from '../../components/Forum';
 import Navbar from '../../components/Navbar';
 import PencaDetailHeader from '../../components/PencaDetailHeader';
 import Spinner from '../../components/Spinner';
+import useComments from '../../hooks/useComments';
 import usePenca from '../../hooks/usePenca';
 import { USER_LOGGED_PAGES, USER_ROUTES } from '../../utils/navbarItems';
-import useComments from "../../hooks/useComments";
 
 const PencaForum = () => {
     let params = useParams();

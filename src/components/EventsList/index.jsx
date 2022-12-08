@@ -1,15 +1,11 @@
 import React, { Fragment } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
 
 import EventScore from '../EventScore';
-import ROUTES from '../../utils/routes';
 import eventSuccess from '../../assets/event-success.png';
 import eventFail from '../../assets/event-fail.png';
 import './styles.scss';
 
-const EventsList = ({ events }) => {
-    let params = useParams();
-    const navigate = useNavigate();
+const EventsList = ({ events, handleClickEvent }) => {
 
     const formatDate = (dateStr) => {
         const date = new Date(dateStr);
@@ -54,10 +50,6 @@ const EventsList = ({ events }) => {
                 break;
         }
         return resultStr;
-    };
-
-    const handleClickEvent = (eventId) => {
-        navigate(`${ROUTES.pencas}/${params.pencaId}/eventos/${eventId}`);
     };
 
     return (

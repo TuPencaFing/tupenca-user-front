@@ -1,0 +1,46 @@
+import { useEffect, useState } from 'react';
+
+import { getCompanyPencaInfoById } from '../../services/companyPencas';
+
+const useCompanyUserPenca = (pencaId) => {
+    const [loading, setLoading] = useState(false);
+    const [penca, setPenca] = useState(null);
+    const [events, setEvents] = useState([]);
+
+    useEffect(() => {
+        setLoading(true);
+        getCompanyPencaInfoById(pencaId).then((response) => {
+            console.log('Response of get company penca info : ', response);
+            const {
+                id,
+                pencaTitle: title,
+                pencaDescription: description,
+                image,
+                puntajeTotal: totalScore,
+                campeonatoName: championshipName,
+                deporteName: sportName,
+                eventos,
+            } = response.data;
+            const pencaResp = {
+                id,
+                title,
+                description,
+                image,
+                totalScore,
+                championshipName,
+                sportName,
+            };
+            eventos.sort((event, rightEvent) => new Date(event.fechaInicial) - new Date (rightEvent.fechaInicial));
+            setPenca(pencaResp);
+            setEvents(eventos);
+        }).catch((error) => {
+            console.error('Error getting penca info: ', error);
+        }).finally(() => {
+            setLoading(false);
+        });
+    }, [pencaId]);
+
+    return {loading, penca, events};
+};
+
+export default useCompanyUserPenca;

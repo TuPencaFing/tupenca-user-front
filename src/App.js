@@ -10,6 +10,11 @@ import CompanyPencas from './pages/Company/CompanyPencas';
 import CompanyPlans from './pages/Company/CompanyPlans';
 import CompanyRegister from './pages/Company/CompanyRegister';
 import CompanyRegisterFinished from './pages/Company/CompanyRegisterFinished';
+import CompanyUserPencas from './pages/CompanyUser/CompanyUserPencas';
+import CompanyUserPencaEvents from './pages/CompanyUser/CompanyUserPencaEvents';
+import CompanyUserPencaEventDetail from './pages/CompanyUser/CompanyUserPencaEventDetail';
+import CompanyUserPencaParticipants from './pages/CompanyUser/CompanyUserPencaParticipants';
+import CompanyUserPencaForum from './pages/CompanyUser/CompanyUserPencaForum';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Logout from './pages/Logout';
@@ -23,6 +28,7 @@ import PencaParticipants from './pages/PencaParticipants';
 import Register from './pages/Register';
 import UserInvitation from './pages/UserInvitation';
 import CompanyLayout from './router/CompanyLayout';
+import CompanyUserLayout from './router/CompanyUserLayout';
 import PrivateLayout from './router/PrivateLayout';
 import PublicOnlyLayout from './router/PublicOnlyLayout';
 import ROUTES from './utils/routes';
@@ -72,6 +78,14 @@ const App = () => {
                     <Route path={`${ROUTES.companyAdmin}/:companyCode/pencas`} element={<CompanyPencas />} />
                     <Route path={`${ROUTES.companyAdmin}/:companyCode/pencas/:pencaId`} element={<CompanyPencaDetail />} />
                     <Route path={`${ROUTES.companyAdmin}/:companyCode/pencas/:pencaId/invitarUsuario`} element={<CompanyPencaInviteUser />} />
+                </Route>
+                <Route element={<CompanyUserLayout />}>
+                    <Route path={`${ROUTES.companies}/:companyCode${ROUTES.pencas}`} element={<CompanyUserPencas />} />
+                    <Route path={`${ROUTES.companies}/:companyCode${ROUTES.pencas}/:pencaId`} element={<CompanyUserPencaEvents />} />
+                    <Route path={`${ROUTES.companies}/:companyCode${ROUTES.pencas}/:pencaId/eventos`} element={<CompanyUserPencaEvents />} />
+                    <Route path={`${ROUTES.companies}/:companyCode${ROUTES.pencas}/:pencaId/eventos/:eventId`} element={<CompanyUserPencaEventDetail />} />
+                    <Route path={`${ROUTES.companies}/:companyCode${ROUTES.pencas}/:pencaId/participantes`} element={<CompanyUserPencaParticipants />} />
+                    <Route path={`${ROUTES.companies}/:companyCode${ROUTES.pencas}/:pencaId/foro`} element={<CompanyUserPencaForum />} />
                 </Route>
                 <Route path={`${ROUTES.companyAdmin}/:companyCode/logout`} element={<CompanyLogout />} />
             </Routes>

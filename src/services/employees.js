@@ -6,9 +6,7 @@ export const createEmployee = (data) => {
         email,
         username,
         password,
-        empresa: {
-            id: companyId,
-        },
+        empresaId: companyId,
     });
 };
 

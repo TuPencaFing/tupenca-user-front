@@ -4,17 +4,20 @@ import { Navigate, Outlet } from 'react-router-dom';
 
 import ROUTES, { getCompanyAdminRoutes } from '../../utils/routes';
 
-const PublicOnlyLayout = () => {
+const CompanyUserLayout = () => {
     const {isLogged, company} = useSelector((state) => state.session);
 
-    if (isLogged) {
+    if (!isLogged) {
         if (company !== null) {
             const COMPANY_ROUTES = getCompanyAdminRoutes(company.code);
-            return (<Navigate to={COMPANY_ROUTES.home} replace />);
+            return (<Navigate to={COMPANY_ROUTES.login} replace />);
         }
-        return (<Navigate to={ROUTES.misPencas} replace />);
+        return (<Navigate to={ROUTES.login} replace />);
+    } else if (company !== null) {
+        const COMPANY_ROUTES = getCompanyAdminRoutes(company.code);
+        return (<Navigate to={COMPANY_ROUTES.home} replace />);
     }
     return <Outlet />;
 };
 
-export default PublicOnlyLayout;
+export default CompanyUserLayout;

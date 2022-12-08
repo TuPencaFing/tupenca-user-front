@@ -33,9 +33,11 @@ const PencaList = ({ headerIcon, pencas, handleClickPenca, handleJoinPenca }) =>
                             <div className="penca-name">
                                 {penca.title}
                             </div>
-                            <div className="penca-betting-pool">
-                                Pozo actual: <strong>${penca.bettingPool}</strong>
-                            </div>
+                            {penca.bettingPool ? (
+                                <div className="penca-betting-pool">
+                                    Pozo actual: <strong>${penca.bettingPool}</strong>
+                                </div>
+                            ) : null}
                         </div>
                         <div className="penca-item-right">
                             {handleJoinPenca && (
