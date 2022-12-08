@@ -1,7 +1,8 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Navigate, Outlet } from 'react-router-dom';
-import ROUTES, { getCompanyAdminRoutes } from "../../utils/routes";
+
+import ROUTES, { getCompanyAdminRoutes } from '../../utils/routes';
 
 const PublicOnlyLayout = () => {
     const {isLogged, company} = useSelector((state) => state.session);

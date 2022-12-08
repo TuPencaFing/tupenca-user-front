@@ -5,12 +5,23 @@ const ROUTES = {
     register: '/registro',
     pencas: '/pencas',
     misPencas: '/mis-pencas',
-    companyRegister: '/empresas/registro',
+    companies: '/empresas',
+    companyPlans: '/empresas/planes',
     companyAdmin: '/admin-empresas',
     invite: '/invitacion',
 };
 
-export const getCompanyAdminRoutes = (companyCode,pencaCode) => {
+export const getCompanyRoutes = (companyCode, pencaId = null) => {
+    return {
+        home: `${ROUTES.companies}/${companyCode}/`,
+        pencas: `${ROUTES.companies}/${companyCode}/pencas`,
+        pencaEvents: `${ROUTES.companies}/${companyCode}/pencas/${pencaId}/eventos`,
+        pencaParticipants: `${ROUTES.companies}/${companyCode}/pencas/${pencaId}/participantes`,
+        pencaForum: `${ROUTES.companies}/${companyCode}/pencas/${pencaId}/foro`,
+    };
+};
+
+export const getCompanyAdminRoutes = (companyCode) => {
     return {
         home: `${ROUTES.companyAdmin}/${companyCode}/`,
         login: `${ROUTES.companyAdmin}/${companyCode}/login`,
@@ -18,8 +29,6 @@ export const getCompanyAdminRoutes = (companyCode,pencaCode) => {
         pencas: `${ROUTES.companyAdmin}/${companyCode}/pencas`,
         funcionarios: `${ROUTES.companyAdmin}/${companyCode}/funcionarios`,
         administracion: `${ROUTES.companyAdmin}/${companyCode}/administracion`,
-        administrationLookAndFeel: `${ROUTES.companyAdmin}/${companyCode}/administrationLookAndFeel`,
-        companyPencasAdministration: `${ROUTES.companyAdmin}/${companyCode}/pencas/${pencaCode}`,
     };
 };
 

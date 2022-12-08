@@ -1,5 +1,9 @@
 import { axiosInstance } from './config';
 
+export const getPencasHot = () => {
+    return axiosInstance.get('/api/pencas-compartidas/hot');
+}
+
 export const getPencas = () => {
     return axiosInstance.get('/api/pencas-compartidas/me', {
         params: {
@@ -45,8 +49,8 @@ export const getPencaInfoById = (pencaId) => {
     return axiosInstance.get(`/api/pencas-compartidas/${pencaId}/info`);
 };
 
-export const getParticipantsByPencaId = (pencaId) => {
-    return axiosInstance.get(`/api/pencas-compartidas/${pencaId}/usuarios`);
+export const getStatsByPencaIdAndEventId = (pencaId, eventId) => {
+    return axiosInstance.get(`/api/pencas-compartidas/${pencaId}/eventos/${eventId}/estadisticas`);
 };
 
 export const getCompanyUsers = (pencaId) => {

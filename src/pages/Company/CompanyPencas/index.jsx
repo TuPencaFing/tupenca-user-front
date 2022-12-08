@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import Sidebar from '../../../components/Sidebar'
 import Navbar from '../../../components/Navbar';
 import Spinner from '../../../components/Spinner';
@@ -9,8 +9,7 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import Grid from '@mui/material/Grid';
 import useColors from '../../../hooks/useColors';
 import { EMPLOYEE_LOGGED_PAGES, EMPLOYEE_ROUTES } from '../../../utils/navbarItems';
-import { getCompanyAdminRoutes } from '../../../utils/routes';
-import CompanyPencaForm from "../../../components/Company/CompanyPencaForm";
+import CompanyPencaForm from '../../../components/Company/CompanyPencaForm';
 
 const CompanyPencas = () => {
     let params = useParams();
@@ -18,12 +17,6 @@ const CompanyPencas = () => {
     const {loadingCompany, company, plan} = useCompany();
     const {loading, pencas} = useCompanyPencas();
     const [mostrarCrearPenca, setMostrarCrearPenca] = useState(false);
-
-    const navigate = useNavigate();
-
-    const handleClickPenca = (pencaId) => {
-        navigate(`${getCompanyAdminRoutes(params.companyCode).pencas}/${pencaId}`);
-    };
 
     const handleClickCrearPenca = () => {
         if(mostrarCrearPenca){
@@ -54,7 +47,12 @@ const CompanyPencas = () => {
                         <div id="tituloOption">Pencas restantes: <strong>{plan.cantPencas - pencas.length}</strong></div>
                     </div>
                     <div className="generalOptions">
-                        <div id="tituloOption" onClick={(plan.cantPencas - pencas.length) == 0 ? "" : handleClickCrearPenca} >Crear nueva penca</div>
+                        <div
+                            id="tituloOption"
+                            onClick={(plan.cantPencas - pencas.length) === 0 ? "" : handleClickCrearPenca}
+                        >
+                            Crear nueva penca
+                        </div>
                     </div>
                 </Grid>
                 <Grid item style={{marginLeft: 300}}>

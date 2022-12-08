@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { getParticipantsByPencaId } from '../services/pencas';
+import { getParticipantsByPencaId } from '../services/participants';
 
 const useParticipants = (pencaId) => {
     const [loading, setLoading] = useState(false);
@@ -10,7 +10,9 @@ const useParticipants = (pencaId) => {
         setLoading(true);
         getParticipantsByPencaId(pencaId).then((response) => {
             console.log('Response of get participants: ', response);
-            setParticipants(response.data);
+            const participants = response.data;
+            participants.sort((left, right) => right.score - left.score);
+            setParticipants(participants);
         }).catch((error) => {
             console.error('Error getting participants: ', error);
         }).finally(() => {

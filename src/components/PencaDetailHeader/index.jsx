@@ -8,7 +8,6 @@ import './styles.scss';
 const PencaDetailHeader = ({ penca }) => {
     let location = useLocation();
     const navigate = useNavigate();
-    console.log('penca', penca);
 
     const classNamePage = (route) => {
         if (location.pathname === route) {
@@ -20,10 +19,17 @@ const PencaDetailHeader = ({ penca }) => {
 
     return (
         <header className="penca-detail-header">
-            <div className="penca-detail-header-name">
-                {penca.title}
-                <br />
-                {penca.description}
+            <div className="penca-detail-header-basic">
+                {penca.image ? (
+                    <div className="penca-detail-header-image">
+                        <img src={penca.image} alt="Penca" width="40px" />
+                    </div>
+                ) : null}
+                <div className="penca-detail-header-name">
+                    {penca.title}
+                    <br />
+                    {penca.description}
+                </div>
             </div>
             <div className="penca-detail-header-menu">
                 <Button

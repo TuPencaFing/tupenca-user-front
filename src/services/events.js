@@ -1,13 +1,33 @@
+import axios from 'axios';
 import { axiosInstance } from './config';
-import { store } from '../app/store';
+import { getStatsByPencaIdAndEventId } from './pencas';
 
 export const savePrediction = (eventId, data) => {
-    const { resultado, puntajeEquipoLocal, puntajeEquipoVisitante } = data;
-    return axiosInstance.post(`/api/eventos/${eventId}/prediccion`, {
-        resultado,
-        puntajeEquipoLocal,
-        puntajeEquipoVisitante,
-    });
+    const { pencaId, result, localTeamResult, visitorTeamResult } = data;
+    const body = {
+        resultado: result,
+    };
+    if (localTeamResult) body.puntajeEquipoLocal = parseInt(localTeamResult);
+    if (visitorTeamResult) body.puntajeEquipoVisitante = parseInt(visitorTeamResult);
+    return axiosInstance.post(`/api/eventos/${eventId}/prediccion?pencaId=${pencaId}`, body);
+};
+
+export const getEventById = (eventId) => {
+    return axiosInstance.get(`/api/eventos/${eventId}`);
+};
+
+export const getEventAndStatsByPencaIdAndEventId = (pencaId, eventId) => {
+    return axios.all([
+        getEventById(eventId),
+        getStatsByPencaIdAndEventId(pencaId, eventId),
+    ]).then(axios.spread((eventResponse, statsResponse) => {
+        return {
+            data: {
+                event: eventResponse.data,
+                stats: statsResponse.data,
+            },
+        };
+    }));
 };
 
 export const getChampionships = () => {
@@ -15,8 +35,5 @@ export const getChampionships = () => {
 };
 
 export const getPrizes = () => {
-    const token = store.getState().session.token;
-    return axiosInstance.get(`/api/premios`, {
-        headers: { Authorization: `Bearer ${token}` 
-    }});
+    return axiosInstance.get('/api/premios');
 };

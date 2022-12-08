@@ -124,7 +124,7 @@ const LoginForm = ({ feedbackMessage, onSubmit, isCompany }) => {
                 {!isCompany && (
                     <div style={{ textAlign: 'center' }}>
                         Sos una empresa y estás interesado en la plataforma?
-                        Ingresá <Link to={ROUTES.companyRegister}>aquí</Link> para conocer más
+                        Ingresá <Link to={ROUTES.companyPlans}>aquí</Link> para conocer más
                     </div>
                 )}
                 <Copyright sx={{ mt: 8, mb: 4 }} />

@@ -1,0 +1,36 @@
+.penca-forum {
+  margin: 16px auto;
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+
+  .comment-list {
+    padding-top: 0;
+    padding-bottom: 0;
+    width: 60%;
+    max-height: 400px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column-reverse;
+
+    .comment-item {
+      background-color: #FBDEC7;
+
+      [class$='MuiListItemSecondaryAction-root'] {
+        top: 25%;
+      }
+    }
+  }
+
+  .penca-forum-add-comment {
+    padding: 16px;
+    width: 40%;
+
+    form {
+      .add-comment-form-button {
+        margin-top: 16px;
+        background-color: black;
+      }
+    }
+  }
+}
