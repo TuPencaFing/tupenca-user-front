@@ -1,5 +1,9 @@
 import { axiosInstance } from './config';
 
+export const getPencasHot = () => {
+    return axiosInstance.get('/api/pencas-compartidas/hot');
+}
+
 export const getPencas = () => {
     return axiosInstance.get('/api/pencas-compartidas/me', {
         params: {
