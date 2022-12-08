@@ -29,3 +29,11 @@ export const getEventAndStatsByPencaIdAndEventId = (pencaId, eventId) => {
         };
     }));
 };
+
+export const getChampionships = () => {
+    return axiosInstance.get('/api/campeonatos');
+};
+
+export const getPrizes = () => {
+    return axiosInstance.get('/api/premios');
+};

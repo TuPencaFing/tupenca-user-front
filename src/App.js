@@ -9,6 +9,9 @@ import CompanyPencaInviteUser from './pages/Company/CompanyPencaInviteUser';
 import CompanyPencas from './pages/Company/CompanyPencas';
 import CompanyPlans from './pages/Company/CompanyPlans';
 import CompanyRegister from './pages/Company/CompanyRegister';
+import CompanyEmployeeAdministration from './pages/Company/CompanyEmployeeAdministration';
+import CompanyAdministration from './pages/Company/CompanyAdministration';
+import CompanyLookAndFeel from './pages/Company/CompanyLookAndFeel';
 import CompanyRegisterFinished from './pages/Company/CompanyRegisterFinished';
 import CompanyUserPencas from './pages/CompanyUser/CompanyUserPencas';
 import CompanyUserPencaEvents from './pages/CompanyUser/CompanyUserPencaEvents';
@@ -78,6 +81,9 @@ const App = () => {
                     <Route path={`${ROUTES.companyAdmin}/:companyCode/pencas`} element={<CompanyPencas />} />
                     <Route path={`${ROUTES.companyAdmin}/:companyCode/pencas/:pencaId`} element={<CompanyPencaDetail />} />
                     <Route path={`${ROUTES.companyAdmin}/:companyCode/pencas/:pencaId/invitarUsuario`} element={<CompanyPencaInviteUser />} />
+                    <Route path={`${ROUTES.companyAdmin}/:companyCode/funcionarios`} element={<CompanyEmployeeAdministration />} />
+                    <Route path={`${ROUTES.companyAdmin}/:companyCode/administracion`} element={<CompanyAdministration />} />
+                    <Route path={`${ROUTES.companyAdmin}/:companyCode/administrationLookAndFeel`} element={<CompanyLookAndFeel />} />
                 </Route>
                 <Route element={<CompanyUserLayout />}>
                     <Route path={`${ROUTES.companies}/:companyCode${ROUTES.pencas}`} element={<CompanyUserPencas />} />

@@ -1,0 +1,64 @@
+:root {
+    --color-generaltext: black;
+  }
+
+.generalTitle {
+    margin: 30px;
+    padding: 0px;
+    display: flex;
+    flex-direction: row;
+    color: var(--color-generaltext);
+    border-bottom: 2px solid black;
+    text-align: center;
+}
+
+.generalOptions {
+    margin: 0px;
+    padding: 10px;
+    color: var(--color-generaltext);
+    position:relative; left:80px; top:2px;
+    border-bottom: 1px solid black;
+    text-align: center;
+}
+
+.generalOptionsSinHover {
+    margin: 0px;
+    padding: 10px;
+    color: var(--color-generaltext);
+    position:relative; left:80px; top:2px;
+    border-bottom: 1px solid black;
+    text-align: center;
+}
+
+.generalTitle #tituloOption {
+    flex: 70%;
+    display: grid;
+    place-items: center;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif ;
+    font-size: 0.8em;
+    text-align: center;
+}
+
+.generalOptions #tituloOption:hover {
+    cursor: pointer;
+    filter: brightness(0.07);
+}
+
+.generalTitle #iconArrow {
+    flex: 30%;
+}
+
+.generalTitle #tituloGeneral {
+    flex: 70%;
+    display: grid;
+    place-items: center;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif ;
+    font-size: 1.2em;
+    text-align: center;
+}
+
+.look-feel-button {
+    margin-top: 24px;
+    margin-bottom: 16px;
+    background-color: black;
+  }

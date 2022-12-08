@@ -27,6 +27,8 @@ export const getCompanyAdminRoutes = (companyCode) => {
         login: `${ROUTES.companyAdmin}/${companyCode}/login`,
         logout: `${ROUTES.companyAdmin}/${companyCode}/logout`,
         pencas: `${ROUTES.companyAdmin}/${companyCode}/pencas`,
+        funcionarios: `${ROUTES.companyAdmin}/${companyCode}/funcionarios`,
+        administracion: `${ROUTES.companyAdmin}/${companyCode}/administracion`,
     };
 };
 

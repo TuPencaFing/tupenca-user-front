@@ -10,6 +10,11 @@ export const createEmployee = (data) => {
     });
 };
 
+export const deleteEmployee = (data) => {
+    return axiosInstance.delete(`/api/funcionarios/${data}`);
+    
+}
+
 export const logIn = (data) => {
     const { email, password } = data;
     return axiosInstance.post('/api/funcionarios/login', {
