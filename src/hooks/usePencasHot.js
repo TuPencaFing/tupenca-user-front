@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { getPencasHot } from '../services/pencas';
 import ROUTES from '../utils/routes';
 
-const usePencas = () => {
+const usePencasHot = () => {
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
     const [pencas, setPencas] = useState([]);
@@ -37,4 +37,4 @@ const usePencas = () => {
     return {loading, pencas, handleJoinPenca};
 };
 
-export default usePencas;
+export default usePencasHot;
