@@ -17,6 +17,13 @@ export const logIn = (data) => {
     });
 };
 
+export const forgotPassword = (data) => {
+    const { email } = data;
+    return axiosInstance.post('/api/usuarios/forgotPasswordasd', {
+        email,
+    });
+};
+
 export const acceptInvitation = (data) => {
     const { accessToken } = data;
     return axiosInstance.post('/api/usuarios/aceptarInvitacion', {}, {

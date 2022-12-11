@@ -15,6 +15,7 @@ import CompanyUserPencaEvents from './pages/CompanyUser/CompanyUserPencaEvents';
 import CompanyUserPencaEventDetail from './pages/CompanyUser/CompanyUserPencaEventDetail';
 import CompanyUserPencaParticipants from './pages/CompanyUser/CompanyUserPencaParticipants';
 import CompanyUserPencaForum from './pages/CompanyUser/CompanyUserPencaForum';
+import ForgotPassword from './pages/ForgotPassword';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Logout from './pages/Logout';
@@ -52,6 +53,7 @@ const App = () => {
                 <Route element={<PublicOnlyLayout />}>
                     <Route path={ROUTES.home} element={<Home />} />
                     <Route path={ROUTES.login} element={<Login />} />
+                    <Route path={ROUTES.forgotPassword} element={<ForgotPassword />} />
                     <Route path={ROUTES.register} element={<Register />} />
 
                     {/* Company routes */}
