@@ -36,7 +36,7 @@ const SignupForm = () => {
             console.log('Error register: ', error);
             setFeedbackMessage({
                 type: 'error',
-                message: 'Ocurrió un error al intentar crear su cuenta, inténtelo nuevamente.',
+                message: 'Ocurrió un error al crear su cuenta. Inténtelo nuevamente en unos minutos.',
             });
         });
     };

@@ -25,6 +25,8 @@ const LoginForm = ({ feedbackMessage, onSubmit, isCompany }) => {
     const successfulRegistration = isCompany
         ? 'Su empresa fue creada correctamente. Ya puede iniciar sesión con el administrador.'
         : 'Su cuenta fue creada correctamente. Ya puede iniciar sesión.';
+    const successPasswordReset = 'Se envió un mail para que pueda restablecer su contraseña.';
+    const successSetPassword = 'Se estableció la contraseña correctamente. Ya puede iniciar sesión.';
 
     return (
         <ThemeProvider theme={theme}>
@@ -47,14 +49,30 @@ const LoginForm = ({ feedbackMessage, onSubmit, isCompany }) => {
                     <Typography component="h1" variant="h5">
                         {title}
                     </Typography>
-                    {location?.state?.register && (
+                    {location?.state?.register ? (
                         <>
                             <br />
                             <Alert severity="success">
                                 {successfulRegistration}
                             </Alert>
                         </>
-                    )}
+                    ) : null}
+                    {location?.state?.forgotPassword ? (
+                        <>
+                            <br />
+                            <Alert severity="success">
+                                {successPasswordReset}
+                            </Alert>
+                        </>
+                    ) : null}
+                    {location?.state?.resetPassword ? (
+                        <>
+                            <br />
+                            <Alert severity="success">
+                                {successSetPassword}
+                            </Alert>
+                        </>
+                    ) : null}
                     <Form
                         onSubmit={onSubmit}
                         validate={validate}
@@ -104,7 +122,7 @@ const LoginForm = ({ feedbackMessage, onSubmit, isCompany }) => {
                                 </Button>
                                 <Grid container>
                                     <Grid item xs>
-                                        <Link to="#" className="no-style">
+                                        <Link to={ROUTES.forgotPassword} className="no-style">
                                             ¿Olvidaste tu contraseña?
                                         </Link>
                                     </Grid>

@@ -3,6 +3,8 @@ const ROUTES = {
     login: '/login',
     logout: '/logout',
     register: '/registro',
+    forgotPassword: '/olvide-mi-password',
+    resetPassword: '/restablecer-password',
     pencas: '/pencas',
     misPencas: '/mis-pencas',
     companies: '/empresas',
