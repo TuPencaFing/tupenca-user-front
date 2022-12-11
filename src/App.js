@@ -15,7 +15,6 @@ import CompanyUserPencaEvents from './pages/CompanyUser/CompanyUserPencaEvents';
 import CompanyUserPencaEventDetail from './pages/CompanyUser/CompanyUserPencaEventDetail';
 import CompanyUserPencaParticipants from './pages/CompanyUser/CompanyUserPencaParticipants';
 import CompanyUserPencaForum from './pages/CompanyUser/CompanyUserPencaForum';
-import ForgotPassword from './pages/ForgotPassword';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Logout from './pages/Logout';
@@ -27,6 +26,8 @@ import PencaEventDetail from './pages/PencaEventDetail';
 import PencaEventResults from './pages/PencaEventResults';
 import PencaParticipants from './pages/PencaParticipants';
 import Register from './pages/Register';
+import ForgotPassword from './pages/ForgotPassword';
+import ResetPassword from './pages/ResetPassword';
 import UserInvitation from './pages/UserInvitation';
 import CompanyLayout from './router/CompanyLayout';
 import CompanyUserLayout from './router/CompanyUserLayout';
@@ -54,6 +55,7 @@ const App = () => {
                     <Route path={ROUTES.home} element={<Home />} />
                     <Route path={ROUTES.login} element={<Login />} />
                     <Route path={ROUTES.forgotPassword} element={<ForgotPassword />} />
+                    <Route path={ROUTES.resetPassword} element={<ResetPassword />} />
                     <Route path={ROUTES.register} element={<Register />} />
 
                     {/* Company routes */}

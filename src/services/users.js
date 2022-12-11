@@ -19,8 +19,16 @@ export const logIn = (data) => {
 
 export const forgotPassword = (data) => {
     const { email } = data;
-    return axiosInstance.post('/api/usuarios/forgotPasswordasd', {
+    return axiosInstance.post('/api/usuarios/forgotPassword', {
         email,
+    });
+};
+
+export const resetPassword = (data) => {
+    const { token, password } = data;
+    return axiosInstance.post('/api/usuarios/resetPassword', {
+        token,
+        password,
     });
 };
 

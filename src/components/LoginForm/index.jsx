@@ -26,6 +26,7 @@ const LoginForm = ({ feedbackMessage, onSubmit, isCompany }) => {
         ? 'Su empresa fue creada correctamente. Ya puede iniciar sesión con el administrador.'
         : 'Su cuenta fue creada correctamente. Ya puede iniciar sesión.';
     const successPasswordReset = 'Se envió un mail para que pueda restablecer su contraseña.';
+    const successSetPassword = 'Se estableció la contraseña correctamente. Ya puede iniciar sesión.';
 
     return (
         <ThemeProvider theme={theme}>
@@ -61,6 +62,14 @@ const LoginForm = ({ feedbackMessage, onSubmit, isCompany }) => {
                             <br />
                             <Alert severity="success">
                                 {successPasswordReset}
+                            </Alert>
+                        </>
+                    ) : null}
+                    {location?.state?.resetPassword ? (
+                        <>
+                            <br />
+                            <Alert severity="success">
+                                {successSetPassword}
                             </Alert>
                         </>
                     ) : null}
