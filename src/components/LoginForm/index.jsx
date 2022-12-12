@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Form, Field } from 'react-final-form';
+import GoogleLogin from '@leecheuk/react-google-login';
 import Alert from "@mui/material/Alert";
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -10,8 +11,7 @@ import Grid from '@mui/material/Grid';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 
-import logo from '../../assets/logo.png';
-import { Copyright } from '../../utils/copyright';
+import CustomDivider from '../CustomDivider';
 import ROUTES from '../../utils/routes';
 import TextFieldAdapter from '../TextFieldAdapter';
 import validate from './validate';
@@ -19,7 +19,7 @@ import './styles.scss';
 
 const theme = createTheme();
 
-const LoginForm = ({ feedbackMessage, onSubmit, isCompany }) => {
+const LoginForm = ({ isCompany, feedbackMessage, onSubmit, onSuccessGoogle, onFailureGoogle }) => {
     let location = useLocation();
     const title = isCompany ? 'Iniciar sesión con tu empresa' : 'Iniciar sesión en Tu Penca';
     const successfulRegistration = isCompany
@@ -33,6 +33,7 @@ const LoginForm = ({ feedbackMessage, onSubmit, isCompany }) => {
             <Container component="main" maxWidth="xs">
                 <CssBaseline />
                 <Box
+                    className="login-form-container"
                     sx={{
                         marginTop: 8,
                         display: 'flex',
@@ -40,15 +41,22 @@ const LoginForm = ({ feedbackMessage, onSubmit, isCompany }) => {
                         alignItems: 'center',
                     }}
                 >
-                    <img
-                        src={logo}
-                        alt="Tu Penca"
-                        width="64px"
-                        height="59px"
-                    />
                     <Typography component="h1" variant="h5">
                         {title}
                     </Typography>
+                    {!isCompany ? (
+                        <>
+                            <GoogleLogin
+                                className="google-login-button"
+                                clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
+                                buttonText="Iniciar sesión con Google"
+                                onSuccess={onSuccessGoogle}
+                                onFailure={onFailureGoogle}
+                                cookiePolicy={'single_host_origin'}
+                            />
+                            <CustomDivider />
+                        </>
+                    ) : null}
                     {location?.state?.register ? (
                         <>
                             <br />
@@ -86,7 +94,6 @@ const LoginForm = ({ feedbackMessage, onSubmit, isCompany }) => {
                                             autoComplete="email"
                                             component={TextFieldAdapter}
                                             fullWidth
-                                            autoFocus
                                             required
                                         />
                                     </Grid>
@@ -145,7 +152,6 @@ const LoginForm = ({ feedbackMessage, onSubmit, isCompany }) => {
                         Ingresá <Link to={ROUTES.companyPlans}>aquí</Link> para conocer más
                     </div>
                 )}
-                <Copyright sx={{ mt: 8, mb: 4 }} />
             </Container>
         </ThemeProvider>
     );
