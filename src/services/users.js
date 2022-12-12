@@ -17,6 +17,17 @@ export const logIn = (data) => {
     });
 };
 
+export const signInWithGoogle = (data) => {
+    const { accessToken } = data;
+    return axiosInstance.post('/api/usuarios/googleLogin', {
+        accessToken,
+    }, {
+        params: {
+            accessToken,
+        },
+    });
+};
+
 export const forgotPassword = (data) => {
     const { email } = data;
     return axiosInstance.post('/api/usuarios/forgotPassword', {

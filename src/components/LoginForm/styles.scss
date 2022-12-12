@@ -1,9 +1,19 @@
-form {
-  .login-button {
-    background-color: black;
+.login-form-container {
+  h1 {
+    margin-bottom: 16px;
   }
 
-  .login-button:hover {
-    background-color: #494949;
+  .google-login-button {
+    width: 100%;
+  }
+
+  form {
+    .login-button {
+      background-color: black;
+    }
+
+    .login-button:hover {
+      background-color: #494949;
+    }
   }
 }

@@ -1,0 +1,12 @@
+.custom-divider {
+  margin-top: 16px;
+  flex-direction: row;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.custom-divider hr {
+  margin: 0 16px;
+  width: 160px;
+  border: 1px solid black;
+}
