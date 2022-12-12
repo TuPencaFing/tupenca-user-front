@@ -20,10 +20,10 @@ export const logIn = (data) => {
 export const signInWithGoogle = (data) => {
     const { accessToken } = data;
     return axiosInstance.post('/api/usuarios/googleLogin', {
-        accessToken,
+        access_token: accessToken,
     }, {
         params: {
-            accessToken,
+            access_token: accessToken,
         },
     });
 };

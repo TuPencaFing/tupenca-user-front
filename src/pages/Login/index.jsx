@@ -33,9 +33,8 @@ const Login = () => {
     const onSuccessGoogle = (res) => {
         console.log('onSuccessGoogle:', res);
         const values = {
-            accessToken: res.accessToken,
+            accessToken: res.tokenId,
         };
-        console.log('access token', res.accessToken);
         signInWithGoogle(values).then((response) => {
             console.log('Response social login: ', response);
             const { token } = response.data;
