@@ -18,7 +18,7 @@ export const USER_LOGGED_PAGES = [
     },
     {
         name: 'Premios',
-        route: null,
+        route: ROUTES.prizes,
     },
 ];
 
