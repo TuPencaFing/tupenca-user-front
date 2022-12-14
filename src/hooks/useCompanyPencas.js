@@ -12,11 +12,15 @@ const useCompanyPencas = () => {
             console.log('Response of get company pencas: ', response);
             const pencaResp = [];
             response.data.forEach((penca) => {
-                pencaResp.push({
-                    id: penca.id,
-                    title: penca.title,
-                    bettingPool: penca.pozo,
-                });
+                const { id, title, description, campeonato: championship } = penca;
+                for (let i = 0; i < 20; i++) {
+                    pencaResp.push({
+                        id,
+                        title: title + i,
+                        description,
+                        championshipName: championship.name,
+                    });
+                }
             })
             setPencas(pencaResp);
         }).catch((error) => {

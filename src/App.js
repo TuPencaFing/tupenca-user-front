@@ -87,6 +87,7 @@ const App = () => {
                 <Route element={<CompanyLayout />}>
                     <Route path={`${ROUTES.companyAdmin}/:companyCode`} element={<CompanyHome />} />
                     <Route path={`${ROUTES.companyAdmin}/:companyCode/pencas`} element={<CompanyPencas />} />
+                    <Route path={`${ROUTES.companyAdmin}/:companyCode/pencas/crear`} element={<CompanyPencas />} />
                     <Route path={`${ROUTES.companyAdmin}/:companyCode/pencas/:pencaId`} element={<CompanyPencaDetail />} />
                     <Route path={`${ROUTES.companyAdmin}/:companyCode/pencas/:pencaId/invitarUsuario`} element={<CompanyPencaInviteUser />} />
                 </Route>
