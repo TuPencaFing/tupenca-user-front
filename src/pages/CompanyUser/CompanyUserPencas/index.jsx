@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import Navbar from '../../../components/Navbar';
-import PencaList from '../../../components/PencaList';
+import PencaList from '../../../components/User/PencaList';
 import Spinner from '../../../components/Spinner';
 import useCompanyUserPencas from '../../../hooks/CompanyUser/useCompanyUserPencas';
 import { COMPANY_USER_PAGES, USER_ROUTES } from '../../../utils/navbarItems';
