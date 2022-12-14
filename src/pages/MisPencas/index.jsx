@@ -4,7 +4,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import Navbar from '../../components/Navbar';
 import PencaList from '../../components/PencaList';
 import Spinner from '../../components/Spinner';
-import useMisPencas from '../../hooks/useMisPencas';
+import useMisPencas from '../../hooks/User/useMisPencas';
 import { USER_LOGGED_PAGES, USER_ROUTES } from '../../utils/navbarItems';
 import ROUTES from '../../utils/routes';
 

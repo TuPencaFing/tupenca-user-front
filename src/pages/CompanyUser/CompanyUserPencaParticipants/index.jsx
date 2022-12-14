@@ -5,7 +5,7 @@ import CompanyUserPencaDetailHeader from '../../../components/CompanyUser/Compan
 import Navbar from '../../../components/Navbar';
 import ParticipantsList from '../../../components/ParticipantsList';
 import Spinner from '../../../components/Spinner';
-import useParticipants from '../../../hooks/useParticipants';
+import useParticipants from '../../../hooks/User/useParticipants';
 import useCompanyUserPenca from '../../../hooks/CompanyUser/useCompanyUserPenca';
 import { COMPANY_USER_PAGES, USER_ROUTES } from '../../../utils/navbarItems';
 

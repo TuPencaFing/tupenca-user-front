@@ -6,7 +6,7 @@ import EventScore from '../../components/EventScore';
 import Navbar from '../../components/Navbar';
 import PencaDetailHeader from '../../components/PencaDetailHeader';
 import Spinner from '../../components/Spinner';
-import usePenca from '../../hooks/usePenca';
+import usePenca from '../../hooks/User/usePenca';
 import { USER_LOGGED_PAGES, USER_ROUTES } from '../../utils/navbarItems';
 import ROUTES from '../../utils/routes';
 import './styles.scss';
