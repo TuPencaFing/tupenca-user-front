@@ -1,6 +1,5 @@
 .pencas-list-header {
   margin-top: 16px;
-  margin-bottom: 16px;
   text-align: center;
   display: flex;
   justify-content: center;
@@ -25,6 +24,11 @@
   margin-bottom: 8px;
   padding-right: 24px;
   padding-lefT: 24px;
+
+  .pencas-list-empty {
+    display: flex;
+    justify-content: center;
+  }
 
   .penca-item {
     background-color: #FBDEC7;

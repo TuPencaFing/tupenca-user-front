@@ -25,16 +25,10 @@ const CompanyUserPencas = () => {
                 pages={COMPANY_USER_PAGES(params.companyCode)}
                 routes={USER_ROUTES}
             />
-            {pencas && pencas.length > 0 ? (
-                <PencaList
-                    pencas={pencas}
-                    handleClickPenca={handleClickPenca}
-                />
-            ) : (
-                <>
-                    No hay pencas
-                </>
-            )}
+            <PencaList
+                pencas={pencas}
+                handleClickPenca={handleClickPenca}
+            />
         </>
     );
 };

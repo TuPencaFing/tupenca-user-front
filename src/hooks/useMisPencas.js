@@ -2,13 +2,13 @@ import { useEffect, useState } from 'react';
 
 import { getMyPencas } from '../services/pencas';
 
-const useMisPencas = () => {
+const useMisPencas = (search) => {
     const [loading, setLoading] = useState(false);
     const [pencas, setPencas] = useState([]);
 
     useEffect(() => {
         setLoading(true);
-        getMyPencas().then((response) => {
+        getMyPencas(search).then((response) => {
             console.log('Response of get my pencas: ', response);
             const pencaResp = [];
             response.data.forEach((penca) => {
@@ -24,7 +24,7 @@ const useMisPencas = () => {
         }).finally(() => {
             setLoading(false);
         });
-    }, []);
+    }, [search]);
 
     return {loading, pencas};
 };
