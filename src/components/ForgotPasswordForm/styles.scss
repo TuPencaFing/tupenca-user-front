@@ -1,12 +1,12 @@
 .forgot-password-container {
-  h3 {
+  margin: 16px auto 0;
+  width: 35%;
+
+  .forgot-password-header {
     text-align: center;
   }
 
   form {
-    margin: 16px auto 0;
-    width: 60%;
-
     .forgot-password-button {
       background-color: black;
     }

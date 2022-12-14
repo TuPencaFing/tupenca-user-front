@@ -12,7 +12,7 @@ const ResetPasswordForm = ({ feedbackMessage, onSubmit }) => {
 
     return (
         <div className="reset-password-container">
-            <h3>Establecer mi nueva contraseña</h3>
+            <h2 className="reset-password-header">Establecer mi nueva contraseña</h2>
             <Form
                 onSubmit={onSubmit}
                 validate={validate}
@@ -27,7 +27,6 @@ const ResetPasswordForm = ({ feedbackMessage, onSubmit }) => {
                                     autoComplete="password"
                                     component={TextFieldAdapter}
                                     fullWidth
-                                    autoFocus
                                     required
                                 />
                             </Grid>

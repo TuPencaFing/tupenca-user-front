@@ -1,6 +1,9 @@
 .login-form-container {
-  h1 {
-    margin-bottom: 16px;
+  margin: 32px auto;
+  width: 35%;
+
+  .login-form-header {
+    text-align: center;
   }
 
   .google-login-button {
