@@ -1,0 +1,25 @@
+.company-employees-table {
+  margin: 16px auto;
+  width: 80%;
+  overflow: hidden;
+  background-color: #FBDEC7 !important;
+
+  .company-employees-table-actions {
+    text-align: right;
+
+    .company-employees-table-actions-create-employee {
+      color: white;
+      background-color: black;
+      margin-top: 8px;
+      margin-right: 8px;
+    }
+
+    .company-employees-table-actions-create-employee:hover {
+      background-color: #494949;
+    }
+  }
+
+  .company-employees-table-row {
+    cursor: pointer;
+  }
+}

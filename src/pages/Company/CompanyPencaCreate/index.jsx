@@ -38,7 +38,7 @@ const CompanyPencaCreate = () => {
             //         console.log('Error uploading penca image: ', error);
             //     });
             // }
-            navigate(`${getCompanyAdminRoutes(params.companyCode).pencas}`, {
+            navigate(getCompanyAdminRoutes(params.companyCode).pencas, {
                 state: {
                     register: true,
                 },

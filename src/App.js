@@ -6,6 +6,9 @@ import CompanyPayment from './pages/Company/CompanyPayment';
 import CompanyPencaInviteUser from './pages/Company/CompanyPencaInviteUser';
 import CompanyPencas from './pages/Company/CompanyPencas';
 import CompanyPencaCreate from './pages/Company/CompanyPencaCreate';
+import CompanyPencaUsers from './pages/Company/CompanyPencaUsers';
+import CompanyEmployees from './pages/Company/CompanyEmployees';
+import CompanyEmployeeCreate from './pages/Company/CompanyEmployeeCreate';
 import CompanyPlans from './pages/Company/CompanyPlans';
 import CompanyRegister from './pages/Company/CompanyRegister';
 import CompanyRegisterFinished from './pages/Company/CompanyRegisterFinished';
@@ -36,7 +39,6 @@ import CompanyUserLayout from './router/CompanyUserLayout';
 import PrivateLayout from './router/PrivateLayout';
 import PublicOnlyLayout from './router/PublicOnlyLayout';
 import ROUTES from './utils/routes';
-import CompanyPencaUsers from "./pages/Company/CompanyPencaUsers";
 
 const App = () => {
     return (
@@ -79,6 +81,9 @@ const App = () => {
                     <Route path={`${ROUTES.companyAdmin}/:companyCode/pencas/:pencaId`} element={<CompanyPencaUsers />} />
                     <Route path={`${ROUTES.companyAdmin}/:companyCode/pencas/:pencaId/usuarios`} element={<CompanyPencaUsers />} />
                     <Route path={`${ROUTES.companyAdmin}/:companyCode/pencas/:pencaId/usuarios/invitar`} element={<CompanyPencaInviteUser />} />
+                    <Route path={`${ROUTES.companyAdmin}/:companyCode/administracion`} element={<CompanyEmployees />} />
+                    <Route path={`${ROUTES.companyAdmin}/:companyCode/administracion/funcionarios`} element={<CompanyEmployees />} />
+                    <Route path={`${ROUTES.companyAdmin}/:companyCode/administracion/funcionarios/crear`} element={<CompanyEmployeeCreate />} />
                 </Route>
                 <Route element={<CompanyUserLayout />}>
                     <Route path={`${ROUTES.companies}/:companyCode${ROUTES.pencas}`} element={<CompanyUserPencas />} />

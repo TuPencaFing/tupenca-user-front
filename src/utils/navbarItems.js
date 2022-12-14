@@ -42,12 +42,8 @@ export const EMPLOYEE_LOGGED_PAGES = (companyCode) => {
             route: getCompanyAdminRoutes(companyCode).pencas,
         },
         {
-            name: 'Administración de funcionarios',
-            route: null,
-        },
-        {
-            name: 'Configuración de la empresa',
-            route: null,
+            name: 'Administración de la empresa',
+            route: getCompanyAdminRoutes(companyCode).admin,
         },
     ];
 };
