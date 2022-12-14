@@ -69,7 +69,7 @@ const Forum = ({ comments, handleSaveComment }) => {
     };
 
     const onSubmit = async values => {
-        console.log('values', values);
+        console.log('comment submit: ', values);
         const { comment } = values;
         if (comment !== null && comment.length > 0) {
             handleSaveComment(comment);
@@ -84,8 +84,6 @@ const Forum = ({ comments, handleSaveComment }) => {
                         <ListItem
                             className="comment-item"
                             alignItems="flex-start"
-                            //{comment.creacion}
-                            //YYYY-MM-DD HH:mm
                             secondaryAction={
                                 <Tooltip title={formatDate(comment.creationDate)}>
                                     <div>

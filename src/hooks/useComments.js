@@ -29,7 +29,6 @@ const useComments = (pencaId) => {
                     image,
                     creacion: creationDate,
                 } = comment;
-                console.log(comment);
 
                 const creationDateUY = dayjs(creationDate).subtract(3, 'hour');
                 return {

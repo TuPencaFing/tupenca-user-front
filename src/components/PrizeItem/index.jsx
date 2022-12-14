@@ -15,7 +15,7 @@ const StyledPaper = styled(Paper)(({ theme }) => ({
     backgroundColor: '#FBDEC7'
 }));
 
-const PrizeItem = ({ id, image, title, handleClickItem }) => {
+const PrizeItem = ({ id, premio, pencaTitle, pencaImage, handleClickItem }) => {
 
     const handleClickPaper = () => {
         if (handleClickItem !== undefined && handleClickItem !== null) {
@@ -27,13 +27,14 @@ const PrizeItem = ({ id, image, title, handleClickItem }) => {
         <StyledPaper className="prize-item" onClick={handleClickPaper}>
             <ImageListItem>
                 <img
-                    src={`${image}?fit=crop&auto=format`}
-                    srcSet={`${image}?fit=crop&auto=format&dpr=2 2x`}
-                    alt={title}
+                    src={`${pencaImage}?fit=crop&auto=format`}
+                    srcSet={`${pencaImage}?fit=crop&auto=format&dpr=2 2x`}
+                    alt={pencaTitle}
                     loading="lazy"
                 />
                 <ImageListItemBar
-                    title={title}
+                    title={pencaTitle}
+                    subtitle={`GANASTE $${premio}!!!`}
                     position="below"
                 />
             </ImageListItem>

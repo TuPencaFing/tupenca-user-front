@@ -13,7 +13,11 @@ const ResetPassword = () => {
 
     const handleSubmit = (values) => {
         console.log('Request reset password: ', values, searchParams.get('token'));
-        resetPassword(values).then((response) => {
+        const data = {
+            password: values.password,
+            token: searchParams.get('token'),
+        };
+        resetPassword(data).then((response) => {
             console.log('Response reset password', response);
             navigate('/login', {
                 state: {
