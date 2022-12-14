@@ -1,25 +1,25 @@
-.company-penca-table {
+.company-pencas-table {
   margin: 16px auto;
   width: 80%;
   overflow: hidden;
   background-color: #FBDEC7 !important;
 
-  .company-penca-table-actions {
+  .company-pencas-table-actions {
     text-align: right;
 
-    .company-penca-table-actions-create-penca {
+    .company-pencas-table-actions-create-penca {
       color: white;
       background-color: black;
       margin-top: 8px;
       margin-right: 8px;
     }
 
-    .company-penca-table-actions-create-penca:hover {
+    .company-pencas-table-actions-create-penca:hover {
       background-color: #494949;
     }
   }
 
-  .company-penca-table-row {
+  .company-pencas-table-row {
     cursor: pointer;
   }
 }

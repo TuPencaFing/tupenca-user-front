@@ -1,10 +1,8 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-import CompanyHome from './pages/Company/CompanyHome';
 import CompanyLogin from './pages/Company/CompanyLogin';
 import CompanyLogout from './pages/Company/CompanyLogout';
 import CompanyPayment from './pages/Company/CompanyPayment';
-import CompanyPencaDetail from './pages/Company/CompanyPencaDetail';
 import CompanyPencaInviteUser from './pages/Company/CompanyPencaInviteUser';
 import CompanyPencas from './pages/Company/CompanyPencas';
 import CompanyPencaCreate from './pages/Company/CompanyPencaCreate';
@@ -38,20 +36,9 @@ import CompanyUserLayout from './router/CompanyUserLayout';
 import PrivateLayout from './router/PrivateLayout';
 import PublicOnlyLayout from './router/PublicOnlyLayout';
 import ROUTES from './utils/routes';
-import TestHome from "./pages/TestHome";
+import CompanyPencaUsers from "./pages/Company/CompanyPencaUsers";
 
 const App = () => {
-    const companyCode = window.location.host.split(".")[0];
-    if (companyCode === "fing") {
-        return (
-            <BrowserRouter>
-                <Routes>
-                    <Route path={ROUTES.home} element={<TestHome companyCode={companyCode} />} />
-                </Routes>
-            </BrowserRouter>
-        );
-    }
-
     return (
         <BrowserRouter>
             <Routes>
@@ -86,11 +73,12 @@ const App = () => {
                     <Route path={`${ROUTES.prizes}/:prizeId`} element={<PrizeDetail />} />
                 </Route>
                 <Route element={<CompanyLayout />}>
-                    <Route path={`${ROUTES.companyAdmin}/:companyCode`} element={<CompanyHome />} />
+                    <Route path={`${ROUTES.companyAdmin}/:companyCode`} element={<CompanyPencas />} />
                     <Route path={`${ROUTES.companyAdmin}/:companyCode/pencas`} element={<CompanyPencas />} />
                     <Route path={`${ROUTES.companyAdmin}/:companyCode/pencas/crear`} element={<CompanyPencaCreate />} />
-                    <Route path={`${ROUTES.companyAdmin}/:companyCode/pencas/:pencaId`} element={<CompanyPencaDetail />} />
-                    <Route path={`${ROUTES.companyAdmin}/:companyCode/pencas/:pencaId/invitarUsuario`} element={<CompanyPencaInviteUser />} />
+                    <Route path={`${ROUTES.companyAdmin}/:companyCode/pencas/:pencaId`} element={<CompanyPencaUsers />} />
+                    <Route path={`${ROUTES.companyAdmin}/:companyCode/pencas/:pencaId/usuarios`} element={<CompanyPencaUsers />} />
+                    <Route path={`${ROUTES.companyAdmin}/:companyCode/pencas/:pencaId/usuarios/invitar`} element={<CompanyPencaInviteUser />} />
                 </Route>
                 <Route element={<CompanyUserLayout />}>
                     <Route path={`${ROUTES.companies}/:companyCode${ROUTES.pencas}`} element={<CompanyUserPencas />} />

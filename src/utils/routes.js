@@ -34,6 +34,7 @@ export const getCompanyAdminRoutes = (companyCode, pencaId = null) => {
         pencas: `${ROUTES.companyAdmin}/${companyCode}/pencas`,
         pencasCreate: `${ROUTES.companyAdmin}/${companyCode}/pencas/crear`,
         pencaUsers: `${ROUTES.companyAdmin}/${companyCode}/pencas/${pencaId}/usuarios`,
+        pencaUserInvite: `${ROUTES.companyAdmin}/${companyCode}/pencas/${pencaId}/usuarios/invitar`,
     };
 };
 

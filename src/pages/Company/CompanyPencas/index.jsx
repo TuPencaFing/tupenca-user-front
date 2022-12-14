@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import CompanyPencaTable from '../../../components/Company/CompanyPencaTable';
+import CompanyPencasTable from '../../../components/Company/CompanyPencasTable';
 import Navbar from '../../../components/Navbar';
 import Spinner from '../../../components/Spinner';
 import useCompanyPencas from '../../../hooks/useCompanyPencas';
@@ -26,7 +26,7 @@ const CompanyPencas = () => {
                 pages={EMPLOYEE_LOGGED_PAGES(params.companyCode)}
                 routes={EMPLOYEE_ROUTES(params.companyCode)}
             />
-            <CompanyPencaTable
+            <CompanyPencasTable
                 pencas={pencas}
                 handleClickPenca={handleClickPenca}
             />

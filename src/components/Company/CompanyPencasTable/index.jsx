@@ -20,7 +20,7 @@ const columns = [
     { id: 'championshipName', label: 'Campeonato', minWidth: 100 },
 ];
 
-const CompanyPencaTable = ({ pencas, handleClickPenca }) => {
+const CompanyPencasTable = ({ pencas, handleClickPenca }) => {
     let params = useParams();
     const navigate = useNavigate();
     const [page, setPage] = React.useState(0);
@@ -36,11 +36,11 @@ const CompanyPencaTable = ({ pencas, handleClickPenca }) => {
     };
 
     return (
-        <Paper className="company-penca-table">
-            <div className="company-penca-table-actions">
+        <Paper className="company-pencas-table">
+            <div className="company-pencas-table-actions">
                 <Button
-                    key="company-penca-table-actions-create-penca"
-                    className="company-penca-table-actions-create-penca"
+                    key="company-pencas-table-actions-create-penca"
+                    className="company-pencas-table-actions-create-penca"
                     onClick={() => navigate(`${getCompanyAdminRoutes(params.companyCode).pencasCreate}`)}
                 >
                     Crear penca
@@ -72,7 +72,7 @@ const CompanyPencaTable = ({ pencas, handleClickPenca }) => {
                                         role="checkbox"
                                         tabIndex={-1}
                                         key={row.id}
-                                        className="company-penca-table-row"
+                                        className="company-pencas-table-row"
                                         onClick={() => handleClickPenca(row.id)}
                                     >
                                         {columns.map((column) => {
@@ -107,4 +107,4 @@ const CompanyPencaTable = ({ pencas, handleClickPenca }) => {
     );
 };
 
-export default CompanyPencaTable;
+export default CompanyPencasTable;

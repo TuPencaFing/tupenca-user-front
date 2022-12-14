@@ -1,0 +1,30 @@
+.company-penca-users-table {
+  margin: 16px auto;
+  width: 80%;
+  overflow: hidden;
+  background-color: #FBDEC7 !important;
+
+  .company-penca-users-table-actions {
+    text-align: right;
+
+    .company-penca-users-table-actions-invite-user {
+      color: white;
+      background-color: black;
+      margin-top: 8px;
+      margin-right: 8px;
+    }
+
+    .company-penca-users-table-actions-invite-user:hover {
+      background-color: #494949;
+    }
+  }
+
+  .company-penca-users-table-row {
+    cursor: pointer;
+
+    .company-penca-users-table-row-enable-user {
+      color: white;
+      background-color: black;
+    }
+  }
+}
