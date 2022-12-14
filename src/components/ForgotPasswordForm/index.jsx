@@ -12,7 +12,7 @@ const ForgotPasswordForm = ({ feedbackMessage, onSubmit }) => {
 
     return (
         <div className="forgot-password-container">
-            <h3>Olvidé mi contraseña</h3>
+            <h2 className="forgot-password-header">Olvidé mi contraseña</h2>
             <Form
                 onSubmit={onSubmit}
                 validate={validate}
@@ -26,7 +26,6 @@ const ForgotPasswordForm = ({ feedbackMessage, onSubmit }) => {
                                     autoComplete="email"
                                     component={TextFieldAdapter}
                                     fullWidth
-                                    autoFocus
                                     required
                                 />
                             </Grid>

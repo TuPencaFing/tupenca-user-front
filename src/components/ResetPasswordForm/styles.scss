@@ -1,12 +1,12 @@
 .reset-password-container {
-  h3 {
+  margin: 16px auto;
+  width: 35%;
+
+  .reset-password-header {
     text-align: center;
   }
 
   form {
-    margin: 16px auto 0;
-    width: 60%;
-
     .reset-password-button {
       background-color: black;
     }

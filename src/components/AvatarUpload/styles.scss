@@ -1,0 +1,19 @@
+.avatar-upload {
+  text-align: center;
+
+  .big-avatar {
+    width: 120px !important;
+    height: 120px !important;
+    margin: 0 auto 16px;
+    border: 1px solid #9e9e9e;
+    box-shadow: 0 0 1px 0 #9e9e9e inset, 0 0 1px 0 #9e9e9e;
+  }
+
+  .avatar-uplaod-button {
+    background-color: black;
+  }
+
+  .avatar-uplaod-button:hover {
+    background-color: #494949;
+  }
+}
