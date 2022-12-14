@@ -16,7 +16,6 @@ import usePrizes from "../../../hooks/usePrizes";
 import logo from '../../../assets/logo.png';
 import { Select, MenuItem, FormHelperText, InputLabel, Chip } from '@mui/material';
 import { createPencaCompany } from '../../../services/companies';
-import { Copyright } from '../../../utils/copyright';
 import TextFieldAdapter from '../../TextFieldAdapter';
 import './styles.scss';
 import { store } from "../../../app/store"
@@ -199,7 +198,6 @@ const CompanyPencaForm = ({planId}) => {
                         )}
                     />
                 </Box>
-                <Copyright sx={{ mt: 5 }} />
             </Container>
         </ThemeProvider>
     );

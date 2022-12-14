@@ -12,7 +12,6 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 import TextFieldAdapter from '../../TextFieldAdapter';
 import { createEmployee } from '../../../services/employees';
-import { Copyright } from '../../../utils/copyright';
 import validate from './validate';
 import './styles.scss';
 
@@ -119,7 +118,6 @@ const EmployeeRegisterForm = () => {
                         )}
                     />
                 </Box>
-                <Copyright sx={{ mt: 5 }} />
             </Container>
         </ThemeProvider>
     );
