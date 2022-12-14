@@ -15,6 +15,7 @@ export const sessionSlice = createSlice({
             const user = jwtDecode(token);
             console.log('User token: ', user);
             state.user = {
+                id: parseInt(user['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier']),
                 name: user['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname'],
                 email: user['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress'],
             };
