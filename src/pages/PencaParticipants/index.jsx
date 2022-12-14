@@ -5,8 +5,8 @@ import Navbar from '../../components/Navbar';
 import ParticipantsList from '../../components/ParticipantsList';
 import PencaDetailHeader from '../../components/PencaDetailHeader';
 import Spinner from '../../components/Spinner';
-import useParticipants from '../../hooks/useParticipants';
-import usePenca from '../../hooks/usePenca';
+import useParticipants from '../../hooks/User/useParticipants';
+import usePenca from '../../hooks/User/usePenca';
 import { USER_LOGGED_PAGES, USER_ROUTES } from '../../utils/navbarItems';
 
 const PencaParticipants = () => {

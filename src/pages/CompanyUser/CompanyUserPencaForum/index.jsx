@@ -5,7 +5,7 @@ import CompanyUserPencaDetailHeader from '../../../components/CompanyUser/Compan
 import Forum from '../../../components/Forum';
 import Navbar from '../../../components/Navbar';
 import Spinner from '../../../components/Spinner';
-import useComments from '../../../hooks/useComments';
+import useComments from '../../../hooks/User/useComments';
 import useCompanyUserPenca from '../../../hooks/CompanyUser/useCompanyUserPenca';
 import { COMPANY_USER_PAGES, USER_ROUTES } from '../../../utils/navbarItems';
 

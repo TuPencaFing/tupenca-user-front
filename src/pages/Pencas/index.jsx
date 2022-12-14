@@ -4,7 +4,7 @@ import { useSearchParams } from 'react-router-dom';
 import Navbar from '../../components/Navbar';
 import PencaList from '../../components/PencaList';
 import Spinner from '../../components/Spinner';
-import usePencas from '../../hooks/usePencas';
+import usePencas from '../../hooks/User/usePencas';
 import { USER_LOGGED_PAGES, USER_ROUTES } from '../../utils/navbarItems';
 
 const Pencas = () => {

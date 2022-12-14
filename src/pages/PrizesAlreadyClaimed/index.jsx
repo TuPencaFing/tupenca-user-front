@@ -5,7 +5,7 @@ import Navbar from '../../components/Navbar';
 import PrizesHeader from '../../components/PrizesHeader';
 import PrizeList from '../../components/PrizeList';
 import Spinner from '../../components/Spinner';
-import usePrizes from '../../hooks/usePrizes';
+import usePrizes from '../../hooks/User/usePrizes';
 import { USER_LOGGED_PAGES, USER_ROUTES } from '../../utils/navbarItems';
 
 const PrizesAlreadyClaimed = () => {
