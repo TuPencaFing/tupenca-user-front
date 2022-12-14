@@ -9,6 +9,7 @@ import CompanyPencaCreate from './pages/Company/CompanyPencaCreate';
 import CompanyPencaUsers from './pages/Company/CompanyPencaUsers';
 import CompanyEmployees from './pages/Company/CompanyEmployees';
 import CompanyEmployeeCreate from './pages/Company/CompanyEmployeeCreate';
+import CompanyConfigurations from './pages/Company/CompanyConfigurations';
 import CompanyPlans from './pages/Company/CompanyPlans';
 import CompanyRegister from './pages/Company/CompanyRegister';
 import CompanyRegisterFinished from './pages/Company/CompanyRegisterFinished';
@@ -84,6 +85,7 @@ const App = () => {
                     <Route path={`${ROUTES.companyAdmin}/:companyCode/administracion`} element={<CompanyEmployees />} />
                     <Route path={`${ROUTES.companyAdmin}/:companyCode/administracion/funcionarios`} element={<CompanyEmployees />} />
                     <Route path={`${ROUTES.companyAdmin}/:companyCode/administracion/funcionarios/crear`} element={<CompanyEmployeeCreate />} />
+                    <Route path={`${ROUTES.companyAdmin}/:companyCode/administracion/configuraciones`} element={<CompanyConfigurations />} />
                 </Route>
                 <Route element={<CompanyUserLayout />}>
                     <Route path={`${ROUTES.companies}/:companyCode${ROUTES.pencas}`} element={<CompanyUserPencas />} />
