@@ -18,8 +18,15 @@ const SignupForm = () => {
 
     const onSubmit = async values => {
         console.log('Request register: ', values);
-        console.log(files);
-        createUser(values).then((response) => {
+        console.log('Files: ', files);
+        const payload = new FormData();
+        payload.append("email", values.email);
+        payload.append("username", values.username);
+        payload.append("password", values.password);
+        if (files !== null) {
+            payload.append("image.file", files);
+        }
+        createUser(payload).then((response) => {
             console.log('Response register: ', response);
             navigate('/login', {
                 state: {

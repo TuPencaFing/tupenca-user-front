@@ -10,13 +10,14 @@ const PrizeList = ({ prizes, handleClickItem }) => {
         <div className="prize-list">
             <ImageList className="prize-list-images" cols={3}>
                 {prizes.map((prize) => {
-                    const { id, image, title } = prize;
+                    const { id, premio, pencaTitle, pencaImage } = prize;
                     return (
                         <PrizeItem
                             key={id}
                             id={id}
-                            image={image}
-                            title={title}
+                            premio={premio}
+                            pencaTitle={pencaTitle}
+                            pencaImage={pencaImage}
                             handleClickItem={handleClickItem}
                         />
                     );

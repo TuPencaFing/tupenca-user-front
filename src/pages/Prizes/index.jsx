@@ -10,54 +10,10 @@ import usePrizes from '../../hooks/usePrizes';
 import { USER_LOGGED_PAGES, USER_ROUTES } from '../../utils/navbarItems';
 import ROUTES from '../../utils/routes';
 
-const loading = false;
-const prizes = [
-    {
-        "id": 1,
-        "image": "https://tupenca.blob.core.windows.net/images/us_open_logo.jpg",
-        "title": "US Open"
-    },
-    {
-        "id": 2,
-        "image": "https://tupenca.blob.core.windows.net/images/us_open_logo.jpg",
-        "title": "Champions"
-    },
-    {
-        "id": 3,
-        "image": "https://tupenca.blob.core.windows.net/images/us_open_logo.jpg",
-        "title": "Worlds"
-    },
-    {
-        "id": 4,
-        "image": "https://tupenca.blob.core.windows.net/images/us_open_logo.jpg",
-        "title": "Worlds"
-    },
-    {
-        "id": 5,
-        "image": "https://tupenca.blob.core.windows.net/images/us_open_logo.jpg",
-        "title": "US Open"
-    },
-    {
-        "id": 6,
-        "image": "https://tupenca.blob.core.windows.net/images/us_open_logo.jpg",
-        "title": "Champions"
-    },
-    {
-        "id": 7,
-        "image": "https://tupenca.blob.core.windows.net/images/us_open_logo.jpg",
-        "title": "Worlds"
-    },
-    {
-        "id": 8,
-        "image": "https://tupenca.blob.core.windows.net/images/us_open_logo.jpg",
-        "title": "Worlds"
-    }
-];
-
 const Prizes = () => {
     const navigate = useNavigate();
     const { user } = useSelector((state) => state.session);
-    // const {loading, prizes} = usePrizes(user.id);
+    const {loading, prizes} = usePrizes(user.id, false);
 
     if (loading) return <Spinner />;
 

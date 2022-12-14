@@ -1,11 +1,10 @@
 import { axiosInstance } from './config';
 
-export const createUser = (data) => {
-    const { email, username, password } = data;
-    return axiosInstance.post('/api/usuarios/register', {
-        email,
-        username,
-        password
+export const createUser = (payload) => {
+    return axiosInstance.post('/api/usuarios/register', payload, {
+        headers: {
+            'Content-Type': 'multipart/form-data',
+        },
     });
 };
 

@@ -23,7 +23,7 @@ const ParticipantsList = ({ participants }) => {
                                 score,
                                 usuario: participantData,
                             } = participant;
-                            const { id, userName, image } = participantData;
+                            const { userName, image } = participantData;
                             let styles = null;
                             if (userLogged.name === userName) {
                                 styles = {
@@ -33,7 +33,7 @@ const ParticipantsList = ({ participants }) => {
                             }
                             return (
                                 <TableRow
-                                    key={id}
+                                    key={userName}
                                     className="participants-table-row"
                                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                 >
