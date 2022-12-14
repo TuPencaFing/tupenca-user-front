@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 import Navbar from '../../../components/Navbar';
 import PrizeBillingInfoForm from '../../../components/User/PrizeBillingInfoForm';
-import { setPrizeBillingInfo } from '../../../services/prizes';
+import { setPrizeBillingInfo } from '../../../services/userPrizes';
 import { USER_LOGGED_PAGES, USER_ROUTES } from '../../../utils/navbarItems';
 import ROUTES from '../../../utils/routes';
 

@@ -6,14 +6,14 @@ import Navbar from '../../../components/Navbar';
 import PrizesHeader from '../../../components/User/PrizesHeader';
 import PrizeList from '../../../components/User/PrizeList';
 import Spinner from '../../../components/Spinner';
-import usePrizes from '../../../hooks/User/usePrizes';
+import useUserPrizes from '../../../hooks/User/useUserPrizes';
 import { USER_LOGGED_PAGES, USER_ROUTES } from '../../../utils/navbarItems';
 import ROUTES from '../../../utils/routes';
 
 const Prizes = () => {
     const navigate = useNavigate();
     const { user } = useSelector((state) => state.session);
-    const {loading, prizes} = usePrizes(user.id, false);
+    const {loading, prizes} = useUserPrizes(user.id, false);
 
     if (loading) return <Spinner />;
 

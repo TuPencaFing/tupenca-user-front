@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 
-import { getPrizesByUserId } from '../../services/prizes';
+import { getPrizesByUserId } from '../../services/userPrizes';
 
-const usePrizes = (userId, claimed) => {
+const useUserPrizes = (userId, claimed) => {
     const [loading, setLoading] = useState(false);
     const [prizes, setPrizes] = useState([]);
 
@@ -31,4 +31,4 @@ const usePrizes = (userId, claimed) => {
     return {loading, prizes};
 };
 
-export default usePrizes;
+export default useUserPrizes;

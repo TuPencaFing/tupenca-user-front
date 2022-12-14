@@ -1,19 +1,21 @@
+import axios from 'axios';
 import { axiosInstance } from './config';
+import { getChampionships } from './championships';
 
-export const getPrizesByUserId = (userId, claimed) => {
-    return axiosInstance.get('/api/usuario-premio', {
-        params: {
-            idUsuario: userId,
-            reclamado: claimed,
-        },
-    });
+export const getPrizes = () => {
+    return axiosInstance.get('/api/premios');
 };
 
-export const setPrizeBillingInfo = (data) => {
-    const { prizeId, bankAccount, bankName } = data;
-    return axiosInstance.put(`/api/usuario-premio/${prizeId}/facturacion`, {
-        id: prizeId,
-        cuentaBancaria: bankAccount,
-        banco: bankName,
-    });
+export const getChampionshipsAndPrices = () => {
+    return axios.all([
+        getChampionships(),
+        getPrizes(),
+    ]).then(axios.spread((championshipsResponse, prizesResponse) => {
+        return {
+            data: {
+                championships: championshipsResponse.data,
+                prizes: prizesResponse.data,
+            },
+        };
+    }));
 };
