@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { getPencas } from '../services/pencas';
 import ROUTES from '../utils/routes';
 
-const usePencas = () => {
+const usePencas = (search) => {
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
     const [pencas, setPencas] = useState([]);
@@ -15,7 +15,7 @@ const usePencas = () => {
 
     useEffect(() => {
         setLoading(true);
-        getPencas().then((response) => {
+        getPencas(search).then((response) => {
             console.log('Response of get pencas: ', response);
             const pencaResp = [];
             response.data.forEach((penca) => {
@@ -32,7 +32,7 @@ const usePencas = () => {
         }).finally(() => {
             setLoading(false);
         });
-    }, []);
+    }, [search]);
 
     return {loading, pencas, handleJoinPenca};
 };
