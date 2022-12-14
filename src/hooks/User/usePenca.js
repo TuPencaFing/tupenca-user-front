@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { getPencaInfoById } from '../services/pencas';
+import { getPencaInfoById } from '../../services/pencas';
 
 const usePenca = (pencaId) => {
     const [loading, setLoading] = useState(false);

@@ -1,0 +1,18 @@
+.reset-password-container {
+  margin: 16px auto;
+  width: 35%;
+
+  .reset-password-header {
+    text-align: center;
+  }
+
+  form {
+    .reset-password-button {
+      background-color: black;
+    }
+
+    .reset-password-button:hover {
+      background-color: #494949;
+    }
+  }
+}

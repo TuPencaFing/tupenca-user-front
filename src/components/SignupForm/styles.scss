@@ -1,14 +1,24 @@
-.signup-form {
-  width: 100%;
-  margin-top: 24px;
+.user-register-container {
+  margin: 16px auto;
+  width: 35%;
 
-  .signup-form-feedback-message {
-    width: 100%;
+  .user-register-header {
+    padding-bottom: 16px;
+    text-align: center;
   }
 
-  .signup-form-button {
+  .signup-form {
+    width: 100%;
     margin-top: 24px;
-    margin-bottom: 16px;
-    background-color: black;
+
+    .signup-form-feedback-message {
+      width: 100%;
+    }
+
+    .signup-form-button {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      background-color: black;
+    }
   }
 }

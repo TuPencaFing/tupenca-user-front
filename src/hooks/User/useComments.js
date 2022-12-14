@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import dayjs from 'dayjs';
 
-import { getCommentsByPencaId, saveComment } from '../services/comments';
+import { getCommentsByPencaId, saveComment } from '../../services/comments';
 
 const useComments = (pencaId) => {
     const [loading, setLoading] = useState(false);
@@ -29,7 +29,6 @@ const useComments = (pencaId) => {
                     image,
                     creacion: creationDate,
                 } = comment;
-                console.log(comment);
 
                 const creationDateUY = dayjs(creationDate).subtract(3, 'hour');
                 return {

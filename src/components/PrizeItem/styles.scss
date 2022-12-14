@@ -1,0 +1,13 @@
+.prize-item {
+  min-width: 280px;
+  cursor: pointer;
+
+  .MuiImageListItemBar-title {
+    font-size: 1.5rem;
+  }
+
+  .MuiImageListItemBar-subtitle {
+    margin-top: 4px;
+    font-size: 1rem;
+  }
+}

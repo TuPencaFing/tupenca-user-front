@@ -1,13 +1,15 @@
 import React from 'react';
+import { useSearchParams } from 'react-router-dom';
 
 import Navbar from '../../components/Navbar';
 import PencaList from '../../components/PencaList';
 import Spinner from '../../components/Spinner';
-import usePencas from '../../hooks/usePencas';
+import usePencas from '../../hooks/User/usePencas';
 import { USER_LOGGED_PAGES, USER_ROUTES } from '../../utils/navbarItems';
 
 const Pencas = () => {
-    const {loading, pencas, handleJoinPenca} = usePencas();
+    let [searchParams] = useSearchParams();
+    const {loading, pencas, handleJoinPenca} = usePencas(searchParams.get('search'));
 
     if (loading) return <Spinner />;
 
@@ -17,16 +19,12 @@ const Pencas = () => {
                 pages={USER_LOGGED_PAGES}
                 routes={USER_ROUTES}
             />
-            {pencas && pencas.length > 0 ? (
-                <PencaList
-                    pencas={pencas}
-                    handleJoinPenca={handleJoinPenca}
-                />
-            ) : (
-                <>
-                    No hay pencas
-                </>
-            )}
+            <PencaList
+                search
+                initialKeyword={searchParams.get('search')}
+                pencas={pencas}
+                handleJoinPenca={handleJoinPenca}
+            />
         </>
     );
 };

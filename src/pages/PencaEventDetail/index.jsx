@@ -5,8 +5,8 @@ import EventDetail from '../../components/EventDetail';
 import Navbar from '../../components/Navbar';
 import PencaDetailHeader from '../../components/PencaDetailHeader';
 import Spinner from '../../components/Spinner';
-import useEvent from '../../hooks/useEvent';
-import usePenca from '../../hooks/usePenca';
+import useEvent from '../../hooks/User/useEvent';
+import usePenca from '../../hooks/User/usePenca';
 import { USER_LOGGED_PAGES, USER_ROUTES } from '../../utils/navbarItems';
 
 const PencaEventDetail = () => {

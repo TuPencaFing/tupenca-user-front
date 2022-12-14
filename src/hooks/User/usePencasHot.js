@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { getPencas } from '../services/pencas';
-import ROUTES from '../utils/routes';
+import { getPencasHot } from '../../services/pencas';
+import ROUTES from '../../utils/routes';
 
-const usePencas = () => {
+const usePencasHot = () => {
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
     const [pencas, setPencas] = useState([]);
@@ -15,7 +15,7 @@ const usePencas = () => {
 
     useEffect(() => {
         setLoading(true);
-        getPencas().then((response) => {
+        getPencasHot().then((response) => {
             console.log('Response of get pencas: ', response);
             const pencaResp = [];
             response.data.forEach((penca) => {
@@ -37,4 +37,4 @@ const usePencas = () => {
     return {loading, pencas, handleJoinPenca};
 };
 
-export default usePencas;
+export default usePencasHot;

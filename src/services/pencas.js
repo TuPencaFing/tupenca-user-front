@@ -4,19 +4,31 @@ export const getPencasHot = () => {
     return axiosInstance.get('/api/pencas-compartidas/hot');
 }
 
-export const getPencas = () => {
+export const getPencas = (search) => {
+    const params = {
+        joined: false,
+    };
+    if (search) {
+        params.searchString = search;
+    }
     return axiosInstance.get('/api/pencas-compartidas/me', {
         params: {
-            joined: false,
+            ...params,
         },
     });
 };
 
-export const getMyPencas = () => {
+export const getMyPencas = (search) => {
+    const params = {
+        joined: true,
+    };
+    if (search) {
+        params.searchString = search;
+    }
     return axiosInstance.get('/api/pencas-compartidas/me', {
         params: {
-            joined: true,
-        }
+            ...params,
+        },
     });
 };
 

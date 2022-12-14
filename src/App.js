@@ -28,7 +28,12 @@ import PencaForum from './pages/PencaForum';
 import PencaEventDetail from './pages/PencaEventDetail';
 import PencaEventResults from './pages/PencaEventResults';
 import PencaParticipants from './pages/PencaParticipants';
+import Prizes from './pages/Prizes';
+import PrizesAlreadyClaimed from './pages/PrizesAlreadyClaimed';
+import PrizeDetail from './pages/PrizeDetail';
 import Register from './pages/Register';
+import ForgotPassword from './pages/ForgotPassword';
+import ResetPassword from './pages/ResetPassword';
 import UserInvitation from './pages/UserInvitation';
 import CompanyLayout from './router/CompanyLayout';
 import CompanyUserLayout from './router/CompanyUserLayout';
@@ -55,6 +60,8 @@ const App = () => {
                 <Route element={<PublicOnlyLayout />}>
                     <Route path={ROUTES.home} element={<Home />} />
                     <Route path={ROUTES.login} element={<Login />} />
+                    <Route path={ROUTES.forgotPassword} element={<ForgotPassword />} />
+                    <Route path={ROUTES.resetPassword} element={<ResetPassword />} />
                     <Route path={ROUTES.register} element={<Register />} />
 
                     {/* Company routes */}
@@ -75,6 +82,10 @@ const App = () => {
                     <Route path={ROUTES.misPencas} element={<MisPencas />} />
                     <Route path={ROUTES.logout} element={<Logout />} />
                     <Route path={`${ROUTES.invite}/:token`} element={<UserInvitation />} />
+                    <Route path={ROUTES.prizes} element={<Prizes />} />
+                    <Route path={ROUTES.prizesToBeClaimed} element={<Prizes />} />
+                    <Route path={ROUTES.prizesAlreadyClaimed} element={<PrizesAlreadyClaimed />} />
+                    <Route path={`${ROUTES.prizes}/:prizeId`} element={<PrizeDetail />} />
                 </Route>
                 <Route element={<CompanyLayout />}>
                     <Route path={`${ROUTES.companyAdmin}/:companyCode`} element={<CompanyHome />} />

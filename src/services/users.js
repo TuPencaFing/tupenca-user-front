@@ -1,11 +1,10 @@
 import { axiosInstance } from './config';
 
-export const createUser = (data) => {
-    const { email, username, password } = data;
-    return axiosInstance.post('/api/usuarios/register', {
-        email,
-        username,
-        password
+export const createUser = (payload) => {
+    return axiosInstance.post('/api/usuarios/register', payload, {
+        headers: {
+            'Content-Type': 'multipart/form-data',
+        },
     });
 };
 
@@ -14,6 +13,32 @@ export const logIn = (data) => {
     return axiosInstance.post('/api/usuarios/login', {
         email,
         password
+    });
+};
+
+export const signInWithGoogle = (data) => {
+    const { accessToken } = data;
+    return axiosInstance.post('/api/usuarios/googleLogin', {
+        access_token: accessToken,
+    }, {
+        params: {
+            access_token: accessToken,
+        },
+    });
+};
+
+export const forgotPassword = (data) => {
+    const { email } = data;
+    return axiosInstance.post('/api/usuarios/forgotPassword', {
+        email,
+    });
+};
+
+export const resetPassword = (data) => {
+    const { token, password } = data;
+    return axiosInstance.post('/api/usuarios/resetPassword', {
+        token,
+        password,
     });
 };
 
