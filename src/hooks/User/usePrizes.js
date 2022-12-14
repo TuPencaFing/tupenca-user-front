@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { getPrizesByUserId } from '../services/prizes';
+import { getPrizesByUserId } from '../../services/prizes';
 
 const usePrizes = (userId, claimed) => {
     const [loading, setLoading] = useState(false);

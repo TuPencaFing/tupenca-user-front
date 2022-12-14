@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import Navbar from '../../components/Navbar';
 import PencaList from '../../components/PencaList';
 import Spinner from '../../components/Spinner';
-import usePencasHot from '../../hooks/usePencasHot';
+import usePencasHot from '../../hooks/User/usePencasHot';
 import { USER_LOGGED_PAGES, USER_PAGES, USER_ROUTES } from '../../utils/navbarItems';
 
 const Home = () => {

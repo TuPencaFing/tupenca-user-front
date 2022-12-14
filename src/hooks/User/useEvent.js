@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { getEventAndStatsByPencaIdAndEventId } from '../services/events';
+import { getEventAndStatsByPencaIdAndEventId } from '../../services/events';
 
 const useEvent = (pencaId, eventId) => {
     const [loading, setLoading] = useState(false);
