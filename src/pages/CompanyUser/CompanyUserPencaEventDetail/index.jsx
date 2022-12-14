@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import CompanyUserPencaDetailHeader from '../../../components/CompanyUser/CompanyUserPencaDetailHeader';
-import EventDetail from '../../../components/EventDetail';
+import EventDetail from '../../../components/User/EventDetail';
 import Navbar from '../../../components/Navbar';
 import Spinner from '../../../components/Spinner';
 import useCompanyUserEvent from '../../../hooks/CompanyUser/useCompanyUserEvent';

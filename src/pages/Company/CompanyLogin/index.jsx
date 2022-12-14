@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import Navbar from '../../../components/Navbar';
-import LoginForm from '../../../components/LoginForm';
+import LoginForm from '../../../components/User/LoginForm';
 import { setCompanySession } from '../../../features/session/sessionSlice';
 import { logIn } from '../../../services/employees';
 import { EMPLOYEE_PAGES, EMPLOYEE_ROUTES } from '../../../utils/navbarItems';
