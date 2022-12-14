@@ -1,17 +1,17 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 
-import CompanyUserPencaDetailHeader from '../../../components/CompanyUser/CompanyUserPencaDetailHeader';
 import Forum from '../../../components/User/Forum';
 import Navbar from '../../../components/Navbar';
+import PencaDetailHeader from '../../../components/User/PencaDetailHeader';
 import Spinner from '../../../components/Spinner';
 import useComments from '../../../hooks/User/useComments';
-import useCompanyUserPenca from '../../../hooks/CompanyUser/useCompanyUserPenca';
-import { COMPANY_USER_PAGES, USER_ROUTES } from '../../../utils/navbarItems';
+import usePenca from '../../../hooks/User/usePenca';
+import { USER_LOGGED_PAGES, USER_ROUTES } from '../../../utils/navbarItems';
 
-const CompanyUserPencaForum = () => {
+const PencaForum = () => {
     let params = useParams();
-    const { loading, penca } = useCompanyUserPenca(params.pencaId);
+    const { loading, penca } = usePenca(params.pencaId);
     const { loading: loadingComments, comments, handleSaveComment } = useComments(params.pencaId);
 
     if (loading) return <Spinner />;
@@ -19,11 +19,11 @@ const CompanyUserPencaForum = () => {
     return (
         <>
             <Navbar
-                pages={COMPANY_USER_PAGES(params.companyCode)}
+                pages={USER_LOGGED_PAGES}
                 routes={USER_ROUTES}
             />
             {penca ? (
-                <CompanyUserPencaDetailHeader penca={penca} />
+                <PencaDetailHeader penca={penca} />
             ) : null}
             {!loadingComments ? (
                 <Forum
@@ -35,4 +35,4 @@ const CompanyUserPencaForum = () => {
     );
 };
 
-export default CompanyUserPencaForum;
+export default PencaForum;
