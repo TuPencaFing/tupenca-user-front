@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { Navigate, Outlet } from 'react-router-dom';
 
 import ROUTES, { getCompanyAdminRoutes } from '../../utils/routes';
+import { setBodyBackground, setBodyText } from "../../utils/colors";
 
 const PublicOnlyLayout = () => {
     const {isLogged, company} = useSelector((state) => state.session);
@@ -14,6 +15,8 @@ const PublicOnlyLayout = () => {
         }
         return (<Navigate to={ROUTES.misPencas} replace />);
     }
+    setBodyText(null);
+    setBodyBackground(null);
     return <Outlet />;
 };
 

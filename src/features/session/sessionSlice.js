@@ -6,6 +6,7 @@ export const sessionSlice = createSlice({
     initialState: {
         isLogged: false,
         company: null,
+        companyConfiguration: null,
         token: null,
         user: null,
     },
@@ -24,7 +25,6 @@ export const sessionSlice = createSlice({
         },
         setCompanySession: (state, action) => {
             const { token, company } = action.payload;
-
             const user = jwtDecode(token);
             console.log('User token: ', user);
             state.user = {
@@ -36,11 +36,12 @@ export const sessionSlice = createSlice({
             state.company = {
                 id: company.id,
                 code: company.tenantCode,
+                lookAndFeel: company?.plan?.lookAndFeel,
             };
         },
         setCompanyConfiguration: (state, action) => {
             const { generalText, generalBackground, navbarText, navbarBackground } = action.payload;
-            state.company.configuration = {
+            state.companyConfiguration = {
                 generalText,
                 generalBackground,
                 navbarText,
@@ -50,6 +51,7 @@ export const sessionSlice = createSlice({
         destroySession: (state) => {
             state.isLogged = false;
             state.company = null;
+            state.companyConfiguration = null;
             state.token = null;
             state.user = null;
         },

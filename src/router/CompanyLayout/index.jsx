@@ -6,7 +6,7 @@ import ROUTES, { getCompanyAdminRoutes } from '../../utils/routes';
 import { setBodyBackground, setBodyText } from "../../utils/colors";
 
 const CompanyLayout = () => {
-    const {isLogged, company} = useSelector((state) => state.session);
+    const {isLogged, company, companyConfiguration} = useSelector((state) => state.session);
 
     if (!isLogged) {
         if (company !== null) {
@@ -17,10 +17,9 @@ const CompanyLayout = () => {
     } else if (company === null) {
         return (<Navigate to={ROUTES.misPencas} replace />);
     }
-    if (company.configuration) {
-        const { configuration } = company;
-        setBodyText(configuration.generalText);
-        setBodyBackground(configuration.generalBackground);
+    if (companyConfiguration) {
+        setBodyText(companyConfiguration.generalText);
+        setBodyBackground(companyConfiguration.generalBackground);
     }
     return <Outlet />;
 };

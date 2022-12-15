@@ -19,7 +19,7 @@ import './styles.scss';
 const Navbar = ({ pages, routes }) => {
     let location = useLocation();
     const navigate = useNavigate();
-    const { user, company } = useSelector((state) => state.session);
+    const { user, companyConfiguration } = useSelector((state) => state.session);
     const [anchorElNav, setAnchorElNav] = useState(null);
 
     const handleOpenNavMenu = (event) => {
@@ -44,11 +44,11 @@ const Navbar = ({ pages, routes }) => {
     }
 
     useEffect(() => {
-        if (company?.configuration) {
-            setBannerText(company.configuration.navbarText);
-            setBannerBackground(company.configuration.navbarBackground);
+        if (companyConfiguration) {
+            setBannerText(companyConfiguration.navbarText);
+            setBannerBackground(companyConfiguration.navbarBackground);
         }
-    }, [company]);
+    }, [companyConfiguration]);
 
     return (
         <AppBar

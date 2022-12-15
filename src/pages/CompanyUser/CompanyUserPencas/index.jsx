@@ -7,10 +7,12 @@ import Spinner from '../../../components/Spinner';
 import useCompanyUserPencas from '../../../hooks/CompanyUser/useCompanyUserPencas';
 import { COMPANY_USER_PAGES, USER_ROUTES } from '../../../utils/navbarItems';
 import { getCompanyRoutes } from '../../../utils/routes';
+import useLookAndFeel from '../../../hooks/Company/useLookAndFeel';
 
 const CompanyUserPencas = () => {
     let params = useParams();
     const navigate = useNavigate();
+    useLookAndFeel(params.companyCode);
     const {loading, pencas} = useCompanyUserPencas(params.companyCode);
 
     const handleClickPenca = (pencaId) => {

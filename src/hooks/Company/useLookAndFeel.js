@@ -1,8 +1,12 @@
 import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 
 import { getLookAndFeel } from '../../services/companyLookAndFeel';
+import { setCompanyConfiguration } from "../../features/session/sessionSlice";
+import { setBodyBackground, setBodyText } from "../../utils/colors";
 
 const useLookAndFeel = (companyCode) => {
+    const dispatch = useDispatch();
     const [loading, setLoading] = useState(false);
     const [configuration, setConfiguration] = useState(null);
 
@@ -16,12 +20,16 @@ const useLookAndFeel = (companyCode) => {
                 textnavbar: navbarText,
                 navbar: navbarBackground,
             } = response.data;
-            setConfiguration({
+            const configurationData = {
                 generalText,
                 generalBackground,
                 navbarText,
                 navbarBackground,
-            })
+            };
+            setConfiguration(configurationData);
+            dispatch(setCompanyConfiguration(configurationData));
+            setBodyText(configurationData.generalText);
+            setBodyBackground(configurationData.generalBackground);
         }).catch((error) => {
             console.error('Error getting look and feel: ', error);
         }).finally(() => {
