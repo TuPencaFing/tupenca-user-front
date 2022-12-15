@@ -10,9 +10,8 @@ import { getCompanyAdminRoutes } from '../../../utils/routes';
 
 const CompanyPencas = () => {
     let params = useParams();
-    const {loading, pencas} = useCompanyPencas();
-
     const navigate = useNavigate();
+    const {loading, pencas} = useCompanyPencas();
 
     const handleClickPenca = (pencaId) => {
         navigate(`${getCompanyAdminRoutes(params.companyCode).pencas}/${pencaId}`);

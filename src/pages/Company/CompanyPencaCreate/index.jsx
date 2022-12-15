@@ -27,7 +27,7 @@ const CompanyPencaCreate = () => {
             ...values,
             prizes: prizesSelected,
         };
-        createPenca(data).then((response) => {
+        createPenca(params.companyCode, data).then((response) => {
             console.log('Response create penca: ', response);
             // if (files !== null) {
             //     const payload = new FormData();

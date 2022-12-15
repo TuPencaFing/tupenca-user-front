@@ -28,7 +28,7 @@ export const getEventAndStatsByCompanyPencaIdAndEventId = (pencaId, eventId) => 
     }));
 };
 
-export const createPenca = (data) => {
+export const createPenca = (companyCode, data) => {
     const { title, description, championship: championshipId, prizes } = data;
     const prizesReq = [];
     prizes.forEach((prizeId) => {
@@ -43,9 +43,17 @@ export const createPenca = (data) => {
             id: championshipId,
         },
         premios: prizesReq,
+    }, {
+        params: {
+            tenantCode: companyCode,
+        },
     });
 };
 
 export const uploadImage = (pencaId, payload) => {
-    return axiosInstance.post(`/api/pencas-empresas/${pencaId}/image`, payload);
+    return axiosInstance.patch(`/api/pencas-empresas/${pencaId}/image`, payload, {
+        headers: {
+            'Content-Type': 'multipart/form-data',
+        },
+    });
 };

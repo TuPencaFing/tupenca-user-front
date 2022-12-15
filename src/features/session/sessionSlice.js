@@ -23,7 +23,8 @@ export const sessionSlice = createSlice({
             state.token = token;
         },
         setCompanySession: (state, action) => {
-            const { token, companyCode } = action.payload;
+            const { token, company } = action.payload;
+
             const user = jwtDecode(token);
             console.log('User token: ', user);
             state.user = {
@@ -33,8 +34,24 @@ export const sessionSlice = createSlice({
             state.isLogged = true;
             state.token = token;
             state.company = {
-                code: companyCode,
+                id: company.id,
+                code: company.tenantCode,
             };
+        },
+        setCompanyConfiguration: (state, action) => {
+            const { configuration } = action.payload;
+            const {
+                generaltext: generalText,
+                generalbackground: generalBackground,
+                textnavbar: navbarText,
+                navbar: navbarBackground,
+            } = configuration;
+            state.company.configuration = {
+                generalText,
+                generalBackground,
+                navbarText,
+                navbarBackground,
+            }
         },
         destroySession: (state) => {
             state.isLogged = false;
@@ -46,6 +63,6 @@ export const sessionSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { setSession, setCompanySession, destroySession } = sessionSlice.actions;
+export const { setSession, setCompanySession, setCompanyConfiguration, destroySession } = sessionSlice.actions;
 
 export default sessionSlice.reducer;

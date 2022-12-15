@@ -18,7 +18,7 @@ import './styles.scss';
 const Navbar = ({ pages, routes }) => {
     let location = useLocation();
     const navigate = useNavigate();
-    const { user } = useSelector((state) => state.session);
+    const { user, company } = useSelector((state) => state.session);
     const [anchorElNav, setAnchorElNav] = useState(null);
 
     const handleOpenNavMenu = (event) => {
@@ -43,7 +43,18 @@ const Navbar = ({ pages, routes }) => {
     }
 
     return (
-        <AppBar className="navbar" position="sticky" color="inherit">
+        <AppBar
+            className="navbar"
+            position="sticky"
+            color="inherit"
+            ref={(node) => {
+                if (node && company?.configuration) {
+                    const { configuration } = company;
+                    node.style.setProperty('color', configuration.navbarText, 'important');
+                    node.style.setProperty('background-color', configuration.navbarBackground, 'important');
+                }
+            }}
+        >
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
 

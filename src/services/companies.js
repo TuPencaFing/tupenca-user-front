@@ -1,5 +1,9 @@
 import { axiosInstance } from './config';
 
+export const getCompanyByCode = (companyCode) => {
+    return axiosInstance.get(`/api/empresas/code/${companyCode}`);
+};
+
 export const createCompany = (data) => {
     const { companyName, rut, companyCode, planId, cardFormData } = data;
     const {
@@ -20,6 +24,14 @@ export const createCompany = (data) => {
             payer,
             payment_method_id: paymentMethodId,
             transaction_amount: transactionAmount,
+        },
+    });
+};
+
+export const uploadImage = (companyId, payload) => {
+    return axiosInstance.patch(`/api/empresas/${companyId}/image`, payload, {
+        headers: {
+            'Content-Type': 'multipart/form-data',
         },
     });
 };

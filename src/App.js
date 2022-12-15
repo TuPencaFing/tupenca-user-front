@@ -42,6 +42,7 @@ import PublicOnlyLayout from './router/PublicOnlyLayout';
 import ROUTES from './utils/routes';
 
 const App = () => {
+
     return (
         <BrowserRouter>
             <Routes>

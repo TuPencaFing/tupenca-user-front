@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import CompanyAdministrationHeader from '../../../components/Company/CompanyAdministrationHeader';
@@ -10,7 +11,8 @@ import { EMPLOYEE_LOGGED_PAGES, EMPLOYEE_ROUTES } from '../../../utils/navbarIte
 
 const CompanyEmployees = () => {
     let params = useParams();
-    const {loading, employees} = useEmployees(params.companyCode);
+    const {company} = useSelector((state) => state.session);
+    const {loading, employees} = useEmployees(company.id);
 
     if (loading) return <Spinner />;
 
