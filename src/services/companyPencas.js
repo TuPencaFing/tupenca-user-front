@@ -61,7 +61,7 @@ export const getEventAndStatsByCompanyPencaIdAndEventId = (pencaId, eventId) => 
 };
 
 export const createPenca = (companyCode, data) => {
-    const { title, description, championship: championshipId, prizes } = data;
+    const { title, description, championship: championshipId, prizes, scoreId } = data;
     const prizesReq = [];
     prizes.forEach((prizeId) => {
         prizesReq.push({
@@ -75,6 +75,7 @@ export const createPenca = (companyCode, data) => {
             id: championshipId,
         },
         premios: prizesReq,
+        puntajeId: scoreId,
     }, {
         params: {
             tenantCode: companyCode,
