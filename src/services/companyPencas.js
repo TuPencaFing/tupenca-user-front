@@ -10,6 +10,32 @@ export const getCompanyPencaInfoById = (pencaId) => {
     return axiosInstance.get(`/api/pencas-empresas/${pencaId}/info`);
 };
 
+const getCompanyPencasList = () => {
+    return axiosInstance.get('/api/pencas-empresas/miempresa');
+};
+
+const getRemainingPencasCounter = (companyCode) => {
+    return axiosInstance.get('/api/pencas-empresas/pencasRestantes', {
+        params: {
+            tenantCode: companyCode,
+        },
+    });
+};
+
+export const getCompanyPencas = (companyCode) => {
+    return axios.all([
+        getCompanyPencasList(),
+        getRemainingPencasCounter(companyCode),
+    ]).then(axios.spread((pencasResponse, pencasCounter) => {
+        return {
+            data: {
+                pencas: pencasResponse.data,
+                pencasCounter: pencasCounter.data,
+            },
+        };
+    }));
+};
+
 export const getStatsByCompanyUserPencaIdAndEventId = (pencaId, eventId) => {
     return axiosInstance.get(`/api/pencas-empresas/${pencaId}/eventos/${eventId}/estadisticas`);
 };

@@ -6,9 +6,10 @@ import {
     getPencaUsers,
 } from '../../services/companyUsers';
 
-const usePencaUsers = (pencaId) => {
+const usePencaUsers = (companyCode, pencaId) => {
     const [loading, setLoading] = useState(false);
     const [users, setUsers] = useState([]);
+    const [usersCounter, setUsersCounter] = useState(null);
 
     const enableUser = (userId) => {
         return enableUserFunc(pencaId, userId).then((response) => {
@@ -26,21 +27,23 @@ const usePencaUsers = (pencaId) => {
 
     const refreshPencas = useCallback(() => {
         setLoading(true);
-        getPencaUsers(pencaId).then((response) => {
+        getPencaUsers(companyCode, pencaId).then((response) => {
             console.log('Response of get penca users: ', response);
-            setUsers(response.data);
+            const { users: usersList, usersCounter: counter } = response.data;
+            setUsers(usersList);
+            setUsersCounter(counter.cantidad);
         }).catch((error) => {
             console.error('Error getting penca users: ', error);
         }).finally(() => {
             setLoading(false);
         });
-    }, [pencaId]);
+    }, [companyCode, pencaId]);
 
     useEffect(() => {
         refreshPencas();
     }, [refreshPencas]);
 
-    return {loading, users, enableUser, rejectUser};
+    return {loading, users, usersCounter, enableUser, rejectUser};
 };
 
 export default usePencaUsers;

@@ -1,17 +1,19 @@
 import { useEffect, useState } from 'react';
 
-import { getCompanyPencas } from '../services/pencas';
+import { getCompanyPencas } from '../services/companyPencas';
 
-const useCompanyPencas = () => {
+const useCompanyPencas = (companyCode) => {
     const [loading, setLoading] = useState(false);
     const [pencas, setPencas] = useState([]);
+    const [pencasCounter, setPencasCounter] = useState([]);
 
     useEffect(() => {
         setLoading(true);
-        getCompanyPencas().then((response) => {
+        getCompanyPencas(companyCode).then((response) => {
             console.log('Response of get company pencas: ', response);
+            const { pencas: pencasList, pencasCounter: counter } = response.data;
             const pencaResp = [];
-            response.data.forEach((penca) => {
+            pencasList.forEach((penca) => {
                 const { id, title, description, image, campeonato: championship } = penca;
                 pencaResp.push({
                     id,
@@ -22,6 +24,7 @@ const useCompanyPencas = () => {
                 });
             })
             setPencas(pencaResp);
+            setPencasCounter(counter.cantidad);
         }).catch((error) => {
             console.error('Error getting company pencas: ', error);
         }).finally(() => {
@@ -29,7 +32,7 @@ const useCompanyPencas = () => {
         });
     }, []);
 
-    return {loading, pencas};
+    return {loading, pencas, pencasCounter};
 };
 
 export default useCompanyPencas;

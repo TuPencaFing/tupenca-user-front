@@ -29,7 +29,7 @@ const columns = [
     { id: 'championshipName', label: 'Campeonato', minWidth: 100 },
 ];
 
-const CompanyPencasTable = ({ pencas, handleClickPenca }) => {
+const CompanyPencasTable = ({ pencas, pencasCounter, handleClickPenca }) => {
     let params = useParams();
     const navigate = useNavigate();
     const [page, setPage] = React.useState(0);
@@ -46,14 +46,19 @@ const CompanyPencasTable = ({ pencas, handleClickPenca }) => {
 
     return (
         <Paper className="company-pencas-table">
-            <div className="company-pencas-table-actions">
-                <Button
-                    key="company-pencas-table-actions-create-penca"
-                    className="company-pencas-table-actions-create-penca"
-                    onClick={() => navigate(`${getCompanyAdminRoutes(params.companyCode).pencasCreate}`)}
-                >
-                    Crear penca
-                </Button>
+            <div className="company-pencas-table-header">
+                <div className="company-pencas-table-info">
+                    Pencas restantes: <strong>{pencasCounter}</strong>
+                </div>
+                <div className="company-pencas-table-actions">
+                    <Button
+                        key="company-pencas-table-actions-create-penca"
+                        className="company-pencas-table-actions-create-penca"
+                        onClick={() => navigate(`${getCompanyAdminRoutes(params.companyCode).pencasCreate}`)}
+                    >
+                        Crear penca
+                    </Button>
+                </div>
             </div>
             <br />
             <TableContainer sx={{ maxHeight: 440 }}>

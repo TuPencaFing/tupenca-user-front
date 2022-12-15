@@ -55,7 +55,7 @@ const columns = [
     },
 ];
 
-const CompanyPencaUsersTable = ({ users, handleEnableUser, handleRejectUser }) => {
+const CompanyPencaUsersTable = ({ users, usersCounter, handleEnableUser, handleRejectUser }) => {
     let params = useParams();
     const navigate = useNavigate();
     const [page, setPage] = React.useState(0);
@@ -72,14 +72,19 @@ const CompanyPencaUsersTable = ({ users, handleEnableUser, handleRejectUser }) =
 
     return (
         <Paper className="company-penca-users-table">
-            <div className="company-penca-users-table-actions">
-                <Button
-                    key="company-penca-users-table-actions-invite-user"
-                    className="company-penca-users-table-actions-invite-user"
-                    onClick={() => navigate(`${getCompanyAdminRoutes(params.companyCode, params.pencaId).pencaUserInvite}`)}
-                >
-                    Invitar usuario
-                </Button>
+            <div className="company-penca-users-table-header">
+                <div className="company-penca-users-table-info">
+                    Invitaciones restantes: <strong>{usersCounter}</strong>
+                </div>
+                <div className="company-penca-users-table-actions">
+                    <Button
+                        key="company-penca-users-table-actions-invite-user"
+                        className="company-penca-users-table-actions-invite-user"
+                        onClick={() => navigate(`${getCompanyAdminRoutes(params.companyCode, params.pencaId).pencaUserInvite}`)}
+                    >
+                        Invitar usuario
+                    </Button>
+                </div>
             </div>
             <br />
             <TableContainer sx={{ maxHeight: 440 }}>

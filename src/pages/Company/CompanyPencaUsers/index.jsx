@@ -12,7 +12,7 @@ import './styles.scss';
 
 const CompanyPencaUsers = () => {
     let params = useParams();
-    const {loading, users, enableUser, rejectUser} = usePencaUsers(params.pencaId);
+    const {loading, users, usersCounter, enableUser, rejectUser} = usePencaUsers(params.companyCode, params.pencaId);
     const [feedbackMessage, setFeedbackMessage] = useState(null);
 
     const handleEnableUser = (userId) => {
@@ -64,6 +64,7 @@ const CompanyPencaUsers = () => {
             )}
             <CompanyPencaUsersTable
                 users={users}
+                usersCounter={usersCounter}
                 handleEnableUser={handleEnableUser}
                 handleRejectUser={handleRejectUser}
             />

@@ -32,10 +32,6 @@ export const getMyPencas = (search) => {
     });
 };
 
-export const getCompanyPencas = () => {
-    return axiosInstance.get('/api/pencas-empresas/miempresa');
-};
-
 export const joinPenca = (pencaId, cardFormData) => {
     const {
         transaction_amount: transactionAmount,
