@@ -40,7 +40,7 @@ const PencaList = ({ headerIcon, pencas, handleClickPenca, handleJoinPenca, sear
                                     <div className="penca-name">
                                         {penca.title}
                                     </div>
-                                    {penca.bettingPool ? (
+                                    {(penca.bettingPool !== null && penca.bettingPool !== undefined) ? (
                                         <div className="penca-betting-pool">
                                             Pozo actual: <strong>${penca.bettingPool}</strong>
                                         </div>

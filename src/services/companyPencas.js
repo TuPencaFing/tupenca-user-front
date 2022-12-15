@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { axiosInstance } from './config';
-import { getEventById } from './events';
+import { getEventById, getEventPredictionByEventIdAndPencaId } from './events';
 
 export const getPencas = (companyCode) => {
     return axiosInstance.get('/api/pencas-empresas', {
@@ -47,11 +47,13 @@ export const getStatsByCompanyUserPencaIdAndEventId = (pencaId, eventId) => {
 export const getEventAndStatsByCompanyPencaIdAndEventId = (pencaId, eventId) => {
     return axios.all([
         getEventById(eventId),
+        getEventPredictionByEventIdAndPencaId(pencaId, eventId),
         getStatsByCompanyUserPencaIdAndEventId(pencaId, eventId),
-    ]).then(axios.spread((eventResponse, statsResponse) => {
+    ]).then(axios.spread((eventResponse, predictionResponse, statsResponse) => {
         return {
             data: {
                 event: eventResponse.data,
+                prediction: predictionResponse.data,
                 stats: statsResponse.data,
             },
         };

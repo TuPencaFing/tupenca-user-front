@@ -11,7 +11,7 @@ import TextFieldAdapter from '../../TextFieldAdapter';
 import validate from './validate';
 import './styles.scss';
 
-const EventDetail = ({ event, stats, redirectAfterSave }) => {
+const EventDetail = ({ event, prediction, stats, redirectAfterSave }) => {
     let params = useParams();
     const [feedbackMessage, setFeedbackMessage] = useState(null);
 
@@ -21,24 +21,23 @@ const EventDetail = ({ event, stats, redirectAfterSave }) => {
         const data = {
             pencaId: parseInt(params.pencaId),
         };
-        let result = 0;
+        let prediction = 0;
         if (event.isScoreValid) {
             if (localTeamResult > visitorTeamResult) {
-                result = 1;
+                prediction = 1;
             } else if (localTeamResult < visitorTeamResult) {
-                result = 2;
+                prediction = 2;
             }
             data.localTeamResult = parseInt(localTeamResult);
             data.visitorTeamResult = parseInt(visitorTeamResult);
         } else {
             if (parseInt(localTeamResult) === 1) {
-                result = 1;
+                prediction = 1;
             } else if (parseInt(visitorTeamResult) === 1) {
-                result = 2;
+                prediction = 2;
             }
         }
-        data.result = result;
-        console.log(event.id, data);
+        data.prediction = prediction;
         savePrediction(event.id, data).then((response) => {
             console.log('Prediction saved successfully', response);
             redirectAfterSave();
@@ -69,9 +68,37 @@ const EventDetail = ({ event, stats, redirectAfterSave }) => {
         dataGraph.push({ title: 'Empate', value: stats.tiePercentage, color: '#CACFD2' });
     }
 
+    let initialValues = null;
+    if (prediction) {
+        if (event.isScoreValid) {
+            initialValues = {
+                localTeamResult: prediction.localTeamScore,
+                visitorTeamResult: prediction.visitorTeamScore,
+            };
+        } else {
+            if (prediction.prediction === 1) {
+                initialValues = {
+                    localTeamResult: 1,
+                    visitorTeamResult: 0,
+                };
+            } else if (prediction.prediction === 2) {
+                initialValues = {
+                    localTeamResult: 0,
+                    visitorTeamResult: 1,
+                };
+            } else {
+                initialValues = {
+                    localTeamResult: 2,
+                    visitorTeamResult: 2,
+                };
+            }
+        }
+    }
+
     return (
         <div className="event-detail">
             <Form
+                initialValues={initialValues}
                 onSubmit={onSubmit}
                 validate={(values) => validate(values, event)}
                 render={({ handleSubmit, submitting }) => (
