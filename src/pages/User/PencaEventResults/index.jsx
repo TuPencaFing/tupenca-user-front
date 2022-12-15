@@ -42,9 +42,9 @@ const PencaEventResults = () => {
                     />
                 </>
             ) : (
-                <>
-                    No hay eventos
-                </>
+                <div className="events-list-empty">
+                    La penca aún no tiene ningún evento del que puedas participar. Vuelve más tarde!
+                </div>
             )}
         </>
     );

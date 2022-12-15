@@ -24,9 +24,9 @@ const CompanyPlans = () => {
                     <CompanyPlanList plans={plans} />
                 </>
             ) : (
-                <>
-                    No hay planes
-                </>
+                <div className="company-plans-list-empty">
+                    No se han podido cargar los planes empresariales. Por favor, inténtelo nuevamente en unos minutos.
+                </div>
             )}
         </>
     );
