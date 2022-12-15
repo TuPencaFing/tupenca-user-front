@@ -5,13 +5,18 @@ import { getEventAndStatsByPencaIdAndEventId } from '../../services/events';
 const useEvent = (pencaId, eventId) => {
     const [loading, setLoading] = useState(false);
     const [event, setEvent] = useState(null);
+    const [prediction, setPrediction] = useState(null);
     const [stats, setStats] = useState(null);
 
     useEffect(() => {
         setLoading(true);
         getEventAndStatsByPencaIdAndEventId(pencaId, eventId).then((response) => {
             console.log('Response of get event info and stats: ', response);
-            const { event: eventResponse, stats: statsResponse } = response.data;
+            const {
+                event: eventResponse,
+                prediction: predictionResponse,
+                stats: statsResponse,
+            } = response.data;
             // Event
             const {
                 id,
@@ -35,6 +40,19 @@ const useEvent = (pencaId, eventId) => {
                 isTieValid,
                 isScoreValid,
             };
+
+            // Prediction
+            const {
+                prediccion: prediction,
+                puntajeEquipoLocal: localTeamScore,
+                puntajeEquipoVisitante: visitorTeamScore,
+            } = predictionResponse;
+            const predictionDto = {
+                prediction,
+                localTeamScore,
+                visitorTeamScore,
+            };
+
             // Stats
             const {
                 porcentajeEmpate: tiePercentage,
@@ -48,6 +66,7 @@ const useEvent = (pencaId, eventId) => {
             };
             // setters
             setEvent(eventDto);
+            setPrediction(predictionDto);
             setStats(statsDto);
         }).catch((error) => {
             console.error('Error getting event info and stats: ', error);
@@ -56,7 +75,7 @@ const useEvent = (pencaId, eventId) => {
         });
     }, [pencaId, eventId]);
 
-    return {loading, event, stats};
+    return {loading, event, prediction, stats};
 };
 
 export default useEvent;

@@ -14,7 +14,7 @@ const CompanyUserPencaEventDetail = () => {
     let params = useParams();
     const navigate = useNavigate();
     const {loading: loadingPenca, penca} = useCompanyUserPenca(params.pencaId);
-    const {loading: loadingEvent, event, stats} = useCompanyUserEvent(params.pencaId, params.eventId);
+    const {loading: loadingEvent, event, prediction, stats} = useCompanyUserEvent(params.pencaId, params.eventId);
 
     if (loadingPenca || loadingEvent) return <Spinner />;
 
@@ -34,6 +34,7 @@ const CompanyUserPencaEventDetail = () => {
             {event ? (
                 <EventDetail
                     event={event}
+                    prediction={prediction}
                     stats={stats}
                     redirectAfterSave={redirectAfterSave}
                 />

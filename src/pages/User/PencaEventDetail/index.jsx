@@ -13,7 +13,7 @@ const PencaEventDetail = () => {
     let params = useParams();
     const navigate = useNavigate();
     const {loading: loadingPenca, penca} = usePenca(params.pencaId);
-    const {loading: loadingEvent, event, stats} = useEvent(params.pencaId, params.eventId);
+    const {loading: loadingEvent, event, prediction, stats} = useEvent(params.pencaId, params.eventId);
 
     if (loadingPenca || loadingEvent) return <Spinner />;
 
@@ -33,6 +33,7 @@ const PencaEventDetail = () => {
             {event ? (
                 <EventDetail
                     event={event}
+                    prediction={prediction}
                     stats={stats}
                     redirectAfterSave={redirectAfterSave}
                 />

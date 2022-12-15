@@ -3,12 +3,12 @@ import { axiosInstance } from './config';
 import { getStatsByPencaIdAndEventId } from './pencas';
 
 export const savePrediction = (eventId, data) => {
-    const { pencaId, result, localTeamResult, visitorTeamResult } = data;
+    const { pencaId, prediction, localTeamResult, visitorTeamResult } = data;
     const body = {
-        resultado: result,
+        prediccion: prediction,
     };
-    if (localTeamResult) body.puntajeEquipoLocal = parseInt(localTeamResult);
-    if (visitorTeamResult) body.puntajeEquipoVisitante = parseInt(visitorTeamResult);
+    if (localTeamResult !== undefined && localTeamResult !== null) body.puntajeEquipoLocal = parseInt(localTeamResult);
+    if (visitorTeamResult !== undefined && visitorTeamResult !== null) body.puntajeEquipoVisitante = parseInt(visitorTeamResult);
     return axiosInstance.post(`/api/eventos/${eventId}/prediccion?pencaId=${pencaId}`, body);
 };
 
@@ -16,14 +16,24 @@ export const getEventById = (eventId) => {
     return axiosInstance.get(`/api/eventos/${eventId}`);
 };
 
+export const getEventPredictionByEventIdAndPencaId = (pencaId, eventId) => {
+    return axiosInstance.get(`/api/eventos/${eventId}/prediccion`, {
+        params: {
+            pencaId,
+        },
+    });
+};
+
 export const getEventAndStatsByPencaIdAndEventId = (pencaId, eventId) => {
     return axios.all([
         getEventById(eventId),
+        getEventPredictionByEventIdAndPencaId(pencaId, eventId),
         getStatsByPencaIdAndEventId(pencaId, eventId),
-    ]).then(axios.spread((eventResponse, statsResponse) => {
+    ]).then(axios.spread((eventResponse, predictionResponse, statsResponse) => {
         return {
             data: {
                 event: eventResponse.data,
+                prediction: predictionResponse.data,
                 stats: statsResponse.data,
             },
         };
