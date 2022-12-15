@@ -1,28 +1,30 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import CompanyAdministrationHeader from '../../../components/Company/CompanyAdministrationHeader';
 import CompanyConfigurationForm from '../../../components/Company/CompanyConfigurationForm';
 import Navbar from '../../../components/Navbar';
 import Spinner from '../../../components/Spinner';
+import useCompany from '../../../hooks/Company/useCompany';
 import useLookAndFeel from '../../../hooks/Company/useLookAndFeel';
 import { uploadImage } from '../../../services/companies';
 import { setLookAndFeel } from '../../../services/companyLookAndFeel';
+import { setCompanyConfiguration } from '../../../features/session/sessionSlice';
 import { setBannerBackground, setBannerText, setBodyBackground, setBodyText } from '../../../utils/colors';
 import { EMPLOYEE_LOGGED_PAGES, EMPLOYEE_ROUTES } from '../../../utils/navbarItems';
-import useCompany from "../../../hooks/Company/useCompany";
 
 const CompanyConfigurations = () => {
     let params = useParams();
+    const dispatch = useDispatch();
     const {loading, configuration} = useLookAndFeel(params.companyCode);
     const {company} = useCompany(params.companyCode);
     const [feedbackMessage, setFeedbackMessage] = useState(null);
-    const [generalText, setGeneralText] = React.useState(null);
-    const [generalBackground, setGeneralBackground] = React.useState(null);
-    const [navbarText, setNavbarText] = React.useState(null);
-    const [navbarBackground, setNavbarBackground] = React.useState(null);
-    const [files, setFiles] = React.useState(null);
+    const [generalText, setGeneralText] = useState(null);
+    const [generalBackground, setGeneralBackground] = useState(null);
+    const [navbarText, setNavbarText] = useState(null);
+    const [navbarBackground, setNavbarBackground] = useState(null);
+    const [files, setFiles] = useState(null);
 
     const handleSetGeneralText = (color) => {
         setBodyText(color.hex);
@@ -50,10 +52,11 @@ const CompanyConfigurations = () => {
             generalText: generalText.hex,
             generalBackground: generalBackground.hex,
             navbarText: navbarText.hex,
-            navbar: navbarBackground.hex,
+            navbarBackground: navbarBackground.hex,
         };
         setLookAndFeel(data).then((response) => {
             console.log('Response set look and feel: ', response);
+            dispatch(setCompanyConfiguration(data));
             if (files !== null) {
                 const payload = new FormData();
                 payload.append("file", files);

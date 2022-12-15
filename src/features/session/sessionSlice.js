@@ -39,13 +39,7 @@ export const sessionSlice = createSlice({
             };
         },
         setCompanyConfiguration: (state, action) => {
-            const { configuration } = action.payload;
-            const {
-                generaltext: generalText,
-                generalbackground: generalBackground,
-                textnavbar: navbarText,
-                navbar: navbarBackground,
-            } = configuration;
+            const { generalText, generalBackground, navbarText, navbarBackground } = action.payload;
             state.company.configuration = {
                 generalText,
                 generalBackground,

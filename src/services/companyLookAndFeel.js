@@ -5,11 +5,11 @@ export const getLookAndFeel = (companyCode) => {
 };
 
 export const setLookAndFeel = (data) => {
-    const { generalText, generalBackground, navbarText, navbar } = data;
+    const { generalText, generalBackground, navbarText, navbarBackground } = data;
     return axiosInstance.put('/api/lookandfeel', {
-        generaltext: generalText,
-        generalbackground: generalBackground,
-        textnavbar: navbarText,
-        navbar: navbar,
+        generaltext: generalText ?? null,
+        generalbackground: generalBackground ?? null,
+        textnavbar: navbarText ?? null,
+        navbar: navbarBackground ?? null,
     });
 };

@@ -29,17 +29,22 @@ const CompanyLogin = () => {
                 }));
                 getLookAndFeel(params.companyCode).then((responseLookAndFeel) => {
                     console.log('Response get look and feel: ', responseLookAndFeel);
+                    const {
+                        generaltext: generalText,
+                        generalbackground: generalBackground,
+                        textnavbar: navbarText,
+                        navbar: navbarBackground,
+                    } = responseLookAndFeel.data;
                     dispatch(setCompanyConfiguration({
-                        configuration: responseLookAndFeel.data,
+                        generalText,
+                        generalBackground,
+                        navbarText,
+                        navbarBackground,
                     }));
-                    navigate('/');
                 }).catch((error) => {
                     console.log('Error getting look and feel: ', error);
-                    setFeedbackMessage({
-                        type: 'error',
-                        message: 'No se logró ingresar con su cuenta. Inténtelo nuevamente en unos minutos.',
-                    });
                 });
+                navigate('/');
             }).catch((error) => {
                 console.log('Error getting company by code: ', error);
                 setFeedbackMessage({
