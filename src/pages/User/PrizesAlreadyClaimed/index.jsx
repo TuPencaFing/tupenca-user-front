@@ -5,12 +5,12 @@ import Navbar from '../../../components/Navbar';
 import PrizesHeader from '../../../components/User/PrizesHeader';
 import PrizeList from '../../../components/User/PrizeList';
 import Spinner from '../../../components/Spinner';
-import usePrizes from '../../../hooks/User/usePrizes';
+import useUserPrizes from '../../../hooks/User/useUserPrizes';
 import { USER_LOGGED_PAGES, USER_ROUTES } from '../../../utils/navbarItems';
 
 const PrizesAlreadyClaimed = () => {
     const { user } = useSelector((state) => state.session);
-    const {loading, prizes} = usePrizes(user.id, true);
+    const {loading, prizes} = useUserPrizes(user.id, true);
 
     if (loading) return <Spinner />;
 

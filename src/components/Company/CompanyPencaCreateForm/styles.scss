@@ -1,0 +1,24 @@
+.company-penca-create-form-container {
+  margin: 16px auto;
+  width: 35%;
+
+  .company-penca-create-form-header {
+    padding-bottom: 16px;
+    text-align: center;
+  }
+
+  .company-penca-create-form {
+    width: 100%;
+    margin-top: 24px;
+
+    .company-penca-create-form-feedback-message {
+      width: 100%;
+    }
+
+    .company-penca-create-form-button {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      background-color: black;
+    }
+  }
+}

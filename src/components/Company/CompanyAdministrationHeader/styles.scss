@@ -1,0 +1,31 @@
+.company-administration-header {
+  background-color: #292929;
+  color: white;
+  padding: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .company-administration-header-menu {
+    color: white;
+
+    .current-page-path {
+      border-bottom: 1px solid white;
+      padding-bottom: 3px;
+      font-weight: bold;
+    }
+
+    button {
+      margin-left: 12px;
+      margin-right: 12px;
+      text-transform: none;
+      color: white;
+      font-weight: 500;
+      border-radius: 0;
+    }
+
+    button:hover {
+      background-color: black;
+    }
+  }
+}

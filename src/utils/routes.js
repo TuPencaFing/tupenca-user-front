@@ -26,12 +26,19 @@ export const getCompanyRoutes = (companyCode, pencaId = null) => {
     };
 };
 
-export const getCompanyAdminRoutes = (companyCode) => {
+export const getCompanyAdminRoutes = (companyCode, pencaId = null) => {
     return {
         home: `${ROUTES.companyAdmin}/${companyCode}/`,
         login: `${ROUTES.companyAdmin}/${companyCode}/login`,
         logout: `${ROUTES.companyAdmin}/${companyCode}/logout`,
         pencas: `${ROUTES.companyAdmin}/${companyCode}/pencas`,
+        pencasCreate: `${ROUTES.companyAdmin}/${companyCode}/pencas/crear`,
+        pencaUsers: `${ROUTES.companyAdmin}/${companyCode}/pencas/${pencaId}/usuarios`,
+        pencaUserInvite: `${ROUTES.companyAdmin}/${companyCode}/pencas/${pencaId}/usuarios/invitar`,
+        admin: `${ROUTES.companyAdmin}/${companyCode}/administracion`,
+        adminEmployees: `${ROUTES.companyAdmin}/${companyCode}/administracion/funcionarios`,
+        adminEmployeeCreate: `${ROUTES.companyAdmin}/${companyCode}/administracion/funcionarios/crear`,
+        adminConfigurations: `${ROUTES.companyAdmin}/${companyCode}/administracion/configuraciones`,
     };
 };
 

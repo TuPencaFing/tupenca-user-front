@@ -7,8 +7,8 @@ import UploadIcon from '@mui/icons-material/CloudUpload';
 import FileField from '../FileField';
 import './styles.scss';
 
-const AvatarUpload = ({ setFiles }) => {
-    const [image, _setImage] = useState(null);
+const AvatarUpload = ({ initialImage, setFiles }) => {
+    const [image, _setImage] = useState(initialImage ?? null);
     const inputFileRef = createRef(null);
 
     const cleanup = () => {

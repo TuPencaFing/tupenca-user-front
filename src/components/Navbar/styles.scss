@@ -1,5 +1,6 @@
 .navbar {
   background-color: #E76F51 !important;
+  color: black !important;
 
   .navbar-icon {
     margin-right: 16px;
@@ -8,7 +9,7 @@
 
   .navbar-options {
     flex-grow: 1;
-    color: black;
+    color: inherit;
 
     .current-page-path {
       border-bottom: 1px solid black;
@@ -20,7 +21,7 @@
       margin-left: 12px;
       margin-right: 12px;
       text-transform: none;
-      color: black;
+      color: inherit;
       font-weight: 500;
       border-radius: 0;
     }

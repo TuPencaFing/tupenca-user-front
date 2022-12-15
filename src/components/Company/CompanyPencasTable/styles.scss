@@ -1,0 +1,36 @@
+.company-pencas-table {
+  margin: 16px auto;
+  width: 80%;
+  overflow: hidden;
+  background-color: #FBDEC7 !important;
+
+  .company-pencas-table-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .company-pencas-table-info {
+      margin-top: 16px;
+      margin-left: 16px;
+    }
+
+    .company-pencas-table-actions {
+      text-align: right;
+
+      .company-pencas-table-actions-create-penca {
+        color: white;
+        background-color: black;
+        margin-top: 8px;
+        margin-right: 8px;
+      }
+
+      .company-pencas-table-actions-create-penca:hover {
+        background-color: #494949;
+      }
+    }
+
+    .company-pencas-table-row {
+      cursor: pointer;
+    }
+  }
+}

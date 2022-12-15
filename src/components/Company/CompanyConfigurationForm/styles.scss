@@ -1,0 +1,45 @@
+.company-configuration-form-container {
+  margin: 16px auto;
+  width: 35%;
+
+  .company-configuration-form-header {
+    padding-bottom: 16px;
+    text-align: center;
+  }
+
+  .company-configuration-form {
+    width: 100%;
+    margin-top: 24px;
+
+    .company-configuration-div {
+      padding-left: 16px;
+    }
+
+    .company-configuration-form-subtitle {
+      width: 100%;
+    }
+
+    .company-configuration-form-item-container {
+      width: 100%;
+      margin-bottom: 16px;
+
+      .company-configuration-form-item {
+        width: 200px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        text-align: left;
+      }
+    }
+
+    .company-configuration-form-feedback-message {
+      width: 100%;
+    }
+
+    .company-configuration-form-button {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      background-color: black;
+    }
+  }
+}

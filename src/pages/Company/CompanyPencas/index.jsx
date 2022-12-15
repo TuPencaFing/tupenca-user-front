@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import CompanyPencaList from '../../../components/Company/CompanyPencaList';
+import CompanyPencasTable from '../../../components/Company/CompanyPencasTable';
 import Navbar from '../../../components/Navbar';
 import Spinner from '../../../components/Spinner';
 import useCompanyPencas from '../../../hooks/useCompanyPencas';
@@ -10,9 +10,8 @@ import { getCompanyAdminRoutes } from '../../../utils/routes';
 
 const CompanyPencas = () => {
     let params = useParams();
-    const {loading, pencas} = useCompanyPencas();
-
     const navigate = useNavigate();
+    const {loading, pencas, pencasCounter} = useCompanyPencas(params.companyCode);
 
     const handleClickPenca = (pencaId) => {
         navigate(`${getCompanyAdminRoutes(params.companyCode).pencas}/${pencaId}`);
@@ -26,16 +25,11 @@ const CompanyPencas = () => {
                 pages={EMPLOYEE_LOGGED_PAGES(params.companyCode)}
                 routes={EMPLOYEE_ROUTES(params.companyCode)}
             />
-            {pencas && pencas.length > 0 ? (
-                <CompanyPencaList
-                    pencas={pencas}
-                    handleClickPenca={handleClickPenca}
-                />
-            ) : (
-                <>
-                    No hay pencas
-                </>
-            )}
+            <CompanyPencasTable
+                pencas={pencas}
+                pencasCounter={pencasCounter}
+                handleClickPenca={handleClickPenca}
+            />
         </>
     );
 };

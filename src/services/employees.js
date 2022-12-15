@@ -25,3 +25,7 @@ export const inviteUser = (data) => {
         pencaId,
     });
 };
+
+export const getEmployeesByCompanyId = (companyId) => {
+    return axiosInstance.get(`/api/funcionarios/empresa/${companyId}`);
+};

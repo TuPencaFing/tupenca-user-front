@@ -113,13 +113,13 @@ const LoginForm = ({ isCompany, feedbackMessage, onSubmit, onSuccessGoogle, onFa
                                     ¿Olvidaste tu contraseña?
                                 </Link>
                             </Grid>
-                            {!isCompany && (
+                            {!isCompany ? (
                                 <Grid item>
                                     <Link to={ROUTES.register} className="no-style">
                                         Crear mi cuenta
                                     </Link>
                                 </Grid>
-                            )}
+                            ) : null}
                         </Grid>
                     </form>
                 )}
