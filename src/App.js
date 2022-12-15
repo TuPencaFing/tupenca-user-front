@@ -6,6 +6,7 @@ import CompanyPayment from './pages/Company/CompanyPayment';
 import CompanyPencaInviteUser from './pages/Company/CompanyPencaInviteUser';
 import CompanyPencas from './pages/Company/CompanyPencas';
 import CompanyPencaCreate from './pages/Company/CompanyPencaCreate';
+import CompanyPencaSendNews from './pages/Company/CompanyPencaSendNews';
 import CompanyPencaUsers from './pages/Company/CompanyPencaUsers';
 import CompanyEmployees from './pages/Company/CompanyEmployees';
 import CompanyEmployeeCreate from './pages/Company/CompanyEmployeeCreate';
@@ -83,6 +84,7 @@ const App = () => {
                     <Route path={`${ROUTES.companyAdmin}/:companyCode/pencas/:pencaId`} element={<CompanyPencaUsers />} />
                     <Route path={`${ROUTES.companyAdmin}/:companyCode/pencas/:pencaId/usuarios`} element={<CompanyPencaUsers />} />
                     <Route path={`${ROUTES.companyAdmin}/:companyCode/pencas/:pencaId/usuarios/invitar`} element={<CompanyPencaInviteUser />} />
+                    <Route path={`${ROUTES.companyAdmin}/:companyCode/pencas/:pencaId/enviar-novedades`} element={<CompanyPencaSendNews />} />
                     <Route path={`${ROUTES.companyAdmin}/:companyCode/administracion`} element={<CompanyEmployees />} />
                     <Route path={`${ROUTES.companyAdmin}/:companyCode/administracion/funcionarios`} element={<CompanyEmployees />} />
                     <Route path={`${ROUTES.companyAdmin}/:companyCode/administracion/funcionarios/crear`} element={<CompanyEmployeeCreate />} />

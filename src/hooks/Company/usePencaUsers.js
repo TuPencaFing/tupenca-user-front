@@ -12,7 +12,7 @@ const usePencaUsers = (companyCode, pencaId) => {
     const [usersCounter, setUsersCounter] = useState(null);
 
     const enableUser = (userId) => {
-        return enableUserFunc(pencaId, userId).then((response) => {
+        return enableUserFunc(pencaId, userId, companyCode).then((response) => {
             console.log('Response enable user: ', response);
             refreshPencas();
         });

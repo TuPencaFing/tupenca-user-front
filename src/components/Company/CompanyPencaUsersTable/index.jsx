@@ -78,6 +78,12 @@ const CompanyPencaUsersTable = ({ users, usersCounter, handleEnableUser, handleR
                 </div>
                 <div className="company-penca-users-table-actions">
                     <Button
+                        className="company-pencas-table-actions-send-news"
+                        onClick={() => navigate(`${getCompanyAdminRoutes(params.companyCode, params.pencaId).pencasSendNews}`)}
+                    >
+                        Enviar novedades
+                    </Button>
+                    <Button
                         key="company-penca-users-table-actions-invite-user"
                         className="company-penca-users-table-actions-invite-user"
                         onClick={() => navigate(`${getCompanyAdminRoutes(params.companyCode, params.pencaId).pencaUserInvite}`)}

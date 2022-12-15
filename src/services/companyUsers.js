@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { axiosInstance } from './config';
 
-const getPencaUsersList = (pencaId) => {
+export const getPencaUsersList = (pencaId) => {
     return axiosInstance.get(`/api/pencas-empresas/${pencaId}/usuarios`);
 };
 
@@ -27,14 +27,12 @@ export const getPencaUsers = (companyCode, pencaId) => {
     }));
 };
 
-export const enableUser = (pencaId, userId) => {
-    return axiosInstance.post('/api/usuarios/habilitarUsuario', {
-        pencaId,
-        userId,
-    }, {
+export const enableUser = (pencaId, userId, companyCode) => {
+    return axiosInstance.post('/api/usuarios/habilitarUsuario', null, {
         params: {
             pencaId,
             userId,
+            tenantCode: companyCode,
         }
     });
 };

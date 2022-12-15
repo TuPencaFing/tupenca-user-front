@@ -26,6 +26,19 @@ export const inviteUser = (data) => {
     });
 };
 
+export const sendNews = (data) => {
+    const { users, subject, body } = data;
+    const userIds = [];
+    users.forEach((user) => {
+        userIds.push(user.id);
+    });
+    return axiosInstance.post('/api/funcionarios/enviarMensajes', {
+        userIds,
+        topic: subject,
+        message: body,
+    });
+};
+
 export const getEmployeesByCompanyId = (companyId) => {
     return axiosInstance.get(`/api/funcionarios/empresa/${companyId}`);
 };
