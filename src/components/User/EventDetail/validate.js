@@ -1,11 +1,11 @@
 const validate = (values, event) => {
     const errors = {};
     if (event.isScoreValid) {
-        if (!values.localTeamResult) {
+        if (isNaN(values.localTeamResult)) {
             errors.localTeamResult = 'El resultado local es requerido';
         } else if (values.localTeamResult < 0 || values.localTeamResult > 999) {
             errors.localTeamResult = 'El resultado no es válido';
-        } else if (!values.visitorTeamResult) {
+        } else if (isNaN(values.visitorTeamResult)) {
             errors.visitorTeamResult = 'El resultado visitante es requerido';
         } else if (values.visitorTeamResult < 0 || values.visitorTeamResult > 999) {
             errors.visitorTeamResult = 'El resultado no es válido';
@@ -14,9 +14,9 @@ const validate = (values, event) => {
             errors.visitorTeamResult = 'El resultado no puede ser empate';
         }
     } else {
-        if (!values.localTeamResult) {
+        if (values.localTeamResult === undefined) {
             errors.localTeamResult = 'El resultado local es requerido';
-        } else if (!values.visitorTeamResult) {
+        } else if (values.visitorTeamResult === undefined) {
             errors.visitorTeamResult = 'El resultado visitante es requerido';
         } else if (
             (values.localTeamResult === '1' && values.visitorTeamResult !== '0')

@@ -72,24 +72,24 @@ const EventDetail = ({ event, prediction, stats, redirectAfterSave }) => {
     if (prediction) {
         if (event.isScoreValid) {
             initialValues = {
-                localTeamResult: prediction.localTeamScore,
-                visitorTeamResult: prediction.visitorTeamScore,
+                localTeamResult: parseInt(prediction.localTeamScore),
+                visitorTeamResult: parseInt(prediction.visitorTeamScore),
             };
         } else {
             if (prediction.prediction === 1) {
                 initialValues = {
-                    localTeamResult: 1,
-                    visitorTeamResult: 0,
+                    localTeamResult: '1',
+                    visitorTeamResult: '0',
                 };
             } else if (prediction.prediction === 2) {
                 initialValues = {
-                    localTeamResult: 0,
-                    visitorTeamResult: 1,
+                    localTeamResult: '0',
+                    visitorTeamResult: '1',
                 };
             } else {
                 initialValues = {
-                    localTeamResult: 2,
-                    visitorTeamResult: 2,
+                    localTeamResult: '2',
+                    visitorTeamResult: '2',
                 };
             }
         }

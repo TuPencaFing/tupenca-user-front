@@ -7,8 +7,8 @@ export const savePrediction = (eventId, data) => {
     const body = {
         prediccion: prediction,
     };
-    if (localTeamResult) body.puntajeEquipoLocal = parseInt(localTeamResult);
-    if (visitorTeamResult) body.puntajeEquipoVisitante = parseInt(visitorTeamResult);
+    if (localTeamResult !== undefined && localTeamResult !== null) body.puntajeEquipoLocal = parseInt(localTeamResult);
+    if (visitorTeamResult !== undefined && visitorTeamResult !== null) body.puntajeEquipoVisitante = parseInt(visitorTeamResult);
     return axiosInstance.post(`/api/eventos/${eventId}/prediccion?pencaId=${pencaId}`, body);
 };
 
