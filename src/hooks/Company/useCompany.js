@@ -23,7 +23,7 @@ const useCompany = (companyCode) => {
                 image,
             })
         }).catch((error) => {
-            console.error('Error getting look and feel: ', error);
+            console.error('Error getting company by code: ', error);
         }).finally(() => {
             setLoading(false);
         });

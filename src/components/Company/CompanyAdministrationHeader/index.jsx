@@ -4,11 +4,13 @@ import Button from '@mui/material/Button';
 
 import { getCompanyAdminRoutes } from '../../../utils/routes';
 import './styles.scss';
+import { useSelector } from "react-redux";
 
 const CompanyAdministrationHeader = () => {
     let params = useParams();
     let location = useLocation();
     const navigate = useNavigate();
+    const { company } = useSelector((state) => state.session);
 
     const classNamePage = (route) => {
         if (location.pathname === route) {
@@ -28,13 +30,15 @@ const CompanyAdministrationHeader = () => {
                 >
                     Funcionarios
                 </Button>
-                <Button
-                    key="company-administration-header-configurations"
-                    onClick={() => navigate(`${getCompanyAdminRoutes(params.companyCode).adminConfigurations}`)}
-                    className={classNamePage(`${getCompanyAdminRoutes(params.companyCode).adminConfigurations}`)}
-                >
-                    Configuración
-                </Button>
+                {company.lookAndFeel !== 1 ? (
+                    <Button
+                        key="company-administration-header-configurations"
+                        onClick={() => navigate(`${getCompanyAdminRoutes(params.companyCode).adminConfigurations}`)}
+                        className={classNamePage(`${getCompanyAdminRoutes(params.companyCode).adminConfigurations}`)}
+                    >
+                        Configuración
+                    </Button>
+                ) : null}
             </div>
         </header>
     );

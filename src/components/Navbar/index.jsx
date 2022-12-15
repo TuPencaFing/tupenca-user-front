@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import AppBar from '@mui/material/AppBar';
@@ -13,12 +13,13 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import MenuIcon from '@mui/icons-material/Menu';
 
 import logo from '../../assets/logo.png';
+import { setBannerBackground, setBannerText } from '../../utils/colors';
 import './styles.scss';
 
 const Navbar = ({ pages, routes }) => {
     let location = useLocation();
     const navigate = useNavigate();
-    const { user, company } = useSelector((state) => state.session);
+    const { user, companyConfiguration } = useSelector((state) => state.session);
     const [anchorElNav, setAnchorElNav] = useState(null);
 
     const handleOpenNavMenu = (event) => {
@@ -42,18 +43,18 @@ const Navbar = ({ pages, routes }) => {
         }
     }
 
+    useEffect(() => {
+        if (companyConfiguration) {
+            setBannerText(companyConfiguration.navbarText);
+            setBannerBackground(companyConfiguration.navbarBackground);
+        }
+    }, [companyConfiguration]);
+
     return (
         <AppBar
             className="navbar"
             position="sticky"
             color="inherit"
-            ref={(node) => {
-                if (node && company?.configuration) {
-                    const { configuration } = company;
-                    node.style.setProperty('color', configuration.navbarText, 'important');
-                    node.style.setProperty('background-color', configuration.navbarBackground, 'important');
-                }
-            }}
         >
             <Container maxWidth="xl">
                 <Toolbar disableGutters>

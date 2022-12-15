@@ -2,8 +2,12 @@ import axios from 'axios';
 import { axiosInstance } from './config';
 import { getEventById } from './events';
 
-export const getPencas = () => {
-    return axiosInstance.get('/api/pencas-empresas');
+export const getPencas = (companyCode) => {
+    return axiosInstance.get('/api/pencas-empresas', {
+        params: {
+            TenantCode: companyCode,
+        },
+    });
 };
 
 export const getCompanyPencaInfoById = (pencaId) => {
