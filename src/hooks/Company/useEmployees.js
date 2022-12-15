@@ -2,21 +2,22 @@ import { useEffect, useState } from 'react';
 
 import { getEmployeesByCompanyId } from "../../services/employees";
 
-const useEmployees = (companyCode) => {
+const useEmployees = (companyId) => {
     const [loading, setLoading] = useState(false);
     const [employees, setEmployees] = useState([]);
 
     useEffect(() => {
         setLoading(true);
-        getEmployeesByCompanyId(companyCode).then((response) => {
+        getEmployeesByCompanyId(companyId).then((response) => {
             console.log('Response of get employees: ', response);
             const employeesResp = [];
             response.data.forEach((employee) => {
-                const { id, userName, email } = employee;
+                const { id, userName, email, image } = employee;
                 employeesResp.push({
                     id,
                     userName,
                     email,
+                    image,
                 });
             });
             setEmployees(employeesResp);
@@ -25,7 +26,7 @@ const useEmployees = (companyCode) => {
         }).finally(() => {
             setLoading(false);
         });
-    }, [companyCode]);
+    }, [companyId]);
 
     return {loading, employees};
 };

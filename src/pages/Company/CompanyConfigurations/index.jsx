@@ -11,11 +11,12 @@ import { uploadImage } from '../../../services/companies';
 import { setLookAndFeel } from '../../../services/companyLookAndFeel';
 import { setBannerBackground, setBannerText, setBodyBackground, setBodyText } from '../../../utils/colors';
 import { EMPLOYEE_LOGGED_PAGES, EMPLOYEE_ROUTES } from '../../../utils/navbarItems';
+import useCompany from "../../../hooks/Company/useCompany";
 
 const CompanyConfigurations = () => {
     let params = useParams();
-    const {company} = useSelector((state) => state.session);
     const {loading, configuration} = useLookAndFeel(params.companyCode);
+    const {company} = useCompany(params.companyCode);
     const [feedbackMessage, setFeedbackMessage] = useState(null);
     const [generalText, setGeneralText] = React.useState(null);
     const [generalBackground, setGeneralBackground] = React.useState(null);
@@ -86,6 +87,7 @@ const CompanyConfigurations = () => {
             <CompanyAdministrationHeader />
             <CompanyConfigurationForm
                 configuration={configuration}
+                initialImage={company?.image}
                 onSubmit={handleSubmit}
                 feedbackMessage={feedbackMessage}
                 setGeneralText={handleSetGeneralText}

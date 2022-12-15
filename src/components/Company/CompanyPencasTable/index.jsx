@@ -1,5 +1,7 @@
 import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import Avatar from '@mui/material/Avatar';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import Button from '@mui/material/Button';
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
@@ -14,7 +16,14 @@ import { getCompanyAdminRoutes } from '../../../utils/routes';
 import './styles.scss';
 
 const columns = [
-    { id: 'id', label: 'ID', minWidth: 40 },
+    {
+        id: 'image',
+        label: 'Imagen',
+        minWidth: 40,
+        format: (image) => image
+            ? <Avatar src={image} alt={image} />
+            : <AccountCircleIcon fontSize="large" />
+    },
     { id: 'title', label: 'Título', minWidth: 100 },
     { id: 'description', label: 'Descripción', minWidth: 200 },
     { id: 'championshipName', label: 'Campeonato', minWidth: 100 },
@@ -82,7 +91,7 @@ const CompanyPencasTable = ({ pencas, handleClickPenca }) => {
                                                     key={column.id}
                                                     align={column.align}
                                                 >
-                                                    {column.format && typeof value === 'number'
+                                                    {column.format
                                                         ? column.format(value)
                                                         : value}
                                                 </TableCell>

@@ -11,6 +11,7 @@ import './styles.scss';
 
 const CompanyConfigurationForm = ({
     configuration,
+    initialImage,
     onSubmit,
     feedbackMessage,
     setGeneralText,
@@ -31,6 +32,7 @@ const CompanyConfigurationForm = ({
                         <Grid container spacing={2} className="company-configuration-div">
                             <div style={{ width: '100%' }}>
                                 <AvatarUpload
+                                    initialImage={initialImage}
                                     setFiles={setFiles}
                                 />
                             </div>
