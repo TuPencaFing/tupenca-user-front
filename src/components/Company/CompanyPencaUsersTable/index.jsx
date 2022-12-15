@@ -81,6 +81,7 @@ const CompanyPencaUsersTable = ({ users, usersCounter, handleEnableUser, handleR
                         key="company-penca-users-table-actions-invite-user"
                         className="company-penca-users-table-actions-invite-user"
                         onClick={() => navigate(`${getCompanyAdminRoutes(params.companyCode, params.pencaId).pencaUserInvite}`)}
+                        disabled={usersCounter === 0}
                     >
                         Invitar usuario
                     </Button>
