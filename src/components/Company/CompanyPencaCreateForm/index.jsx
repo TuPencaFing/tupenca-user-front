@@ -97,6 +97,28 @@ const CompanyPencaCreateForm = ({
                                     ))}
                                 </Field>
                             </Grid>
+                            <Grid item xs={12}>
+                                <Field
+                                    type="number"
+                                    name="result"
+                                    label="Puntos por resultado correcto"
+                                    component={TextFieldAdapter}
+                                    InputProps={{ inputProps: { min: 0, max: 9999 } }}
+                                    fullWidth
+                                    required
+                                />
+                            </Grid>
+                            <Grid item xs={12}>
+                                <Field
+                                    type="number"
+                                    name="exactResult"
+                                    label="Puntos por resultado exacto"
+                                    component={TextFieldAdapter}
+                                    InputProps={{ inputProps: { min: 0, max: 9999 } }}
+                                    fullWidth
+                                    required
+                                />
+                            </Grid>
                         </Grid>
                         {feedbackMessage && (
                             <div className="company-penca-create-form-feedback-message">

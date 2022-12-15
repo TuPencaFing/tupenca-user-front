@@ -6,6 +6,7 @@ import Navbar from '../../../components/Navbar';
 import Spinner from '../../../components/Spinner';
 import usePencaCreate from '../../../hooks/Company/usePencaCreate';
 import { createPenca, uploadImage } from '../../../services/companyPencas';
+import { createScore } from '../../../services/scores';
 import { EMPLOYEE_LOGGED_PAGES, EMPLOYEE_ROUTES } from '../../../utils/navbarItems';
 import { getCompanyAdminRoutes } from '../../../utils/routes';
 
@@ -23,32 +24,44 @@ const CompanyPencaCreate = () => {
 
     const handleSubmit = (values) => {
         console.log('Request to create penca: ', values, files);
-        const data = {
-            ...values,
-            prizes: prizesSelected,
+        const scoreData = {
+            result: values.result,
+            exactResult: values.exactResult,
         };
-        createPenca(params.companyCode, data).then((response) => {
-            console.log('Response create penca: ', response);
-            // if (files !== null) {
-            //     const payload = new FormData();
-            //     payload.append("file", files);
-            //     uploadImage(pencaId, payload).then((response) => {
-            //         console.log('Response upload penca image: ', response);
-            //     }).catch((error) => {
-            //         console.log('Error uploading penca image: ', error);
-            //     });
-            // }
-            navigate(getCompanyAdminRoutes(params.companyCode).pencas, {
-                state: {
-                    register: true,
-                },
+        createScore(scoreData).then((scoreResponse) => {
+            console.log('Response create score: ', scoreResponse);
+            const { id: scoreId } = scoreResponse.data;
+            const pencaData = {
+                ...values,
+                prizes: prizesSelected,
+                scoreId,
+            };
+            createPenca(params.companyCode, pencaData).then((pencaResponse) => {
+                console.log('Response create penca: ', pencaResponse);
+                const { id: pencaId } = pencaResponse.data;
+                if (files !== null) {
+                    const payload = new FormData();
+                    payload.append("file", files);
+                    uploadImage(pencaId, payload).then((response) => {
+                        console.log('Response upload penca image: ', response);
+                    }).catch((error) => {
+                        console.log('Error uploading penca image: ', error);
+                    });
+                }
+                navigate(getCompanyAdminRoutes(params.companyCode).pencas, {
+                    state: {
+                        register: true,
+                    },
+                });
+            }).catch((error) => {
+                console.log('Error creating penca: ', error);
+                setFeedbackMessage({
+                    type: 'error',
+                    message: 'Ocurrió un error al crear su penca. Inténtelo nuevamente en unos minutos.',
+                });
             });
         }).catch((error) => {
-            console.log('Error creating penca: ', error);
-            setFeedbackMessage({
-                type: 'error',
-                message: 'Ocurrió un error al crear su penca. Inténtelo nuevamente en unos minutos.',
-            });
+            console.log('Error creating score: ', error);
         });
     };
 
