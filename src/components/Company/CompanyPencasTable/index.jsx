@@ -55,6 +55,7 @@ const CompanyPencasTable = ({ pencas, pencasCounter, handleClickPenca }) => {
                         key="company-pencas-table-actions-create-penca"
                         className="company-pencas-table-actions-create-penca"
                         onClick={() => navigate(`${getCompanyAdminRoutes(params.companyCode).pencasCreate}`)}
+                        disabled={pencasCounter === 0}
                     >
                         Crear penca
                     </Button>

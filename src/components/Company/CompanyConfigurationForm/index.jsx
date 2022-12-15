@@ -45,7 +45,7 @@ const CompanyConfigurationForm = ({
                                     </div>
                                     <div>
                                         <InputColor
-                                            initialValue={configuration?.generalText ?? '#5e72e4'}
+                                            initialValue={configuration?.generalText ?? '#000000'}
                                             onChange={setGeneralText}
                                             placement="right"
                                         />
@@ -61,7 +61,7 @@ const CompanyConfigurationForm = ({
                                     </div>
                                     <div>
                                         <InputColor
-                                            initialValue={configuration?.generalBackground ?? '#5e72e4'}
+                                            initialValue={configuration?.generalBackground ?? '#F5AA6D'}
                                             onChange={setGeneralBackground}
                                             placement="right"
                                         />
@@ -77,7 +77,7 @@ const CompanyConfigurationForm = ({
                                     </div>
                                     <div>
                                         <InputColor
-                                            initialValue={configuration?.navbarText ?? '#5e72e4'}
+                                            initialValue={configuration?.navbarText ?? '#000000'}
                                             onChange={setNavbarText}
                                             placement="right"
                                         />
@@ -93,7 +93,7 @@ const CompanyConfigurationForm = ({
                                     </div>
                                     <div>
                                         <InputColor
-                                            initialValue={configuration?.navbarBackground ?? '#5e72e4'}
+                                            initialValue={configuration?.navbarBackground ?? '##E76F51'}
                                             onChange={setNavbarBackground}
                                             placement="right"
                                         />
