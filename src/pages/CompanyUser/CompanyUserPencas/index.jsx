@@ -11,7 +11,7 @@ import { getCompanyRoutes } from '../../../utils/routes';
 const CompanyUserPencas = () => {
     let params = useParams();
     const navigate = useNavigate();
-    const {loading, pencas} = useCompanyUserPencas();
+    const {loading, pencas} = useCompanyUserPencas(params.companyCode);
 
     const handleClickPenca = (pencaId) => {
         navigate(getCompanyRoutes(params.companyCode, pencaId).pencaEvents);
