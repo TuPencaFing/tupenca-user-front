@@ -30,6 +30,7 @@ const MisPencas = () => {
                 initialKeyword={searchParams.get('search')}
                 pencas={pencas}
                 handleClickPenca={handleClickPenca}
+                messageEmpty="Aún no te has unido a ninguna penca! "
             />
         </>
     );

@@ -23,7 +23,7 @@ const useCompanyUserPencas = (companyCode) => {
         }).finally(() => {
             setLoading(false);
         });
-    }, []);
+    }, [companyCode]);
 
     return {loading, pencas};
 };

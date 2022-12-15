@@ -42,9 +42,9 @@ const CompanyUserPencaEvents = () => {
                     />
                 </>
             ) : (
-                <>
-                    No hay eventos
-                </>
+                <div className="company-user-penca-events-list-empty">
+                    La penca aún no tiene ningún evento del que puedas participar. Vuelve más tarde!
+                </div>
             )}
         </>
     );

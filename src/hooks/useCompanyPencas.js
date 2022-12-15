@@ -30,7 +30,7 @@ const useCompanyPencas = (companyCode) => {
         }).finally(() => {
             setLoading(false);
         });
-    }, []);
+    }, [companyCode]);
 
     return {loading, pencas, pencasCounter};
 };

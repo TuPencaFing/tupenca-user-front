@@ -34,9 +34,17 @@ const Prizes = () => {
                     handleClickItem={handleClickItem}
                 />
             ) : (
-                <>
-                    No hay premios
-                </>
+                <div
+                    className="prizes-list-empty"
+                    style={{
+                        marginTop: '8px',
+                        display: 'flex',
+                        justifyContent: 'center',
+                        fontSize: '20px',
+                    }}
+                >
+                    No tienes premios para reclamar. Continúa participando para ganar!!!
+                </div>
             )}
         </>
     );

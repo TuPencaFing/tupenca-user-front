@@ -14,7 +14,22 @@ const StyledPaper = styled(Paper)(({ theme }) => ({
     color: theme.palette.text.primary,
 }));
 
-const PencaList = ({ headerIcon, pencas, handleClickPenca, handleJoinPenca, search, initialKeyword }) => {
+const PencaList = ({
+    headerIcon,
+    pencas,
+    handleClickPenca,
+    handleJoinPenca,
+    search,
+    initialKeyword,
+    messageEmpty,
+}) => {
+
+    let pencaListEmptyMessage;
+    if (initialKeyword) {
+        pencaListEmptyMessage = `No se encontraron pencas para '${initialKeyword}'`;
+    } else {
+        pencaListEmptyMessage = messageEmpty;
+    }
 
     return (
         <>
@@ -67,7 +82,7 @@ const PencaList = ({ headerIcon, pencas, handleClickPenca, handleJoinPenca, sear
                     </>
                 ) : (
                     <div className="pencas-list-empty">
-                        No hay pencas disponibles
+                        {pencaListEmptyMessage ?? 'No hay pencas disponibles'}
                     </div>
                 )}
             </div>

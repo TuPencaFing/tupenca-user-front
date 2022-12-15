@@ -35,7 +35,7 @@ const useLookAndFeel = (companyCode) => {
         }).finally(() => {
             setLoading(false);
         });
-    }, [companyCode]);
+    }, [companyCode, dispatch]);
 
     return {loading, configuration};
 };

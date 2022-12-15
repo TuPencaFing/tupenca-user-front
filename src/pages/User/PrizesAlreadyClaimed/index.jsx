@@ -26,9 +26,17 @@ const PrizesAlreadyClaimed = () => {
                     prizes={prizes}
                 />
             ) : (
-                <>
-                    No hay premios
-                </>
+                <div
+                    className="prizes-already-claimed-list-empty"
+                    style={{
+                        marginTop: '8px',
+                        display: 'flex',
+                        justifyContent: 'center',
+                        fontSize: '20px',
+                    }}
+                >
+                    No has reclamado ningún premio
+                </div>
             )}
         </>
     );
