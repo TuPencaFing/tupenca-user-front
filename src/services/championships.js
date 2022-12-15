@@ -1,5 +1,9 @@
 import { axiosInstance } from './config';
 
 export const getChampionships = () => {
-    return axiosInstance.get('/api/campeonatos');
+    return axiosInstance.get('/api/campeonatos', {
+        params: {
+            finalizados: false,
+        },
+    });
 };
