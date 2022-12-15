@@ -17,14 +17,14 @@
     .company-penca-users-table-actions {
       text-align: right;
 
-      .company-penca-users-table-actions-invite-user {
+      .company-penca-users-table-actions-invite-user, .company-pencas-table-actions-send-news {
         color: white;
         background-color: black;
         margin-top: 8px;
         margin-right: 8px;
       }
 
-      .company-penca-users-table-actions-invite-user:hover {
+      .company-penca-users-table-actions-invite-user:hover, .company-pencas-table-actions-send-news:hover {
         background-color: #494949;
       }
     }
